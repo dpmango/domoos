@@ -36,13 +36,13 @@ npm start
 Создать production сборку, затем поместить ее в архив, который будет лежать в корне:
 
 ```
-npm run production;
+npm run production
 ```
 
 Заархивировать текущую сборку в архив:
 
 ```
-npm run zip;
+npm run zip
 ```
 
 # Git hooks
