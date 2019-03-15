@@ -1,0 +1,15 @@
+- var navigation = [{ title: 'Все города', href: '/goroda.html', isDropdown: false, }, { title: 'Города на карте', href: '/goroda-na-karte.html', isDropdown: false }, { title: 'Услуги', href: '#', isDropdown: true, data: [{href:'/', title: 'Переезд'}, {href:'/', title: 'Переезд'}, {href:'/', title: 'Подбор'}]}, { title: 'Все агенства', href: '#', isDropdown: false }, { title: 'Все застройщики', href: '#', isDropdown: false }];
+
+.mobile-menu#sidebar
+	.mobile-menu__header
+		a.logo(href="/") Domoos
+		.mobile-menu__close#sidebar-close
+	.mobile-menu__content
+		.nav
+			each item in navigation
+				if item.isAccardion
+					.nav__item
+						+accordion(item.title, item.data)
+				else
+					.nav__item
+						a.nav__link(href=item.href)= item.title

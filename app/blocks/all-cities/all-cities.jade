@@ -1,0 +1,50 @@
+- var cities = [];
+- cities.push({name: 'Санкт-Петербург', description: 'Район расположен в центральной исторической части Санкт-Петербурга. С севера и востока границей района является река Нева', img: '/images/city-1.jpg', features: [10000000, 56, 2300], tags: ['спальный', 'тихий']})
+- cities.push({name: 'Москва', description: 'В каталоге   России, в каталоге сайта собраны все города России.', img: '/images/city-2.jpg', features: [10000000, 56, 2300], tags: ['спальный', 'исторический']})
+- cities.push({name: 'Нижний Новгород', description: 'В каталоге сайта собраны все города России, в каталоге сайта собраны все города России.', img: '/images/city-3.jpg', features: [10000000, 56, 2300], tags: ['спальный']})
+- cities.push({name: 'Минск', description: 'В каталоге сайта собраны все города России, в   собраны все города России.', img: '/images/city-1.jpg', features: [10000000, 56, 2300], tags: ['спальный']})
+- cities.push({name: 'Омск', description: 'Район расположен в центральной исторической части Санкт-Петербурга. С севера и востока границей района является река Нева', img: '/images/city-2.jpg', features: [10000000, 56, 2300], tags: ['спальный']})
+- cities.push({name: 'Санкт-Петербур5', description: 'В каталоге сайта собраны все города России, в каталоге сайта собраны все города России.', img: '/images/city-3.jpg', features: [10000000, 56, 2300], tags: ['спальный']})
+- cities.push({name: 'Держинск', description: 'Район расположен в центральной исторической части Санкт-Петербурга. С севера и востока границей района является река Нева', img: '/images/city-1.jpg', features: [10000000, 56, 2300], tags: ['спальный', 'тихий']})
+- cities.push({name: 'Санкт-Петербург7', description: 'В каталоге сайта собраны все города России, в каталоге сайта собраны все города России.', img: '/images/city-2.jpg', features: [10000000, 56, 2300], tags: ['спальный', 'бизнес-район']})
+- cities.push({name: 'Новосибирск', description: 'В каталоге сайта собраны все города России, в каталоге сайта собраны все города России.', img: '/images/city-3.jpg', features: [10000000, 56, 2300], tags: ['спальный', 'тихий']})
+- cities.push({name: 'Нижний Новгород', description: 'В каталоге сайта собраны все города России, в каталоге сайта собраны все города России.', img: '/images/city-1.jpg', features: [10000000, 56, 2300], tags: ['спальный', 'экологический']})
+- cities.push({name: 'Саратов', description: 'В каталоге сайта собраны все города России, в каталоге сайта собраны все города России.', img: '/images/city-2.jpg', features: [10000000, 56, 2300], tags: ['спальный']})
+- cities.push({name: 'Астрахань', description: 'В каталоге сайта собраны все города России, в каталоге сайта собраны все города России.', img: '/images/city-3.jpg', features: [10000000, 56, 2300], tags: ['спальный']})
+
+- var allTags = ['тихий', 'исторический', 'бизнес-район', 'спальный', 'экологический']
+
+section.all-cities
+	.wrap
+		.all-cities__header
+			.all-cities__title Все города
+			.all-cities__description.ask Сортировать по стоимости квартир
+			.all-cities__btn
+				.btn.btn__ghost.btn__ghost--black#all-cities-filter-toggle Показать фильтр
+		.all-cities__content
+			.all-cities__list#cities-filter
+				each item in cities
+					- var tagz = item.tags.join(', ');
+					.city(data-category=tagz)
+						.city__img(style={'background-image': 'url("#{item.img}")'})
+						a.city__name(href="#")= item.name
+						.city__description= item.description
+						.city__features
+							.features
+								.features__item.features__population
+									+icon('people', true).icon.icon__people
+									| Население: #{item.features[0]} человек
+								.features__item.features__buildings
+									+icon('three-buildings', true).icon.icon__buildings
+									| В базе: #{item.features[1]} новостроек
+								.features__item.features__price
+									+icon('rouble', true).icon.icon__rouble
+									| Стартовая цена: #{item.features[2]} руб
+			.all-cities__sidebar#cities-filter-tags
+				.city-filter
+					.city-filter__title Фильтр по городам
+					.city-filter__content
+						each tag in allTags
+							.city-filter__item(data-tag=tag)= tag
+
+				+banner('city-page')

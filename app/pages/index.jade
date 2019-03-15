@@ -1,0 +1,17 @@
+extends /blocks/layout/layout
+
+block head
+	- var pageTitle = 'Home';
+
+block header
+	- var isHome = true;
+
+block content
+	include /blocks/header/header
+	include /blocks/benefits/benefits
+	include /blocks/about-cities/about-cities
+	include /blocks/help/help
+	include /blocks/city-explorer/city-explorer
+	include /blocks/our-services/our-services
+	include /blocks/how-it-works/how-it-works
+	include /blocks/other/other

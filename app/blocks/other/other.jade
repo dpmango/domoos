@@ -1,0 +1,15 @@
+
+
+- var items = []
+- items.push({ title: 'Покупателям', text: 'Мы собрали для вашего удобства все ликвидные новостройки ' })
+- items.push({ title: 'Агенствам', text: 'Мы собрали для вашего удобства все ликвидные новостройки ' })
+- items.push({ title: 'Застройщикам', text: 'Мы собрали для вашего удобства все ликвидные новостройки ' })
+
+section.other
+	.wrap
+		.other__content
+			each item in items
+				.item
+					.item__title= item.title
+					.item__text= item.text
+					a.item__link(href="/") Подробнее

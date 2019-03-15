@@ -1,0 +1,51 @@
+.PhoneForm {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+
+	&__content {
+		+above($mobiles) {
+			display: none;
+		}
+
+		+above($notebooks) {
+			display: flex;
+		}
+	}
+
+	&__input {
+		min-width: 270px;
+	}
+
+	&__label {
+		margin-bottom: 10px;
+		font-size: 1.4rem;
+		font-weight: 500;
+		color: var(--title-color);
+
+		+above($mobiles) {
+			display: none;
+		}
+
+		+above($notebooks) {
+			display: block;
+		}
+	}
+
+	&__form {
+		width: 100%;
+
+		.btn {
+			width: 100%;
+			line-height: 50px;
+		}
+
+		+above($mobiles) {
+			display: block;
+		}
+
+		+above($notebooks) {
+			display: none;
+		}
+	}
+}

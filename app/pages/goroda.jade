@@ -1,0 +1,13 @@
+extends /blocks/layout/layout
+
+block head
+	- var pageTitle = 'Города';
+
+block header
+	- var isСities = true;
+
+block content
+	include /blocks/header/header
+	include /blocks/all-cities/all-cities
+	include /blocks/your-opinion/your-opinion
+	include /blocks/comments/comments

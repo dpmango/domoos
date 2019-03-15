@@ -1,0 +1,141 @@
+.about-cities {
+	&__header {
+		padding: 0 15px;
+		display: flex;
+		flex-wrap: wrap;
+		width: 100%;
+	}
+
+	&__title {
+		h2();
+		width: 100%;
+
+		+above($mobile) {
+			margin-bottom: 5px;
+		}
+
+		+above($notebooks) {
+			margin-bottom: 10px;
+		}
+	}
+
+	&__description {
+		text();
+		max-width: 630px;
+
+		+above($mobile) {
+			display: none;
+		}
+
+		+above($notebooks) {
+			display: block;
+		}
+	}
+
+	.to-category-link {
+		margin-top: auto;
+		line-height: 1em;
+
+		&:after {
+			arrow(2px, 1px, var(--arrow-color), 45deg);
+			margin-left: 12px;
+		}
+
+		+above($mobile) {
+			margin-right: auto;
+			font-size: 1.4rem;
+		}
+
+		+above($notebooks) {
+			margin-right: 0;
+			margin-left: auto;
+			font-size: 1.6rem;
+		}
+	}
+
+	&__slider {
+		position: relative;
+
+		.slick-slide {
+			position: relative;
+			padding: 0;
+
+			+above($mobile) {
+				left: 86px;
+			}
+
+			+above($notebooks) {
+				left: 0;
+			}
+		}
+
+		+above($mobile) {
+			margin: 20px 0 50px;
+			padding: 0 15px;
+		}
+
+		+above($notebooks) {
+			margin: 25px 0 60px;
+			padding: 0 15px;
+		}
+
+		.city {
+			position: relative;
+			margin: 0 10px;
+
+			&:hover {
+				.city__img {
+					background-size: cover;
+				}
+			}
+
+			&:before {
+				position: absolute;
+				top: 0;
+				left: 0;
+				display: inline-block;
+				width: 100%;
+				height: 100%;
+				content: '';
+				background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, .46) 100%);
+			}
+
+			&__img {
+				width: 100%;
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size: cover;
+				transition: .1s;
+
+				+above($mobile) {
+					min-height: 200px;
+				}
+
+				+above($notebooks) {
+					min-height: 250px;
+				}
+			}
+
+			&__name {
+				position: absolute;
+				left: 18px;
+				bottom: 20px;
+				font-weight: 500;
+				line-height: 1em;
+				color: #fff;
+
+				+above($mobile) {
+					font-size: 1.6rem;
+				}
+
+				+above($notebooks) {
+					font-size: 1.8rem;
+				}
+			}
+
+			&__description {
+				display: none;
+			}
+		}
+	}
+}

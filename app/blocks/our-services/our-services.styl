@@ -1,0 +1,111 @@
+.our-services {
+	margin-top: 80px;
+
+	+above($mobile) {
+		display: none;
+	}
+
+	+above($notebooks) {
+		display: block;
+	}
+
+	&__title {
+		h2()
+		margin-bottom: 10px;
+		wrap-pad();
+	}
+
+	&__content {
+		padding: 75px 85px;
+		border: 1px solid var(--border-color);
+		wrap-pad();
+	}
+
+	.tabs {
+		display: flex;
+
+		#exchange-tab:checked label[for='content-exchange'] {
+			color: var(--blue)
+		}
+
+		#exchange-tab:checked~#content-exchange,
+		#selection-tab:checked~#content-selection,
+		#credit-tab:checked~#content-credit,
+		#regions-tab:checked~#content-regions,
+		#programs-tab:checked~#content-programs {
+			display: block;
+		}
+	}
+
+	.labels {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-start;
+		align-content: flex-start;
+		max-width: 350px;
+		width: 100%;
+		position: relative;
+		top: -5px;
+		bulls()
+
+		&__item {
+			width: 100%;
+			line-height: 5rem;
+			cursor: pointer;
+			position: relative;
+
+			label {
+				cursor: pointer;
+			}
+
+			&.active {
+				label {
+					color: var(--blue);
+				}
+			}
+		}
+
+	}
+
+	.content {
+		display: flex;
+		flex-wrap: wrap;
+		padding-left: 110px;
+		border-left: 1px solid var(--border-color);
+		&__item {
+			display: none;
+		}
+
+		&__radio {
+			display: none;
+		}
+
+		&__title {
+			h4()
+			max-width: 380px;
+			margin-bottom: 20px;
+		}
+
+		&__text {
+			text()
+			max-width: 500px;
+			margin-bottom: 20px;
+		}
+
+		&__link {
+			margin-bottom: 20px;
+		}
+
+		.hotcall {
+			&__title--number,
+			&__phone {
+				display: none;
+			}
+
+			input[type='tel'] {
+				width: 100%;
+				max-width: 247px;
+			}
+		}
+	}
+}

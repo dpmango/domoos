@@ -1,0 +1,11 @@
+extends /blocks/layout/layout
+
+block head
+	- var pageTitle = 'Карта городов';
+
+block header
+	- var isMap = true;
+
+block content
+	include /blocks/header/header
+	include /blocks/country-map/country-map

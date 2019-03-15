@@ -1,0 +1,13 @@
+include /../node_modules/bemto.jade/bemto
+include /../node_modules/jade-injected/jade-injected
+include ../mixins
+
+doctype html
+html(lang='ru')
+	include ../head/head
+	+page
+		block content
+		include ../footer/footer
+		include ../mobile-menu/mobile-menu
+		#test
+		+scripts(['app.min.js'])

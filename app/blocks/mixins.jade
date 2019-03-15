@@ -1,0 +1,64 @@
+include /../node_modules/bemto.jade/bemto
+
+mixin page()
+	+b('body').page&attributes(attributes)
+		block
+
+mixin scripts(scripts)
+	each src in scripts
+		- var isExternalScript = /^(?:https?\:)?\/\//i;
+		- src = isExternalScript.test(src) ? src : '/assets/scripts/' + src;
+		script(src=src)
+
+mixin icon(iconName, isBlock)
+	if isBlock
+		svg&attributes(attributes)
+			use(xlink:href='/assets/images/icon.svg#icon_#{iconName}')
+	else
+		+e('svg')&attributes(attributes)
+			use(xlink:href='/assets/images/icon.svg#icon_#{iconName}')
+
+
+mixin dropdown(caption, items)
+	.dropdown
+		button(type="button", data-toggle="dropdown").dropdown__handler
+			= caption
+		ul.dropdown__menu
+			each item in items
+				li
+					a.dropdown__link(tabindex="-1", href=item.href target="_blank" rel="nofollow noopener")= item.title
+
+mixin accordion(caption, items)
+	.accordion
+		input(type="checkbox" id=caption name="tabs").accordion__handler
+		label.accordion__label(for=caption)= caption
+		.accordion__menu
+			each item in items
+				a.accordion__link(href=item.href)= item.title
+
+mixin citySlider(id, items)
+	.carousel
+		each item in items
+			a.carousel__item.city(href="/url-to-gorod")
+				.city__img(style={'background-image': 'url("#{item.img}")'})
+				.city__name= item.name
+				.city__description= item.description
+
+mixin banner(id)
+	.banner(id=id)
+		.banner__title
+		.banenr__content
+
+mixin hotcall(id)
+	+b.hotcall(id= id)
+		+e.__title--number Звоните по горячей линии:
+		+e.A(href="tel:88006159251").__phone 8 (800) 615-92-51
+		+e.__content
+			+e.__title--form Оставьте заявку на обратный звонок:
+			+e.__form#hotcall-form
+				input.hotcall__input(name="phone" type="tel" placeholder="+7")
+				input.hotcall__submit(name="submit" type="submit" value="Отправить" class="btn btn__full btn__full--yellow")
+		+e.__popup-form#hotcall-popup-form
+			input(name="submit" type="submit" value="Позвонить" class="btn btn__full btn__full--yellow")
+
+

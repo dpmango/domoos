@@ -1,0 +1,38 @@
+.city-explorer {
+	margin-top: 100px;
+	display: flex;
+
+	+above($mobile) {
+		margin-top: 0
+	}
+
+	+above($notebooks) {
+		margin-top: 100px;
+	}
+
+	&__title {
+		h2()
+
+		+above($mobile) {
+			margin-bottom: 25px;
+		}
+
+		+above($notebooks) {
+			margin-bottom: 35px;
+		}
+	}
+
+	&__block {
+		wrap-pad()
+
+		+above($mobile) {
+			padding: 45px 15px;
+		}
+
+		+above($notebooks) {
+			padding: 90px 120px;
+			block()
+		}
+	}
+}
+

@@ -1,0 +1,734 @@
+.header {
+	position: relative;
+	z-index: 10000;
+	padding-bottom: 40px;
+	background-image: url('/images/bg-main.jpg');
+	background-repeat: no-repeat;
+	background-position: top center;
+	background-size: cover;
+
+	+above($mobile) {
+		min-height: 643px;
+	}
+
+	+above($notebooks) {
+		min-height: 670px;
+	}
+
+	+above($desktop) {
+		min-height: 800px;
+	}
+
+	&__content {
+		padding: 0 15px;
+	}
+
+	&__top {
+		position: relative;
+		display: flex;
+		flex-wrap: wrap;
+		width: 100%;
+		height: 54px;
+
+		+above($mobile) {
+			padding: 0;
+		}
+
+		+above($notebooks) {
+			padding: 0 15px;
+		}
+
+		&:before {
+			position: absolute;
+			right: 0;
+			left: 0;
+			bottom: 0;
+			margin: auto;
+			width: calc(100% - 30px);
+			height: 1px;
+			content: '';
+
+			+above($mobile) {
+				background-color: rgba(255, 255, 255, 0);
+			}
+
+			+above($notebooks) {
+				background-color: rgba(255, 255, 255, .2);
+			}
+		}
+	}
+
+	&__bottom {
+		padding: 0 15px;
+
+		+above($mobile) {
+			display: none;
+		}
+
+		+above($notebooks) {
+			display: flex;
+		}
+
+		.to-home {
+			position: relative;
+			bottom: -24px;
+			opacity: .5;
+
+			&:hover {
+				opacity: 1;
+			}
+
+			.icon {
+				margin-right: 30px;
+
+				&__home {
+					svgSize($home);
+				}
+			}
+		}
+
+		.developer-ad {
+			position: relative;
+			bottom: -13px;
+			margin-left: auto;
+			color: #fff;
+
+			&__title {
+				position: relative;
+				bottom: -2px;
+			}
+		}
+	}
+
+	&__title {
+		margin-bottom: 23px;
+		color: #fff;
+
+		+above($mobile) {
+			margin-top: 50px;
+		}
+
+		+above($notebooks) {
+			margin-top: 75px;
+		}
+
+		+above($desktop) {
+			margin-top: 115px;
+		}
+	}
+
+	&__description {
+		max-width: 710px;
+		color: #fff;
+
+		+above($mobile) {
+			font-size: 1.4rem;
+			line-height: 1.5;
+		}
+
+		+above($notebooks) {
+			min-height: 155px;
+			font-size: 1.8rem;
+			line-height: 1.7;
+		}
+	}
+
+	&__cta {
+		.btn {
+			margin-left: 0;
+			line-height: 55px;
+		}
+	}
+
+	&__city-select {
+		+above($mobile) {
+			margin-top: 55px;
+		}
+
+		+above($notebooks) {
+			margin-top: 25px;
+		}
+
+		.city-select {
+			&__title {
+				margin-bottom: 16px;
+				display: block;
+				font-size: 1.4rem;
+
+				+above($mobile) {
+					max-width: 210px;
+				}
+
+				+above($notebooks) {
+					max-width: 100%;
+				}
+			}
+
+			.Suggest {
+				width: 100%;
+				max-width: 450px;
+			}
+
+			.btn {
+				line-height: 52px;
+			}
+		}
+	}
+
+	.logo {
+		z-index: 100;
+		padding: 0 12px;
+		display: flex;
+		align-items: center;
+		font-size: 1.6rem;
+		font-weight: 700;
+		color: #fff;
+		background-color: var(--blue);
+
+		&:hover {
+			background-color: var(--blue--hover);
+		}
+
+		&:active {
+			background-color: var(--blue--active);
+		}
+	}
+
+	.nav {
+		display: flex;
+
+		&__link {
+			margin-top: 28px;
+			margin-right: 35px;
+			font-size: 1.4rem;
+			color: rgba(255, 255, 255, 1);
+
+			&:hover {
+				color: rgba(255, 255, 255, .5);
+			}
+		}
+
+		.dropdown {
+			top: 26px;
+			height: 1em;
+
+			&__handler {
+				margin-right: 36px;
+				font-size: 1.4rem;
+				color: #fff;
+				background-color: transparent;
+
+				&:hover {
+					color: var(--text-color);
+				}
+
+				&:after {
+					arrow(2px, 1px, #fff, 135deg);
+					margin-bottom: 3px;
+					margin-left: 13px;
+					opacity: .6;
+				}
+			}
+
+			&__menu {
+				top: 35px;
+				padding: 14px 20px;
+				min-width: 200px;
+				background-color: #fff;
+				box-shadow: 0 2px 5px 0 rgba(140, 140, 140, .3);
+			}
+
+			&__link {
+				font-size: 1.4rem;
+				line-height: 3.6rem;
+				color: var(--text-color);
+
+				&:hover {
+					color: var(--blue);
+				}
+			}
+		}
+	}
+
+	.menu {
+		margin-left: auto;
+		display: flex;
+
+		&__item {
+			display: flex;
+			align-items: center;
+			align-content: center;
+			t();
+
+			&:hover {
+				.menu {
+					&__title {
+						opacity: .7;
+					}
+				}
+
+				&:before {
+					border-color: rgba(255, 255, 255, .7);
+				}
+
+				.icon {
+					opacity: .7;
+				}
+
+				.Cart__label {
+					opacity: .7;
+				}
+			}
+
+			+above($mobile) {
+				margin-left: 20px;
+			}
+
+			+above($notebooks) {
+				margin-left: 30px;
+			}
+
+			&--about {
+				position: relative;
+
+				&:before {
+					pseudo();
+					position: absolute;
+					left: -5px;
+					margin-top: -1px;
+					width: 20px;
+					height: 20px;
+					border: 1px solid var(--border-color);
+					border-radius: 50%;
+				}
+
+				+above($mobile) {
+					display: none;
+				}
+
+				+above($notebooks) {
+					display: flex;
+				}
+			}
+
+			&--burger {
+				+above($mobile) {
+					margin-right: 10px;
+					display: flex;
+				}
+
+				+above($notebooks) {
+					margin-right: 0;
+					display: none;
+				}
+			}
+
+			.icon {
+				position: relative;
+				top: -1px;
+				width: 40px;
+				height: 40px;
+				t();
+
+				+above($mobile) {
+					margin-right: 0;
+				}
+
+				+above($notebooks) {
+					margin-right: 10px;
+				}
+
+				&__like {
+					width: 20px;
+					height: 18px;
+					fill: #dae0ed;
+				}
+
+				&__question {
+					width: 12px;
+					height: 10px;
+					fill: #dae0ed;
+
+					+above($notebooks) {
+						margin-right: 14px;
+					}
+				}
+
+				&__phone {
+					width: 20px;
+					height: 20px;
+
+					+above($mobile) {
+						display: block;
+					}
+
+					+above($notebooks) {
+						display: none;
+					}
+				}
+
+				&__burger {
+					width: 24px;
+					height: 21px;
+				}
+			}
+		}
+
+		&__title {
+			white-space: nowrap;
+			color: rgba(255, 255, 255, 1);
+
+			+above($mobile) {
+				font-size: 0;
+			}
+
+			+above($notebooks) {
+				font-size: 1.2rem;
+			}
+
+			&--phone {
+				position: relative;
+				bottom: -1px;
+				font-weight: 700;
+			}
+		}
+	}
+
+	&__sticky {
+		block();
+		position: fixed;
+		z-index: -1;
+		top: 0;
+		left: 0;
+		width: 100%;
+		opacity: 0;
+		t();
+
+		&.fixed {
+			z-index: 100000;
+			opacity: 1;
+		}
+
+		.wrap {
+			display: flex;
+		}
+
+		.logo {
+			margin-right: 35px;
+			font-size: 2rem;
+
+			+above($mobile) {
+				margin-left: 0;
+				line-height: 60px;
+			}
+
+			+above($notebooks) {
+				margin-left: 15px;
+				line-height: 1em;
+			}
+		}
+
+		.nav {
+			position: relative;
+			bottom: -2px;
+
+			+above($mobile) {
+				display: none;
+			}
+
+			+above($notebooks) {
+				display: flex;
+			}
+
+			&__link {
+				color: var(--gray-light);
+
+				&:hover {
+					color: var(--title-color);
+				}
+			}
+
+			.dropdown {
+				&__handler {
+					color: var(--gray-light);
+
+					&:hover {
+						color: var(--title-color);
+					}
+
+					&:after {
+						border-color: var(--gray-light);
+					}
+				}
+			}
+		}
+
+		.menu {
+			+above($mobile) {
+				padding-right: 0;
+			}
+
+			+above($notebooks) {
+				padding-right: 15px;
+			}
+
+			.Cart {
+				&__counter {
+					top: 24px;
+					left: 21px;
+
+					+above($mobile) {
+						top: 15px;
+					}
+
+					+above($notebooks) {
+						top: 24px;
+					}
+				}
+
+				&__items {
+					top: 75px;
+					right: 0;
+				}
+
+				&__label {
+					display: none;
+				}
+			}
+
+			.icon {
+				padding: 10px;
+				width: 40px;
+				height: 40px;
+				cursor: pointer;
+				border: 1px solid var(--border-color);
+
+				&__question, &__like {
+					margin: 0;
+				}
+
+				&__phone {
+					+above($mobile) {
+						display: block;
+					}
+
+					+above($notebooks) {
+						display: none;
+					}
+				}
+			}
+
+			&__item {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+
+				+above($mobile) {
+					margin-left: 10px;
+				}
+
+				+above($notebooks) {
+					margin-left: 15px;
+				}
+
+				&:hover {
+					.icon {
+						background-color: rgba(68, 68, 68, .4);
+						border: 1px solid transparent;
+					}
+
+					&.menu {
+						&__title {
+							color: var(--text-color);
+						}
+
+						&__item {
+							&--login, &--choose-city {
+								background-color: rgba(68, 68, 68, .4);
+								border: 1px solid transparent;
+
+								span {
+									color: var(--border-color);
+								}
+							}
+						}
+					}
+				}
+
+				&--about {
+					+above($mobile) {
+						display: none;
+					}
+
+					+above($notebooks) {
+						display: flex;
+					}
+
+					&:before {
+						display: none;
+					}
+				}
+
+				&--burger {
+					+above($mobile) {
+						display: flex;
+					}
+
+					+above($notebooks) {
+						display: none;
+					}
+				}
+
+				&--login, &--choose-city {
+					position: relative;
+					top: -1px;
+					margin: auto 0;
+					margin-left: 15px;
+					padding: 0 12px;
+					height: 40px;
+					border: 1px solid var(--border-color);
+
+					+above($mobile) {
+						display: none;
+					}
+
+					+above($desktop-hq) {
+						display: block;
+					}
+
+					.menu {
+						&__title {
+							font-size: 1.4rem;
+							line-height: 4rem;
+						}
+					}
+				}
+			}
+
+			&__title {
+				font-size: 0;
+				line-height: 75px;
+				color: var(--gray-light);
+
+				&--phone {
+					position: relative;
+					bottom: -2px;
+					margin-right: 10px;
+					font-size: 1.6rem;
+					font-weight: normal;
+					color: var(--title-color);
+
+					+above($mobile) {
+						display: none;
+					}
+
+					+above($notebooks) {
+						display: block;
+					}
+				}
+			}
+		}
+	}
+
+	&.goroda-na-karte {
+		padding-bottom: 25px;
+		min-height: auto;
+		background-color: #fff;
+		background-image: none;
+		box-shadow: 0 2px 15px rgba(218, 224, 237, .7);
+
+		.header {
+			&__top {
+				&:before {
+					background-color: #e7ebf4;
+				}
+
+				.menu {
+					&__link {
+						color: var(--gray-light);
+					}
+				}
+			}
+
+			&__bottom {
+				.nav {
+					&__link {
+						color: var(--gray-light);
+
+						&:hover {
+							color: var(--title-color);
+						}
+					}
+
+					.dropdown {
+						&__handler {
+							color: var(--gray-light);
+
+							&:after {
+								border-color: var(--gray-light);
+							}
+
+							&:hover {
+								color: var(--title-color);
+
+								&:after {
+									border-color: var(--title-color);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		.developer-ad {
+			&__title {
+				color: var(--title-color);
+			}
+		}
+
+		.menu {
+			&__item {
+				&--about {
+					&:before {
+						display: none;
+					}
+				}
+
+				&:hover {
+					.Cart__label, .menu__title {
+						color: var(--title-color);
+					}
+				}
+			}
+
+			&__title {
+				color: var(--text-color);
+			}
+		}
+
+		.Cart {
+			&__label {
+				color: var(--text-color);
+
+				&:hover {
+					color: var(--title-color);
+				}
+			}
+		}
+	}
+
+	&.goroda {
+		+above($mobile) {
+			min-height: auto;
+		}
+
+		+above($notebooks) {
+			min-height: 550px;
+		}
+
+		+above($desktop) {
+			min-height: 650px;
+		}
+	}
+}

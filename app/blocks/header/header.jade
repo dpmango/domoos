@@ -1,0 +1,78 @@
+- var navigation = [{ title: 'Все города', href: '/goroda.html', isDropdown: false, }, { title: 'Города на карте', href: '/goroda-na-karte.html', isDropdown: false }, { title: 'Услуги', href: '#', isDropdown: true, data: [{href:'/', title: 'Переезд'}, {href:'/', title: 'Переезд'}, {href:'/', title: 'Подбор'}]}, { title: 'Все агенства', href: '#', isDropdown: false }, { title: 'Все застройщики', href: '#', isDropdown: false }];
+
+block header
+
+section.header(class=isMap ? 'goroda-na-karte' : isСities ? 'goroda' : '')
+	.header__sticky.sticky
+		.wrap
+			a.logo(href="/") Domoos
+			.nav
+				each item in navigation
+					if item.isDropdown
+						.nav__item
+							+dropdown(item.title, item.data)
+					else
+						.nav__item
+							a.nav__link(href=item.href)= item.title
+			.menu
+				a.menu__item.menu__item--phone(href='tel: +78121339999')
+					+icon('phone-black', true).icon.icon__phone
+					span.menu__title.menu__title--phone
+						| +7 (812) 133-99-99
+				.menu__item.menu__item--about
+					+icon('question', true).icon.icon__question
+					span.menu__title О Сервисе
+				.menu__item
+					#cart-navbar.Cart
+				.menu__item.menu__item--login
+					span.menu__title Войти
+				.menu__item.menu__item--choose-city
+					span.menu__title Выбор города
+				.menu__item.menu__item--burger
+					+icon('burger-black', true).icon.icon__burger#sidebar-toggle-fixed
+	.wrap
+		.header__top
+			a.logo(href="/") Domoos
+			.menu
+				.menu__item.menu__item--about
+					+icon('question', true).icon.icon__question
+					span.menu__title О Сервисе
+
+				.menu__item.menu__item--cart
+					#cart.Cart
+				a.menu__item(href='tel: +78121339999')
+					+icon('phone', true).icon.icon__phone
+					span.menu__title.menu__title--phone
+						| +7 (812) 133-99-99
+				.menu__item.menu__item--burger
+					+icon('burger-black', true).icon.icon__burger#sidebar-toggle
+
+		.header__bottom
+			a.to-home(href="/")
+				+icon('home', true).icon.icon__home
+			.nav
+				each item in navigation
+					if item.isDropdown
+						+dropdown(item.title, item.data)
+					else
+						a.nav__link(href=item.href target="_blank" rel="nofollow noopener")= item.title
+			include ../developer-ad/developer-ad
+
+		.header__content
+
+			if isHome || isСities
+
+				h1.header__title
+					| Новостройки во всех городах России
+				div.header__description
+					| В каталоге сайта собраны все новостройки и квартиры от застройщиков, предложения от банков и агентств недвижимости. В каталоге сайта собраны все новостройки и квартиры от застройщиков
+
+			if isHome
+				.header__city-select
+					.city-select
+						label.city-select__title(for="header-city-select-input") Подберите новостройку в нужном городе
+						.city-select__content#header-city-select
+
+			if isСities
+				.header__cta
+					a.btn.btn__full.btn__full--yellow Заказать подбор квартиры

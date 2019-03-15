@@ -1,0 +1,77 @@
+.your-opinion {
+	+above($mobile) {
+		margin: 0;
+	}
+
+	+above($notebooks) {
+		margin: 50px 0;
+	}
+
+	&__content {
+		padding: 60px;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		min-height: 420px;
+		background-repeat: no-repeat;
+		background-position: right 100px center;
+		background-size: 350px 277px;
+		align-content: center;
+
+		+above($mobile) {
+			padding: 15px;
+			background-image: none;
+		}
+
+		+above($notebooks) {
+			width: 75%;
+			block();
+			padding: 60px;
+			background-image: url('/images/your-opinion-bg@2x.png');
+		}
+	}
+
+	&__image {
+		width: 100%;
+		height: auto;
+
+		+above($mobile) {
+			margin-bottom: 35px;
+		}
+
+		+above($notebooks) {
+			display: none;
+		}
+	}
+
+	&__title {
+		max-width: 440px;
+		color: var(--title-color);
+
+		+above($mobile) {
+			margin-bottom: 35px;
+			font-size: 2rem;
+			font-weight: 500;
+			line-height: 1.5;
+		}
+
+		+above($notebooks) {
+			margin-bottom: 65px;
+			font-size: 3rem;
+			line-height: 1.4;
+		}
+	}
+
+	&__cta {
+		width: 100%;
+
+		.btn {
+			margin-left: 0;
+			line-height: 50px;
+		}
+	}
+
+	&__sidebar {
+		width: 25%;
+	}
+}

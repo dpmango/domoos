@@ -1,0 +1,111 @@
+.mobile-menu {
+    position: fixed;
+    z-index: 10000;
+    max-width: 300px;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: -300px;
+    background-color: var(--bg-color);
+    transition: 0.3s;
+    box-shadow: 0 2px 20px 0 rgba(240, 240, 240, 0.7);
+    opacity: 0;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	align-content: flex-start;
+
+	&__header {
+		line-height: 75px;
+		display: flex;
+		width: 100%;
+	}
+
+	&__close {
+		cross()
+		width: 20px;
+		height: 20px;
+		margin-left: auto;
+		top: 20px;
+		right: 20px;
+	}
+
+	&__content {
+		padding: 15px 0;
+	}
+
+	&.open {
+        left: 0;
+        opacity: 1;
+    }
+
+	.logo {
+		font-size: 2rem;
+		font-weight: 700;
+		display: flex;
+		align-items: center;
+		padding: 0 15px;
+		background-color: var(--blue);
+		color: #fff;
+		z-index: 100;
+	}
+
+	.nav {
+		display: flex;
+		flex-wrap: wrap;
+
+		&__item {
+			width: 100%;
+		}
+
+		&__link {
+			font-size: 1.4rem;
+			line-height: 1em;
+			color: var(--text-color);
+			padding: 12px 15px;
+
+		}
+
+		.accordion {
+
+			&__label,
+			&__link {
+				font-size: 1.4rem;
+				line-height: 1em;
+				color: var(--text-color);
+				padding: 12px 20px 12px 15px;
+			}
+
+
+			&__label {
+				display: block;
+				display: flex;
+				width: 100%;
+
+				&:after {
+					arrow(3px, 1px, var(--text-color), 135deg)
+					margin-left: auto;
+					margin-top: 4px;
+				}
+			}
+
+			input:checked+label:after {
+				transform: rotate(315deg);
+
+			}
+
+			&__menu {
+				margin-top: -4px;
+			}
+
+			&__link {
+				width: 100%;
+
+				&:first-child {
+					margin-top: 4px;
+				}
+			}
+		}
+
+	}
+}

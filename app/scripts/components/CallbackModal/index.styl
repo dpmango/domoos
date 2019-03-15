@@ -1,0 +1,92 @@
+.CallbackModal {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	width: 100%;
+	block();
+
+	+above($mobile) {
+		padding: 15px;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		max-height: 100%;
+		align-content: center;
+	}
+
+	+above($notebooks) {
+		padding: 80px 15px;
+		max-height: 520px;
+	}
+
+	&__title {
+		width: 100%;
+		text-align: center;
+
+		+above($mobile) {
+			margin-bottom: 15px;
+			font-size: 2.6rem;
+			font-weight: 500;
+			color: var(--title-color);
+		}
+
+		+above($notebooks) {
+			margin-bottom: 25px;
+			font-weight: 400;
+		}
+	}
+
+	&__content {
+		margin: 0 auto;
+		padding: 0 15px;
+		width: 100%;
+		font-weight: 300;
+		text-align: center;
+
+		p {
+			margin: 0 auto;
+			max-width: 500px;
+
+			+above($mobile) {
+				font-size: 1.4rem;
+				line-height: 1.6;
+			}
+
+			+above($notebooks) {
+				font-size: 1.6rem;
+				line-height: 2;
+			}
+		}
+
+		+above($mobile) {
+			margin-bottom: 25px;
+		}
+
+		+above($notebooks) {
+			margin-bottom: 55px;
+		}
+	}
+
+	&__form {
+		margin: 0 auto;
+		width: 100%;
+		max-width: 380px;
+
+		.PhoneForm {
+			&__content {
+				flex-wrap: wrap;
+			}
+
+			&__input, &__submit {
+				width: 100%;
+			}
+
+			&__submit {
+				margin-top: 25px;
+				margin-left: 0;
+				line-height: 50px;
+			}
+		}
+	}
+}

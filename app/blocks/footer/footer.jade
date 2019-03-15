@@ -1,0 +1,33 @@
+- var cities = ['Москва', 'Санкт-Петербург', 'Барнаул', 'Киров', 'Краснодар', 'Пермь', 'Москва', 'Санкт-Петербург', 'Барнаул', 'Киров', 'Краснодар', 'Кириши', 'Москва', 'Санкт-Петербург', 'Барнаул', 'Киров', 'Краснодар'];
+
+section.footer
+	.wrap
+		.footer__cities
+			.cities
+				.cities__title
+					| Все города:
+				.cities__list
+					each item in cities
+						a.cities__item(href="/")= item
+		.footer__content
+			.about
+				.about__title Domoos - ЭТО
+				.about__description Cамый большая и детально проработанная база квартир в новостройках России
+			.links
+				a.links__link(href="/") Каталог городов
+				a.links__link(href="/") Каталог новостроек
+				a.links__link(href="/") Статьи
+			.addition
+				a.addition__link(href="/") Юридическая информация
+				a.addition__link(href="/") Политика конфиденциальности
+				a.addition__link(href="/") Карта сайта
+			.contacts
+				+hotcall('footer-form')
+		.footer__nav
+			.copy © ООО Домус. Все права защищены.
+			.socials
+				a.socials__link(href="")
+				a.socials__link(href="")
+				a.socials__link(href="")
+
+
