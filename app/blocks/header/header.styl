@@ -403,6 +403,7 @@
 						width: 21px;
 						height: 21px;
 					}
+
 				}
 
 				&__burger {
@@ -459,26 +460,36 @@
 				font-size: 1.6rem;
 				line-height: 1.4;
 			}
+
+			+below($tablet) {
+				margin-right: 20px;
+			}
 		}
 
 		.nav {
 			position: relative;
 			bottom: -2px;
+			display: flex;
 
-			+above($mobile) {
+			+below($phones) {
 				display: none;
 			}
 
-			+above($notebooks) {
-				display: flex;
-			}
-
 			&__link {
+				margin-top: 27px;
 				color: var(--gray-light);
+
+				&:last-child {
+					margin-right: 20px;
+				}
 
 				&:hover {
 					color: var(--title-color);
 				}
+			}
+
+			&__item {
+				min-height: 75px;
 			}
 
 			.dropdown {
@@ -535,27 +546,24 @@
 				}
 
 				&__phone {
-					+above($mobile) {
-						display: block;
+					+below($notebooks) {
+						display: flex;
 					}
 
-					+above($notebooks) {
-						display: none;
+					+below($phones) {
+						display: block;
 					}
 				}
 			}
 
 			&__item {
+				margin-left: 15px;
 				display: flex;
 				align-items: center;
 				justify-content: center;
 
-				+above($mobile) {
+				+below($phones) {
 					margin-left: 10px;
-				}
-
-				+above($notebooks) {
-					margin-left: 15px;
 				}
 
 				&:hover {
@@ -583,12 +591,10 @@
 				}
 
 				&--about {
-					+above($mobile) {
-						display: none;
-					}
+					display: flex;
 
-					+above($notebooks) {
-						display: flex;
+					+below($phones) {
+						display: none;
 					}
 
 					&:before {
@@ -597,12 +603,10 @@
 				}
 
 				&--burger {
-					+above($mobile) {
-						display: flex;
-					}
+					display: none;
 
-					+above($notebooks) {
-						display: none;
+					+below($phones) {
+						display: flex;
 					}
 				}
 
@@ -612,17 +616,13 @@
 					margin: auto 0;
 					margin-left: 15px;
 					padding: 0 12px;
+					display: none;
 					height: 40px;
 					border: 1px solid var(--border-color);
 
-					+above($mobile) {
-						display: none;
-					}
-
-					+above($desktop-hq) {
-						display: block;
-					}
-
+					// +above($desktop-hq) {
+					// display: block;
+					// }
 					.menu {
 						&__title {
 							font-size: 1.4rem;
@@ -641,16 +641,13 @@
 					position: relative;
 					bottom: -2px;
 					margin-right: 10px;
+					display: block;
 					font-size: 1.6rem;
 					font-weight: normal;
 					color: var(--title-color);
 
-					+above($mobile) {
+					+below($notebooks) {
 						display: none;
-					}
-
-					+above($notebooks) {
-						display: block;
 					}
 				}
 			}

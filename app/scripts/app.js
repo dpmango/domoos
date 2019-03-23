@@ -65,15 +65,15 @@ $(document).ready(function($) {
 				},
 			},
 			{
-				breakpoint: 1440,
+				breakpoint: 992,
 				settings: {
 					slidesToShow: 3,
-					slidesToScroll: 3,
+					slidesToScroll: 2,
 					arrows: true,
 				},
 			},
 			{
-				breakpoint: 1200,
+				breakpoint: 768,
 				settings: {
 					slidesToShow: 1.3,
 					slidesToScroll: 1,
@@ -83,26 +83,26 @@ $(document).ready(function($) {
 		],
 	});
 
-	$('.not-real-carousel').slick({
-		dots: false,
-		infinite: true,
-		speed: 500,
-		rows: 0,
-		responsive: [
-			{
-				breakpoint: 9999,
-				settings: 'unslick',
-			},
-			{
-				breakpoint: 1200,
-				settings: {
-					slidesToShow: 1.4,
-					slidesToScroll: 1,
-					arrows: false,
-				},
-			},
-		],
-	});
+	// $('.not-real-carousel').slick({
+	// 	dots: false,
+	// 	infinite: true,
+	// 	speed: 500,
+	// 	rows: 0,
+	// 	responsive: [
+	// 		{
+	// 			breakpoint: 9999,
+	// 			settings: 'unslick',
+	// 		},
+	// 		{
+	// 			breakpoint: 1200,
+	// 			settings: {
+	// 				slidesToShow: 1.4,
+	// 				slidesToScroll: 1,
+	// 				arrows: false,
+	// 			},
+	// 		},
+	// 	],
+	// });
 
 	function personalInfoSliderInit() {
 		if ($(document).width() > 768) {
@@ -123,7 +123,7 @@ $(document).ready(function($) {
 						{
 							breakpoint: 768,
 							settings: {
-								slidesToShow: 1,
+								slidesToShow: 1.3,
 								slidesToScroll: 1,
 								arrows: false,
 							},

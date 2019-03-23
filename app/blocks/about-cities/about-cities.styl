@@ -1,4 +1,14 @@
 .about-cities {
+	.wrap {
+		position: relative;
+		+below(1268px) {
+			overflow: hidden;
+		}
+		+below($tablet) {
+			padding-bottom: 30px;
+		}
+	}
+
 	&__header {
 		padding: 0 15px;
 		display: flex;
@@ -8,32 +18,37 @@
 
 	&__title {
 		h2();
+		margin-bottom: 7px;
 		width: 100%;
+		font-family: 'Gotham Pro Medium';
 
-		+above($mobile) {
-			margin-bottom: 5px;
+		+above($phones) {
+			font-size: 2.8rem;
 		}
 
-		+above($notebooks) {
-			margin-bottom: 10px;
+		+below($phones) {
+			margin-bottom: 5px;
 		}
 	}
 
 	&__description {
 		text();
+		display: block;
 		max-width: 630px;
 
-		+above($mobile) {
+		+below($phones) {
 			display: none;
-		}
-
-		+above($notebooks) {
-			display: block;
 		}
 	}
 
 	.to-category-link {
+		position: absolute;
+		top: 89px;
+		right: 30px;
 		margin-top: auto;
+		margin-right: 0;
+		margin-left: auto;
+		font-size: 1.6rem;
 		line-height: 1em;
 
 		&:after {
@@ -41,42 +56,40 @@
 			margin-left: 12px;
 		}
 
-		+above($mobile) {
-			margin-right: auto;
-			font-size: 1.4rem;
+		+below($tablet) {
+			position: static;
+			padding-left: 13px;
 		}
 
-		+above($notebooks) {
-			margin-right: 0;
-			margin-left: auto;
-			font-size: 1.6rem;
+		+below($phones) {
+			margin-right: auto;
+			font-size: 1.4rem;
+			padding-left: 15px;
 		}
 	}
 
 	&__slider {
 		position: relative;
+		margin: 25px 0 60px;
+		padding: 0 15px;
 
 		.slick-slide {
 			position: relative;
+			left: 0;
 			padding: 0;
 
-			+above($mobile) {
+			+below($phones) {
 				left: 86px;
 			}
-
-			+above($notebooks) {
-				left: 0;
-			}
 		}
 
-		+above($mobile) {
-			margin: 20px 0 50px;
-			padding: 0 15px;
+		+below($tablet) {
+			margin-bottom: 40px;
 		}
 
-		+above($notebooks) {
-			margin: 25px 0 60px;
-			padding: 0 15px;
+		+below($phones) {
+			margin: 20px 0 25px;
+			padding: 0 0 0 8px;
 		}
 
 		.city {
@@ -137,5 +150,13 @@
 				display: none;
 			}
 		}
+	}
+
+	.slick-arrow.slick-prev {
+		left: -31px;
+	}
+
+	.slick-arrow.slick-next {
+		right: -31px;
 	}
 }
