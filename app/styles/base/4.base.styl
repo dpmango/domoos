@@ -28,34 +28,30 @@ h1, h2, h3, h4 {
 }
 
 h1 {
+	font-family: 'Gotham Pro Medium';
+	font-size: 5rem;
 	font-weight: 600;
 	line-height: 1.2;
 	letter-spacing: 0;
 
-	+above($mobile) {
+	+below($tablet) {
+		font-size: 4rem;
+	}
+
+	+below($phones) {
 		font-size: 3rem;
-	}
-
-	+above($notebooks) {
-		font-size: 5rem;
-	}
-
-	+above($desktop) {
-		font-size: 6rem;
 	}
 }
 
 h2 {
 	font-weight: 600;
 	letter-spacing: -1px;
+	font-size: 2.8rem;
 
-	+above($mobile) {
+	+below($phones) {
 		font-size: 2rem;
 	}
 
-	+above($notebooks) {
-		font-size: 2.8rem;
-	}
 }
 
 h3 {
