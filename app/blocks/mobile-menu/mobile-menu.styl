@@ -1,33 +1,33 @@
 .mobile-menu {
-    position: fixed;
-    z-index: 10000;
-    max-width: 300px;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: -300px;
-    background-color: var(--bg-color);
-    transition: 0.3s;
-    box-shadow: 0 2px 20px 0 rgba(240, 240, 240, 0.7);
-    opacity: 0;
+	position: fixed;
+	z-index: 10000;
+	top: 0;
+	left: -300px;
 	display: flex;
 	flex-wrap: wrap;
+	flex-direction: column;
 	align-items: flex-start;
-	align-content: flex-start;
+	width: 100%;
+	max-width: 300px;
+	height: 100%;
+	background-color: var(--bg-color);
+	opacity: 0;
+	box-shadow: 0 2px 20px 0 rgba(240, 240, 240, .7);
+	transition: .3s;
 
 	&__header {
-		line-height: 75px;
 		display: flex;
 		width: 100%;
+		line-height: 75px;
 	}
 
 	&__close {
-		cross()
-		width: 20px;
-		height: 20px;
-		margin-left: auto;
+		cross();
 		top: 20px;
 		right: 20px;
+		margin-left: auto;
+		width: 20px;
+		height: 20px;
 	}
 
 	&__content {
@@ -35,19 +35,19 @@
 	}
 
 	&.open {
-        left: 0;
-        opacity: 1;
-    }
+		left: 0;
+		opacity: 1;
+	}
 
 	.logo {
-		font-size: 2rem;
-		font-weight: 700;
+		z-index: 100;
+		padding: 0 15px;
 		display: flex;
 		align-items: center;
-		padding: 0 15px;
-		background-color: var(--blue);
+		font-size: 2rem;
+		font-weight: 700;
 		color: #fff;
-		z-index: 100;
+		background-color: var(--blue);
 	}
 
 	.nav {
@@ -59,39 +59,34 @@
 		}
 
 		&__link {
+			padding: 12px 15px;
 			font-size: 1.4rem;
 			line-height: 1em;
 			color: var(--text-color);
-			padding: 12px 15px;
-
 		}
 
 		.accordion {
-
-			&__label,
-			&__link {
+			&__label, &__link {
+				padding: 12px 20px 12px 15px;
 				font-size: 1.4rem;
 				line-height: 1em;
 				color: var(--text-color);
-				padding: 12px 20px 12px 15px;
 			}
 
-
 			&__label {
-				display: block;
+				// display: block;
 				display: flex;
 				width: 100%;
 
 				&:after {
-					arrow(3px, 1px, var(--text-color), 135deg)
-					margin-left: auto;
+					arrow(3px, 1px, var(--text-color), 135deg);
 					margin-top: 4px;
+					margin-left: auto;
 				}
 			}
 
 			input:checked+label:after {
 				transform: rotate(315deg);
-
 			}
 
 			&__menu {
@@ -106,6 +101,5 @@
 				}
 			}
 		}
-
 	}
 }

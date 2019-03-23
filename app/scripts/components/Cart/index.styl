@@ -64,12 +64,9 @@
 		cursor: pointer;
 		color: rgba(255, 255, 255, 1);
 
-		+above($mobile) {
+		font-size: 1.2rem;
+		+below($phones) {
 			font-size: 0;
-		}
-
-		+above($notebooks) {
-			font-size: 1.2rem;
 		}
 
 		&--phone {

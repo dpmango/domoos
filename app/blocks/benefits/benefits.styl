@@ -1,38 +1,44 @@
 .benefits {
+	padding-top: 55px;
+	padding-bottom: 30px;
 	overflow: hidden;
 
-	+above($mobile) {
+	+below($phones) {
 		padding-top: 30px;
-	}
-
-	+above($notebooks) {
-		padding-top: 80px;
+		padding-bottom: 20px;
 	}
 
 	&__title {
 		margin-bottom: 10px;
+		font-size: 2rem;
+		font-weight: 500;
+		line-height: 1.45;
 		color: var(--title-color);
 
-		+above($mobile) {
+		+above($phones) {
 			font-size: 1.8rem;
 			font-weight: 400;
 			line-height: 1.4;
 		}
+	}
 
-		+above($notebooks) {
-			font-size: 2.2rem;
-			font-weight: 500;
-			line-height: 1.4;
+	&__title {
+		// padding-top: 8px;
+		display: flex;
+		align-items: center;
+		max-width: 250px;
+
+		+below($phones) {
+			max-width: 285px;
 		}
 	}
 
-	&__title, &__text {
-		+above($mobile) {
-			max-width: 285px;
-		}
+	&__text {
+		max-width: 285px;
+		max-height: 74px;
 
-		+above($desktop) {
-			max-width: 450px;
+		+below($phones) {
+			max-width: 100%;
 		}
 	}
 
@@ -41,48 +47,48 @@
 	}
 
 	&__list {
-		+above($mobile) {
-			padding: 0;
-		}
+		padding: 0;
 
-		+above($notebooks) {
-			padding: 0 15px;
+		+below($phones) {
+			padding: 0 0 0 8px;
 		}
 
 		.slick-slide {
 			position: relative;
 
-			+above($mobile) {
-				left: 128px;
+			+below($phones) {
+				left: 86px;
 			}
 		}
 
 		.not-real-carousel {
-			+above($notebooks) {
+			+above($phones) {
 				display: flex;
 				flex-wrap: wrap;
+				justify-content: space-between;
 			}
 		}
 	}
 
 	&__item {
 		margin-top: 15px;
+		margin-right: 0;
+		margin-bottom: 55px;
+		margin-left: 0;
+		padding: 0;
+		display: flex;
+		align-items: center;
+		width: 49%;
+		max-width: 540px;
+		un-block();
 
-		+above($mobile) {
+		+below($phones) {
 			margin-right: 10px;
-			margin-bottom: 45px;
 			margin-left: 10px;
-			padding: 30px 15px;
-			block();
-		}
 
-		+above($notebooks) {
-			margin-right: 0;
-			margin-bottom: 90px;
-			margin-left: 0;
-			padding: 0;
-			width: 50%;
-			un-block();
+			padding: 25px 15px;
+			width: 100%;
+			block();
 		}
 	}
 
@@ -91,33 +97,37 @@
 	}
 
 	&__img {
-		+above($mobile) {
+		margin-right: 30px;
+		float: left;
+
+		&--payment {
+			svgSize($payment);
+		}
+
+		&--mobileuser {
+			svgSize($mobileuser);
+		}
+
+		&--browser {
+			svgSize($browser);
+		}
+
+		&--buildings {
+			svgSize($buildings);
+		}
+
+		+below($phones) {
 			margin: 0 0 15px;
 			float: none;
 			width: 120px;
 			height: 120px;
 		}
+	}
 
-		+above($notebooks) {
-			margin-top: -20px;
-			margin-right: 35px;
-			float: left;
+	.slick-slider {
 
-			&--payment {
-				svgSize($payment);
-			}
-
-			&--mobileuser {
-				svgSize($mobileuser);
-			}
-
-			&--browser {
-				svgSize($browser);
-			}
-
-			&--buildings {
-				svgSize($buildings);
-			}
-		}
+		// left: -10px;
+		// margin: 0;
+		// width: calc(100% + 35px);
 	}
 }

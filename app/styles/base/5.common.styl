@@ -1,31 +1,34 @@
 .wrap {
 	margin: 0 auto;
 	width: 100%;
+	max-width 1170px;
+	padding: 0 15px;
 
-	+below($iphones) {
+	+below($phones) {
 		padding: 0;
 		max-width: 100%;
+		overflow: hidden;
 	}
 
-	+above($iphones + 1px) {
-		padding: 0;
-		max-width: 320px;
-	}
+	// +above($iphones + 1px) {
+	// 	padding: 0;
+	// 	max-width: 320px;
+	// }
 
-	+above($notebooks) {
-		padding: 0 12px;
-		max-width: 1164px;
-	}
+	// +above($notebooks) {
+	// 	padding: 0 12px;
+	// 	max-width: 1164px;
+	// }
 
-	+above($desktop) {
-		padding: 0 12px;
-		max-width: 1220px;
-	}
+	// +above($desktop) {
+	// 	padding: 0 12px;
+	// 	max-width: 1220px;
+	// }
 
-	+above($desktop-hq) {
-		padding: 0 12px;
-		max-width: 1460px;
-	}
+	// +above($desktop-hq) {
+	// 	padding: 0 12px;
+	// 	max-width: 1460px;
+	// }
 }
 
 .block {
@@ -90,23 +93,26 @@
 	t();
 
 	&__full {
-		+above($mobile) {
+		margin-left: 25px;
+		padding: 2px 58px 0;
+
+		+below($phones) {
 			margin-top: 20px;
 			margin-left: 0;
 			padding: 2px 25px 0;
 			width: 100%;
 		}
 
-		+above($notebooks) {
-			margin-top: 0;
-			margin-left: 12px;
-			width: auto;
-		}
+		// +above($notebooks) {
+		// 	margin-top: 0;
+		// 	margin-left: 12px;
+		// 	width: auto;
+		// }
 
-		+above($desktop) {
-			margin-left: 25px;
-			padding: 2px 58px 0;
-		}
+		// +above($desktop) {
+		// 	margin-left: 25px;
+		// 	padding: 2px 58px 0;
+		// }
 
 		&--yellow {
 			color: var(--caption-color);

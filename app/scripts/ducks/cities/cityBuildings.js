@@ -1,9 +1,9 @@
-import { fetchCityBuildings } from "./api";
-import { createAction, handleActions } from "redux-actions";
+import { fetchCityBuildings } from './api';
+import { createAction, handleActions } from 'redux-actions';
 
 // SYNC ACTIONS
 
-export const setCityBuildings = createAction("setCityBuildings");
+export const setCityBuildings = createAction('setCityBuildings');
 
 // ASYNC ACTIONS
 
@@ -20,11 +20,11 @@ export default handleActions(
 			const { data } = payload.data.data;
 
 			const result = data.map((item, key) => ({
-				type: "buildings",
-				isPremium: item.premium === "" ? false : true,
+				type: 'buildings',
+				isPremium: item.premium === '' ? false : true,
 				id: item.id ? item.id : key,
 				slug: item.slug_novostr,
-				name: item.novostr ? item.novostr : "-",
+				name: item.novostr ? item.novostr : '-',
 				city: item.gorod,
 				citySlug: item.slug_gorod,
 				developer: item.zastr,
@@ -32,7 +32,7 @@ export default handleActions(
 				features: [item.klass, item.otdelka, item.srok],
 				subway: item.metro,
 				district: item.raion,
-				price: item.price_m ? item.price_m : "0 000 000"
+				price: item.price ? item.price : '0 000 000',
 			}));
 
 			const withPremium = result.filter(item => item.isPremium);
@@ -42,12 +42,12 @@ export default handleActions(
 				...state,
 				[payload.slug]: {
 					data: [...withPremium, withoutPremium].splice(0, 12),
-					loading: false
-				}
+					loading: false,
+				},
 			};
-		}
+		},
 	},
-	initialState
+	initialState,
 );
 
 export const selectCityBuildings = state => state.cities.cityBuildings;
