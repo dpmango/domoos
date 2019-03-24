@@ -471,7 +471,7 @@
 			bottom: -2px;
 			display: flex;
 
-			+below($phones) {
+			+below($tablet) {
 				display: none;
 			}
 
@@ -605,8 +605,11 @@
 				&--burger {
 					display: none;
 
-					+below($phones) {
+					+below($tablet) {
 						display: flex;
+					}
+					+below($phones) {
+						margin-right: 15px;
 					}
 				}
 
