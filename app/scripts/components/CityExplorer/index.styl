@@ -3,13 +3,41 @@
 	width: 100%;
 	min-height: 100vh;
 
+	.slick-arrow.slick-next {
+		right: -17px;
+	}
+
+	.slick-arrow.slick-prev {
+		left: -17px;
+	}
+
+	+below($notebooks) {
+		.slick-arrow.slick-next {
+			right: -28px;
+		}
+
+		.slick-arrow.slick-prev {
+			left: -28px;
+		}
+	}
+
+	+below($tablet) {
+		.slick-arrow.slick-next {
+			display: none !important;
+		}
+
+		.slick-arrow.slick-prev {
+			display: none !important;
+		}
+	}
+
 	&.loading {
 		min-height: 1400px;
 
 		&:before {
 			pseudo();
 			position: absolute;
-			z-index: 10000;
+			z-index: 7000;
 			top: 0;
 			left: 0;
 			width: 100%;
@@ -24,13 +52,10 @@
 
 	.slick-slide {
 		position: relative;
+		left: 0;
+		width: 100%;
 
-		+above($mobile) {
-			left: 85px;
-			width: 100%;
-		}
-
-		+above($notebooks) {
+		+below($phones) {
 			left: 0;
 			width: 100%;
 		}
@@ -96,6 +121,13 @@
 				margin-right: 0;
 				margin-left: auto;
 				font-size: 1.2rem;
+			}
+
+			+below($phones) {
+				margin-top: 10px;
+				margin-left: 0;
+				margin-right: auto;
+				width: 100%;
 			}
 		}
 	}
@@ -202,6 +234,7 @@
 
 					+below($phones) {
 						margin-left: auto;
+						text-align: right;
 					}
 				}
 			}
@@ -228,12 +261,10 @@
 	}
 
 	&__developer, &__agencies {
-		+above($mobile) {
-			margin-top: 10px;
-		}
+		margin-top: 30px;
 
-		+above($notebooks) {
-			margin-top: 30px;
+		+below($phones) {
+			margin-top: 10px;
 		}
 	}
 
@@ -247,6 +278,11 @@
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
+
+		+below($phones) {
+			margin: 0 -10px;
+    		width: calc(100% + 10px);
+		}
 
 		.developer {
 			margin-bottom: 30px;

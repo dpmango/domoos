@@ -1,10 +1,10 @@
 export function formatNumber(x) {
-	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 }
 
 export const generateID = () => {
 	return (
-		"_" +
+		'_' +
 		Math.random()
 			.toString(36)
 			.substr(2, 9)
@@ -12,9 +12,9 @@ export const generateID = () => {
 };
 
 export const cookieSettings = {
-	path: "/",
+	path: '/',
 	expires: 30,
-	domain: window.location.host.replace(/^(api\.){1}/, "")
+	domain: window.location.host.replace(/^(api\.){1}/, ''),
 };
 
 export const modalStyles = {
@@ -24,7 +24,7 @@ export const modalStyles = {
 		top: null,
 		left: null,
 		right: null,
-		bottom: null
+		bottom: null,
 	},
 	content: {
 		top: null,
@@ -35,8 +35,8 @@ export const modalStyles = {
 		background: null,
 		borderRadius: null,
 		padding: null,
-		position: null
-	}
+		position: null,
+	},
 };
 
 export const sliderSettings = {
@@ -49,16 +49,24 @@ export const sliderSettings = {
 			breakpoint: 9999,
 			settings: {
 				slidesToShow: 3,
-				slidesToScroll: 3
-			}
+				slidesToScroll: 3,
+			},
 		},
 		{
-			breakpoint: 1200,
+			breakpoint: 768,
 			settings: {
-				slidesToShow: 1.3,
+				slidesToShow: 2,
 				slidesToScroll: 1,
-				arrows: false
-			}
-		}
-	]
+				arrows: false,
+			},
+		},
+		{
+			breakpoint: 528,
+			settings: {
+				slidesToShow: 1,
+				slidesToScroll: 1,
+				arrows: false,
+			},
+		},
+	],
 };

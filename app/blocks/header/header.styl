@@ -157,12 +157,17 @@
 				max-width: 100%;
 				font-size: 1.4rem;
 
+				span {
+					display: none;
+				}
+
 				+below($phones) {
 					margin-bottom: 7px;
 					max-width: 210px;
 					font-size: 0;
 
 					span {
+						display: block;
 						font-size: 1.1rem;
 					}
 				}
@@ -403,7 +408,6 @@
 						width: 21px;
 						height: 21px;
 					}
-
 				}
 
 				&__burger {
@@ -608,6 +612,7 @@
 					+below($tablet) {
 						display: flex;
 					}
+
 					+below($phones) {
 						margin-right: 15px;
 					}
