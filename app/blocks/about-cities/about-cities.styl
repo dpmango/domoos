@@ -1,11 +1,13 @@
 .about-cities {
 	.wrap {
 		position: relative;
+
 		+below(1268px) {
 			overflow: hidden;
 		}
+
 		+below($tablet) {
-			padding-bottom: 30px;
+			padding-bottom: 0;
 		}
 	}
 
@@ -63,24 +65,20 @@
 
 		+below($phones) {
 			margin-right: auto;
-			font-size: 1.4rem;
 			padding-left: 15px;
+			font-size: 1.4rem;
 		}
 	}
 
 	&__slider {
 		position: relative;
-		margin: 25px 0 60px;
+		margin: 25px 0 70px;
 		padding: 0 15px;
 
 		.slick-slide {
 			position: relative;
 			left: 0;
 			padding: 0;
-
-			+below($phones) {
-				left: 86px;
-			}
 		}
 
 		+below($tablet) {
@@ -88,13 +86,18 @@
 		}
 
 		+below($phones) {
-			margin: 20px 0 25px;
-			padding: 0 0 0 8px;
+			margin: 20px 0 24px;
+			padding: 0 0 0 5px;
 		}
 
 		.city {
 			position: relative;
-			margin: 0 10px;
+			margin: 0 15px;
+			overflow: hidden;
+
+			+below($phones) {
+				margin: 0 10px;
+			}
 
 			&:hover {
 				.city__img {
@@ -115,17 +118,14 @@
 
 			&__img {
 				width: 100%;
+				min-height: 250px;
 				background-repeat: no-repeat;
 				background-position: center;
 				background-size: cover;
 				transition: .1s;
 
-				+above($mobile) {
-					min-height: 200px;
-				}
-
-				+above($notebooks) {
-					min-height: 250px;
+				+below($phones) {
+					min-height: 278px;
 				}
 			}
 
@@ -133,22 +133,35 @@
 				position: absolute;
 				left: 18px;
 				bottom: 20px;
+				font-size: 1.8rem;
 				font-weight: 500;
 				line-height: 1em;
 				color: #fff;
 
-				+above($mobile) {
+				+below($phones) {
+					left: 16px;
+					bottom: 15px;
 					font-size: 1.6rem;
-				}
-
-				+above($notebooks) {
-					font-size: 1.8rem;
 				}
 			}
 
 			&__description {
 				display: none;
 			}
+		}
+	}
+
+	.slick-slider {
+		+below($phones) {
+			left: 0;
+			overflow: visible;
+			width: 77.7%;
+		}
+	}
+
+	.slick-list {
+		+below($phones) {
+			overflow: visible;
 		}
 	}
 

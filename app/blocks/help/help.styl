@@ -1,87 +1,97 @@
 .help {
+	&__image {
+		margin-right: 48px;
+		width: 17%;
+		max-width: 180px;
+		font-size: 0;
+		flex: 1 0 17%;
+
+		+below($tablet) {
+			display: none;
+		}
+
+		+below($phones) {
+			margin-right: 0;
+			display: block;
+			width: 100%;
+			max-width: 100%;
+			text-align: center;
+			flex: 1 0 100%;
+		}
+	}
+
 	&__personal-manager {
 		margin-top: auto;
+		margin-bottom: auto;
+		width: 100%;
+		height: auto;
 
-		+above($mobile) {
+		+below($phones) {
 			margin-right: auto;
-			margin-bottom: 15px;
+			margin-bottom: 13px;
 			margin-left: auto;
-			width: 110px;
-			height: 110px;
-		}
-
-		+above($notebooks) {
-			margin-right: 60px;
-			margin-bottom: auto;
-			margin-left: 0;
-			width: 175px;
-			height: 175px;
-		}
-
-		+above($desktop) {
-			width: 215px;
-			height: 215px;
+			width: 108px;
+			height: 108px;
 		}
 	}
 
 	&__content {
+		margin: 0 15px;
+		padding: 56px 40px 51px 48px;
 		display: flex;
 		block();
+		flex-wrap: nowrap;
 
-		+above($mobile) {
-			padding: 30px 15px;
+		+below($tablet) {
+			padding: 35px 30px;
+		}
+
+		+below($phones) {
+			margin: 0;
+			margin-top: 49px;
+			margin-bottom: 35px;
+			padding: 30px 15px 39px;
 			flex-wrap: wrap;
-		}
-
-		+above($notebooks) {
-			margin: 0 15px;
-			padding: 40px 40px 35px 50px;
-			flex-wrap: nowrap;
-		}
-
-		+above($desktop) {
-			padding: 40px 40px 35px 60px;
+			width: 100%;
+			max-width: 100%;
 		}
 	}
 
 	&__description {
+		margin-right: 35px;
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
 		width: 100%;
+		max-width: 570px;
 		align-content: center;
 
-		+above($notebooks) {
-			margin-right: 92px;
+		+below($notebooks) {
 			max-width: 350px;
 		}
 
-		+above($desktop) {
-			margin-right: 35px;
-			max-width: 570px;
+		+below($tablet) {
+			margin-right: 20px;
+		}
+
+		+below($phones) {
+			margin: 0 auto;
+			max-width: 440px;
 		}
 	}
 
 	&__title {
 		width: 100%;
+		max-width: 270px;
+		font-size: 2.2rem;
+		text-align: left;
 		color: var(--title-color);
 
-		+above($mobile) {
-			margin-bottom: 10px;
-			font-size: 2.2rem;
-			text-align: center;
-		}
-
-		+above($notebooks) {
-			max-width: 370px;
-			font-size: 2.4rem;
-			text-align: left;
-		}
-
-		+above($desktop) {
+		+below($phones) {
 			margin-bottom: 0;
-			max-width: 470px;
-			font-size: 3rem;
+			max-width: 100%;
+			font-size: 2.2rem;
+			text-align: left;
 		}
 	}
 
@@ -89,27 +99,47 @@
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
-		width: 100%;
+		width: 89%;
+		text-align: left;
 		align-content: center;
 
-		+above($mobile) {
-			text-align: center;
-		}
-
-		+above($notebooks) {
+		+below($phones) {
+			margin: 0 auto;
+			width: 100%;
+			max-width: 440px;
 			text-align: left;
 		}
 	}
 
 	&__text {
 		text();
+		margin-top: 16px;
+		margin-bottom: 0;
+		max-width: 350px;
+		font-size: 1.3rem;
+		line-height: 1.7;
 
-		+above($mobile) {
+		+below($phones) {
+			margin-top: 8px;
 			margin-bottom: 20px;
+			max-width: 100%;
 		}
 
-		+above($notebooks) {
-			margin-bottom: 0;
+		span {
+			+below($phones) {
+				display: none;
+			}
 		}
+	}
+
+	.home-help-form {
+		text-align: left;
+	}
+
+	.hotcall__submit {
+		padding: 0 10px;
+		display: inline-block;
+		width: 100%;
+		max-width: 140px;
 	}
 }

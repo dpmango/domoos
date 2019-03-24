@@ -1,53 +1,45 @@
 .other {
-	+above($mobile) {
+	padding-bottom: 95px;
+	background-color: transparent;
+
+	+below($phones) {
 		padding-bottom: 45px;
 		background-color: rgb(241, 244, 250, .7);
 	}
 
-	+above($notebooks) {
-		padding-bottom: 95px;
-		background-color: transparent;
-	}
-
 	&__content {
+		padding: 0 15px;
 		display: flex;
 		flex-wrap: wrap;
+		justify-content: space-between;
 
-		+above($mobile) {
+		+below($phones) {
 			padding: 0 15px;
-		}
-
-		+above($notebooks) {
-			padding: 0;
 		}
 	}
 
 	.item {
 		position: relative;
+		width: 29%;
+		padding-right: 20px
+		// outline: 1px solid red;
 
-		+above($mobile) {
+		+below($phones) {
 			padding-top: 30px;
 			width: 100%;
 		}
 
-		+above($notebooks) {
-			width: 33.3%;
-		}
-
 		&:before {
-			pseudo();
 			position: absolute;
 			top: 0;
-			right: 65px;
+			right: -14px;
 			width: 1px;
 			height: 100%;
+			background-color: var(--border-color);
+			pseudo();
 
-			+above($mobile) {
+			+below($phones) {
 				background-color: transparent;
-			}
-
-			+above($notebooks) {
-				background-color: var(--border-color);
 			}
 		}
 

@@ -3,11 +3,14 @@ include /../node_modules/bemto.jade/bemto
 +b.SECTION.help
 	.wrap
 		+e.__content
-			img.help__personal-manager(src="/images/personal-manager@2x.png")
+			+e.__image
+				img.help__personal-manager(src="/images/personal-manager@2x.png")
 			+e.__description
 				+e.__title
 					| Бесплатная помощь специалистов
 				+e.__text
-					| Вы можете довериться профессионала. Всю работу по подбору, бронированию и оформлению возьмут на себя специалисты центра новостроек. Это совершенно бесплатная и очень популярная услуга.
+					span Вы можете довериться профессионалам.
+					| Всю работу по подбору, бронированию и оформлению возьмут на себя специалисты центра новостроек.
+					span Это совершенно бесплатная и очень популярная услуга.
 			+e.__form
 				+hotcall('home-help-form')

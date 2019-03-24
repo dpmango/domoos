@@ -3,33 +3,27 @@
 
 	&__title--number, &__title--form {
 		margin-bottom: 8px;
-		font-size: 1.4rem;
+		font-size: 1.3rem;
 		line-height: 1.6;
 		color: var(--title-color);
 	}
 
 	&__phone {
+		font-size: 2.3rem;
 		line-height: 1em;
 		color: var(--blue);
 
-		+above($mobile) {
+		+below($phones) {
 			font-size: 2.2rem;
-		}
-
-		+above($notebooks) {
-			font-size: 3rem;
 		}
 	}
 
 	&__content {
 		margin-top: 30px;
+		display: block;
 
-		+above($mobile) {
+		+below($phones) {
 			display: none;
-		}
-
-		+above($notebooks) {
-			display: block;
 		}
 	}
 
@@ -39,13 +33,11 @@
 	}
 
 	&__popup-form {
-		+above($mobile) {
-			margin-top: 10px;
-			display: block;
-		}
+		display: none;
 
-		+above($notebooks) {
-			display: none;
+		+below($phones) {
+			margin-top: 4px;
+			display: block;
 		}
 	}
 }
