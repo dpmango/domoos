@@ -5,15 +5,18 @@
 	padding-bottom: 50px;
 	background-color: #373a45;
 
+	+below($phones) {
+		padding-top: 41px;
+		padding-bottom: 18px;
+	}
+
 	&__cities {
 		margin-bottom: 30px;
+		padding: 0 15px;
+		display: block;
 
-		+above($mobile) {
+		+below($phones) {
 			display: none;
-		}
-
-		+above($notebooks) {
-			display: block;
 		}
 
 		.cities {
@@ -46,31 +49,31 @@
 	}
 
 	&__content {
+		padding: 0 15px;
 		display: flex;
+		flex-wrap: nowrap;
 
-		+above($mobile) {
+		+below($phones) {
 			padding: 0 15px;
 			flex-wrap: wrap;
 		}
 
-		+above($notebooks) {
-			padding: 0;
-			flex-wrap: nowrap;
-		}
-
 		.about {
+			padding-right: 50px;
+			padding-bottom: 0;
 			max-width: 340px;
+			border-bottom: 1px solid rgba(255, 255, 255, 0);
 
-			+above($mobile) {
-				padding-right: 0;
-				padding-bottom: 20px;
-				border-bottom: 1px solid rgba(255, 255, 255, .25);
+			+below($tablet) {
+				padding-right: 25px;
 			}
 
-			+above($notebooks) {
-				padding-right: 50px;
-				padding-bottom: 0;
-				border-bottom: 1px solid rgba(255, 255, 255, 0);
+			+below($phones) {
+				padding-right: 0;
+				padding-bottom: 31px;
+				width: 100%;
+				max-width: 100%;
+				border-bottom: 1px solid rgba(255, 255, 255, .25);
 			}
 
 			&__title {
@@ -78,6 +81,10 @@
 				font-size: 1.8rem;
 				font-weight: 500;
 				color: #fff;
+
+				+below($phones) {
+					margin-bottom: 9px;
+				}
 			}
 
 			&__description {
@@ -90,18 +97,21 @@
 
 		.links {
 			padding-right: 50px;
+			padding-bottom: 0;
 			width: 100%;
+			max-width: 236px;
+			border-bottom: 1px solid rgba(255, 255, 255, 0);
 
-			+above($mobile) {
-				padding-top: 20px;
-				padding-bottom: 20px;
-				border-bottom: 1px solid rgba(255, 255, 255, .25);
+			+below($tablet) {
+				padding-right: 25px;
+				max-width: 200px;
 			}
 
-			+above($notebooks) {
-				padding-bottom: 0;
-				max-width: 236px;
-				border-bottom: 1px solid rgba(255, 255, 255, 0);
+			+below($phones) {
+				padding-top: 23px;
+				padding-bottom: 25px;
+				max-width: 100%;
+				border-bottom: 1px solid rgba(255, 255, 255, .25);
 			}
 
 			&__link {
@@ -109,6 +119,10 @@
 				width: 100%;
 				font-size: 1.4rem;
 				color: #fff;
+
+				+below($phones) {
+					margin-bottom: 16px;
+				}
 
 				&:last-child {
 					margin-bottom: 0;
@@ -118,17 +132,20 @@
 
 		.addition {
 			padding-right: 50px;
+			padding-bottom: 0;
 			max-width: 286px;
+			border-bottom: 1px solid rgba(255, 255, 255, 0);
 
-			+above($mobile) {
-				padding-top: 20px;
-				padding-bottom: 20px;
-				border-bottom: 1px solid rgba(255, 255, 255, .25);
+			+below($tablet) {
+				padding-right: 0;
 			}
 
-			+above($notebooks) {
-				padding-bottom: 0;
-				border-bottom: 1px solid rgba(255, 255, 255, 0);
+			+below($phones) {
+				padding-top: 23px;
+				padding-bottom: 24px;
+				width: 100%;
+				max-width: 100%;
+				border-bottom: none;
 			}
 
 			&__link {
@@ -138,26 +155,86 @@
 				text-decoration: underline;
 				color: rgba(255, 255, 255, .45);
 
+				&:hover {
+					color: #fff;
+				}
+
 				&:last-child {
 					margin-bottom: 0;
+				}
+
+				+below($phones) {
+					margin-bottom: 19px;
+				}
+			}
+
+			.hotcall__phone {
+				margin-top: 5px;
+				margin-bottom: 15px;
+				display: none;
+				font-size: 1.8rem;
+				font-weight: 500;
+				color: #fff;
+
+				+below($phones) {
+					margin-bottom: 26px;
+					display: block;
+				}
+			}
+
+			.socials {
+				margin-right: -30px;
+				width: calc(100% + 30px);
+
+				a {
+					margin: 5px 20px 5px 0;
+					padding: 8px;
+					display: inline-block;
+					width: 100%;
+					max-width: 36px;
+					line-height: 1;
+					text-align: center;
+					border: 2px solid rgba(255, 255, 255, .45);
+
+					&:last-child {
+						margin-right: 0;
+					}
+
+					&:hover {
+						border-color: #fff;
+
+						i {
+							color: #fff;
+						}
+					}
+
+					i {
+						font-size: 14px;
+						line-height: 1;
+						color: rgba(255, 255, 255, .45);
+					}
 				}
 			}
 		}
 
 		.contacts {
-			+above($mobile) {
+			padding-bottom: 0;
+			width: auto;
+
+			+below($phones) {
 				padding-top: 20px;
 				padding-bottom: 20px;
 				width: 100%;
 			}
 
-			+above($notebooks) {
-				padding-bottom: 0;
-				width: auto;
+			+below($tablet) {
+				display: none;
 			}
 
 			.hotcall {
 				padding-top: 4px;
+				width: 100%;
+				max-width: 326px;
 
 				&__popup-form {
 					display: none;
@@ -210,12 +287,15 @@
 	}
 
 	&__nav {
-		+above($mobile) {
-			padding: 0 15px;
+		padding: 0 15px;
+
+		+below($tablet) {
+			margin-top: 15px;
 		}
 
-		+above($notebooks) {
-			padding: 0;
+		+below($phones) {
+			margin-top: 0;
+			padding: 0 15px;
 		}
 
 		.copy {
