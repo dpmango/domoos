@@ -751,16 +751,29 @@
 	}
 
 	&.goroda {
-		+above($mobile) {
+		min-height: 540px;
+		background-image: url('/images/bg-main-cities.jpg');
+
+		+below($phones) {
 			min-height: auto;
 		}
 
-		+above($notebooks) {
-			min-height: 550px;
+		.header__title {
+			margin-top: 87px;
+			+below($phones) {
+				margin-top: 83px;
+			}
 		}
 
-		+above($desktop) {
-			min-height: 650px;
+		.header__description {
+			min-height: 1px;
+		}
+
+		.header__cta .btn {
+			margin-top: 67px;
+			+below($phones) {
+				margin-top: 96px;
+			}
 		}
 	}
 }

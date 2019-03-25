@@ -125,8 +125,8 @@
 
 			+below($phones) {
 				margin-top: 10px;
-				margin-left: 0;
 				margin-right: auto;
+				margin-left: 0;
 				width: 100%;
 			}
 		}
@@ -268,6 +268,12 @@
 		}
 	}
 
+	&__developer {
+		.slick-list {
+			left: -10px;
+		}
+	}
+
 	&__buildings {
 		margin-top: 70px;
 		padding-bottom: 40px;
@@ -281,7 +287,7 @@
 
 		+below($phones) {
 			margin: 0 -10px;
-    		width: calc(100% + 10px);
+			width: calc(100% + 10px);
 		}
 
 		.developer {
@@ -300,6 +306,7 @@
 			}
 
 			+below($phones) {
+				margin: 0 10px;
 				margin-bottom: 0;
 				padding: 20px 25px;
 			}
@@ -358,9 +365,25 @@
 		.building {
 			position: relative;
 			width: 100%;
+			transition: .25s;
 
 			&.premium {
-				background-color: var(--yellow-light);
+				.add-to-cart, .premium-checked {
+					opacity: 0;
+					transition: .25s;
+				}
+
+				&:hover {
+					background-color: var(--yellow-light);
+
+					.building__district span, .building__subway span {
+						background-color: transparent;
+					}
+
+					.add-to-cart, .premium-checked {
+						opacity: 1;
+					}
+				}
 
 				.building {
 					&__title, &__content {
@@ -417,14 +440,12 @@
 				}
 
 				&--building {
+					font-size: 1.8rem;
 					font-weight: 500;
+					color: #343434;
 
-					+above($mobile) {
+					+below($phones) {
 						font-size: 1.6rem;
-					}
-
-					+above($notebooks) {
-						font-size: 1.8rem;
 					}
 				}
 			}
@@ -451,20 +472,18 @@
 				display: flex;
 
 				span {
+					padding: 0 10px;
 					display: inline-block;
 					font-size: 1.2rem;
 					line-height: 2.3rem;
 					color: var(--title-color);
+					background-color: #eceff6;
 					border-radius: 50px;
 					opacity: .62;
+					transition: .25s;
 
-					+above($mobile) {
+					+below($phones) {
 						padding: 0 0 0 4px;
-					}
-
-					+above($notebooks) {
-						padding: 0 10px;
-						background-color: #eceff6;
 					}
 				}
 

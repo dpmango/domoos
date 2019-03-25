@@ -140,6 +140,35 @@ $(document).ready(function($) {
 		personalInfoSliderInit();
 	});
 
+	// $('.not-real-carousel-developer').slick({
+	// 	dots: false,
+	// 	infinite: true,
+	// 	speed: 500,
+	// 	rows: 0,
+	// 	responsive: [
+	// 		{
+	// 			breakpoint: 9999,
+	// 			settings: 'unslick',
+	// 		},
+	// 		{
+	// 			breakpoint: 768,
+	// 			settings: {
+	// 				slidesToShow: 2,
+	// 				slidesToScroll: 1,
+	// 				arrows: false,
+	// 			},
+	// 		},
+	// 		{
+	// 			breakpoint: 528,
+	// 			settings: {
+	// 				slidesToShow: 1,
+	// 				slidesToScroll: 1,
+	// 				arrows: false,
+	// 			},
+	// 		},
+	// 	],
+	// });
+
 	var allCities = $('#cities-filter').children();
 
 	// var searchedItems = [];
