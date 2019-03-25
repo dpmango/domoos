@@ -669,10 +669,18 @@
 		background-image: none;
 		box-shadow: 0 2px 15px rgba(218, 224, 237, .7);
 
+		+below($phones) {
+			padding-bottom: 0;
+		}
+
 		.header {
 			&__top {
 				&:before {
+					// display: none;
 					background-color: #e7ebf4;
+					+below($phones) {
+						display: none;
+					}
 				}
 
 				.menu {
@@ -723,7 +731,8 @@
 			&__item {
 				&--about {
 					&:before {
-						display: none;
+						// display: none;
+						border-color: #dae0ed;
 					}
 				}
 
@@ -760,6 +769,7 @@
 
 		.header__title {
 			margin-top: 87px;
+
 			+below($phones) {
 				margin-top: 83px;
 			}
@@ -771,6 +781,7 @@
 
 		.header__cta .btn {
 			margin-top: 67px;
+
 			+below($phones) {
 				margin-top: 96px;
 			}
