@@ -1,63 +1,97 @@
 .all-cities {
-	+above($mobile) {
-		padding: 40px 0 0;
-	}
+	padding: 30px 0;
 
-	+above($notebooks) {
-		padding: 40px 0;
+	+below($phones) {
+		padding: 30px 0 0;
 	}
 
 	&__header {
-		padding: 0 15px;
+		margin-bottom: 22px;
+		padding-left: 15px;
 		display: flex;
 		flex-wrap: wrap;
-		width: 100%;
+		align-items: flex-end;
+		width: 66%;
+		max-width: 749px;
 
-		+above($mobile) {
-			margin-bottom: 20px;
+		+below($tablet) {
+			padding-right: 15px;
+			width: 100%;
+			max-width: 100%;
 		}
 
-		+above($notebooks) {
-			margin-bottom: 40px;
+		+below($phones) {
+			margin-bottom: 20px;
+			padding: 0 15px;
 		}
 	}
 
 	&__content {
 		display: flex;
 		flex-wrap: wrap;
+
+		+below($phones) {
+			padding: 0 15px;
+		}
 	}
 
 	&__btn {
+		display: none;
 		width: 100%;
 
-		+above($mobile) {
+		+below($phones) {
 			display: block;
-		}
-
-		+above($notebooks) {
-			display: none;
 		}
 
 		.btn {
 			padding-top: 3px;
+			display: flex;
+			align-items: center;
 			width: 100%;
 			font-size: 1.2rem;
 			font-weight: 300;
 			line-height: 50px;
 			color: var(--title-color);
+			justify-content: center;
+
+			.btn-icon {
+				height: 46px;
+			}
+
+			.icon__filter {
+				margin-right: 15px;
+				width: 18px;
+				height: 12px;
+			}
 		}
 	}
 
 	&__title {
-		h2();
-		width: 100%;
+		h3();
+		display: block;
 
-		+above($mobile) {
+		// width: 100%;
+		+below($phones) {
+			display: none;
+		}
+	}
+
+	&__see-map {
+		margin-left: auto;
+		display: flex;
+		align-items: center;
+		font-size: 14px;
+		text-transform: uppercase;
+		color: #9A9EAC;
+
+		+below($phones) {
 			display: none;
 		}
 
-		+above($notebooks) {
-			display: block;
+		.icon__pin {
+			margin-right: 15px;
+			width: 23px;
+			height: 23px;
 		}
 	}
 
@@ -89,52 +123,47 @@
 	}
 
 	&__list {
+		padding-left: 15px;
 		display: flex;
 		flex-wrap: wrap;
+		width: 66%;
+		max-width: 780px;
+		order: 1;
+		justify-content: space-between;
 
-		+above($mobile) {
+		+below($phones) {
+			padding: 8px 0;
 			width: 100%;
+			max-width: 100%;
 			order: 2;
 		}
 
-		+above($notebooks) {
-			width: 66.6%;
-			order: 1;
-		}
-
-		+above($desktop) {
-			width: 75%;
-		}
-
 		.city {
-			margin-bottom: 30px;
-			padding-right: 15px;
-			padding-left: 15px;
+			margin-bottom: 19px;
+			width: 48%;
 
-			+above($mobile) {
+			+below($phones) {
 				width: 100%;
 			}
 
-			+above($notebooks) {
-				width: 50%;
-			}
-
-			+above($desktop) {
-				width: 33.3%;
-			}
-
 			&__img {
-				margin-bottom: 20px;
+				margin-bottom: 15px;
 				width: 100%;
 				max-width: 350px;
 				min-height: 250px;
 				background-repeat: no-repeat;
 				background-size: cover;
+
+				+below($phones) {
+					min-height: 175px;
+					max-height: 175px;
+					background-position: center;
+				}
 			}
 
 			&__name {
 				h5();
-				margin-bottom: 10px;
+				margin-bottom: 4px;
 				font-weight: 500;
 				color: var(--blue);
 
@@ -145,9 +174,14 @@
 
 			&__description {
 				margin-bottom: 10px;
-				min-height: 60px;
+				min-height: 68px;
 				font-size: 1.2rem;
 				line-height: 1.6;
+
+				+below($phones) {
+					min-height: 1px;
+					line-height: 1.7;
+				}
 			}
 
 			&__features {
@@ -186,42 +220,39 @@
 
 	&__sidebar {
 		margin-bottom: 35px;
+		margin-left: auto;
 		padding-right: 15px;
-		padding-left: 15px;
-		width: 25%;
+		display: block;
+		width: 32%;
+		max-width: 357px;
+		order: 2;
 
-		+above($mobile) {
+		+below($phones) {
+			padding: 0;
 			display: none;
-		}
-
-		+above($notebooks) {
-			display: block;
+			width: 100%;
+			max-width: 100%;
+			order: 1;
 		}
 
 		&.open {
 			display: block;
 		}
-
-		+above($mobile) {
-			width: 100%;
-			order: 1;
-		}
-
-		+above($notebooks) {
-			width: 33.3%;
-			order: 2;
-		}
-
-		+above($desktop) {
-			width: 25%;
-		}
 	}
 }
 
 .city-filter {
-	padding: 30px 15px 15px 30px;
+	padding: 35px 0 15px 24px;
 	width: 100%;
 	border: 1px solid var(--border-color);
+
+	+below($tablet) {
+		padding: 30px 0 15px 20px;
+	}
+
+	+below($phones) {
+		padding: 20px 0 10px 15px;
+	}
 
 	&__title {
 		margin-bottom: 20px;
@@ -238,12 +269,23 @@
 	&__item {
 		margin-right: 15px;
 		margin-bottom: 15px;
-		padding: 14px 15px 13px;
+		padding: 14px 25px 13px;
+		width: auto;
 		font-size: 1.2rem;
 		line-height: 1em;
 		text-transform: capitalize;
 		cursor: pointer;
 		border: 1px solid var(--border-color);
+
+		+below($tablet) {
+			padding: 14px 15px 13px;
+		}
+
+		+below($phones) {
+			margin-right: 10px;
+			margin-bottom: 10px;
+			padding: 10px 10px 9px;
+		}
 
 		&.selected {
 			color: #fff;
