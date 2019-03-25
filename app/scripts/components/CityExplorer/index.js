@@ -229,7 +229,7 @@ class CitySelector extends PureComponent {
 							</div>
 
 							<div className="CityExplorer__content">
-								{window.innerWidth <= 1200 ? <DevCompSlider /> : <DevComp />}
+								<DevCompSlider />
 							</div>
 						</React.Fragment>
 					)}
