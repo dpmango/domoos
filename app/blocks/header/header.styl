@@ -157,12 +157,17 @@
 				max-width: 100%;
 				font-size: 1.4rem;
 
+				span {
+					display: none;
+				}
+
 				+below($phones) {
 					margin-bottom: 7px;
 					max-width: 210px;
 					font-size: 0;
 
 					span {
+						display: block;
 						font-size: 1.1rem;
 					}
 				}
@@ -403,7 +408,6 @@
 						width: 21px;
 						height: 21px;
 					}
-
 				}
 
 				&__burger {
@@ -471,7 +475,7 @@
 			bottom: -2px;
 			display: flex;
 
-			+below($phones) {
+			+below($tablet) {
 				display: none;
 			}
 
@@ -605,8 +609,12 @@
 				&--burger {
 					display: none;
 
-					+below($phones) {
+					+below($tablet) {
 						display: flex;
+					}
+
+					+below($phones) {
+						margin-right: 15px;
 					}
 				}
 
@@ -661,10 +669,18 @@
 		background-image: none;
 		box-shadow: 0 2px 15px rgba(218, 224, 237, .7);
 
+		+below($phones) {
+			padding-bottom: 0;
+		}
+
 		.header {
 			&__top {
 				&:before {
+					// display: none;
 					background-color: #e7ebf4;
+					+below($phones) {
+						display: none;
+					}
 				}
 
 				.menu {
@@ -715,7 +731,8 @@
 			&__item {
 				&--about {
 					&:before {
-						display: none;
+						// display: none;
+						border-color: #dae0ed;
 					}
 				}
 
@@ -743,16 +760,31 @@
 	}
 
 	&.goroda {
-		+above($mobile) {
+		min-height: 540px;
+		background-image: url('/images/bg-main-cities.jpg');
+
+		+below($phones) {
 			min-height: auto;
 		}
 
-		+above($notebooks) {
-			min-height: 550px;
+		.header__title {
+			margin-top: 87px;
+
+			+below($phones) {
+				margin-top: 83px;
+			}
 		}
 
-		+above($desktop) {
-			min-height: 650px;
+		.header__description {
+			min-height: 1px;
+		}
+
+		.header__cta .btn {
+			margin-top: 67px;
+
+			+below($phones) {
+				margin-top: 96px;
+			}
 		}
 	}
 }

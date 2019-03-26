@@ -16,6 +16,10 @@
 		max-width: 350px;
 		block();
 
+		+below($tablet) {
+			display: none;
+		}
+
 		&__title {
 			h4();
 			margin-bottom: 10px;
@@ -57,19 +61,35 @@
 	}
 
 	.sidebar {
-		position: absolute;
-		z-index: 10001;
+		position: relative;
+		z-index: 7000;
 		top: 0;
 		right: 0;
+		margin-left: auto;
 		padding: 15px 30px 30px;
 		width: 100%;
 		max-width: 360px;
 		min-height: 100%;
+		order: 2;
 		block();
+
+		+below($phones) {
+			position: absolute;
+			top: auto;
+			bottom: 0;
+			padding: 10px 15px 15px;
+			display: flex;
+			flex-direction: column;
+			min-height: 1px;
+		}
 
 		&__header {
 			margin-bottom: 15px;
 			display: flex;
+
+			+below($phones) {
+				margin-bottom: 2px;
+			}
 		}
 
 		&__close {
@@ -87,6 +107,10 @@
 				background-repeat: no-repeat;
 				background-position: center center;
 				background-size: cover;
+
+				+below($phones) {
+					display: none;
+				}
 			}
 
 			&__link {
@@ -98,6 +122,10 @@
 					arrow(1.5px, 1px, var(--arrow-color), 45deg);
 					top: -1px;
 					margin-left: 6px;
+				}
+
+				+below($phones) {
+					order: 4;
 				}
 			}
 
@@ -131,6 +159,10 @@
 				span {
 					margin-right: 4px;
 				}
+
+				+below($phones) {
+					display: none;
+				}
 			}
 
 			&__options {
@@ -155,12 +187,21 @@
 						color: var(--text-color);
 					}
 				}
+
+				+below($phones) {
+					display: none;
+				}
 			}
 
 			&__neighbors {
 				margin-bottom: 25px;
 				padding-bottom: 25px;
 				border-bottom: 1px solid var(--border-color);
+
+				+below($phones) {
+					padding-bottom: 0;
+					border-bottom: none;
+				}
 
 				.title {
 					margin-bottom: 5px;

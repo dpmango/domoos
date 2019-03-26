@@ -12,15 +12,22 @@
 - cities.push({name: 'Саратов', description: 'В каталоге сайта собраны все города России, в каталоге сайта собраны все города России.', img: '/images/city-2.jpg', features: [10000000, 56, 2300], tags: ['спальный']})
 - cities.push({name: 'Астрахань', description: 'В каталоге сайта собраны все города России, в каталоге сайта собраны все города России.', img: '/images/city-3.jpg', features: [10000000, 56, 2300], tags: ['спальный']})
 
-- var allTags = ['тихий', 'исторический', 'бизнес-район', 'спальный', 'экологический']
+- var allTags = ['тихий', 'исторический', 'Экологичный', 'тихий', 'спальный', 'бизнес-район', 'исторический', 'спальный', 'тихий', 'спальный', 'бизнес-район', 'исторический']
 
 section.all-cities
 	.wrap
 		.all-cities__header
-			.all-cities__title Все города
-			.all-cities__description.ask Сортировать по стоимости квартир
+			.all-cities__title Все города на сайте
+			a.all-cities__see-map(href="#")
+				.icon
+					+icon('pin', true).icon.icon__pin
+				| Смотреть на карте
+			//- .all-cities__description.ask Сортировать по стоимости квартир
 			.all-cities__btn
-				.btn.btn__ghost.btn__ghost--black#all-cities-filter-toggle Показать фильтр
+				.btn.btn__ghost.btn__ghost--black#all-cities-filter-toggle
+					.btn-icon
+						+icon('filter', true).icon.icon__filter
+					| Показать фильтр
 		.all-cities__content
 			.all-cities__list#cities-filter
 				each item in cities

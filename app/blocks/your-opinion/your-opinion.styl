@@ -1,64 +1,75 @@
 .your-opinion {
-	+above($mobile) {
+	margin: 12px 0 9px;
+
+	.wrap {
+		padding: 0 34px;
+
+		+below($tablet) {
+			padding: 0 30px;
+		}
+
+		+below($phones) {
+			padding: 0 15px;
+		}
+	}
+
+	+below($phones) {
 		margin: 0;
 	}
 
-	+above($notebooks) {
-		margin: 50px 0;
-	}
-
 	&__content {
-		padding: 60px;
+		padding: 60px 45px;
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
-		min-height: 420px;
+		width: 100%;
+		max-width: 730px;
+		min-height: 380px;
+		background-image: url(/images/your-opinion-bg@2x.png);
 		background-repeat: no-repeat;
-		background-position: right 100px center;
-		background-size: 350px 277px;
+		background-position: right 40px center;
+		background-size: 310px 245px;
 		align-content: center;
+		block();
 
-		+above($mobile) {
-			padding: 15px;
-			background-image: none;
+		+below($tablet) {
+			max-width: 100%;
 		}
 
-		+above($notebooks) {
-			padding: 60px;
-			width: 75%;
-			background-image: url('/images/your-opinion-bg@2x.png');
-			block();
+		+below($phones) {
+			padding: 15px 0;
+			min-height: 1px;
+			background-image: none;
+			box-shadow: none;
 		}
 	}
 
 	&__image {
+		display: none;
 		width: 100%;
 		height: auto;
 
-		+above($mobile) {
-			margin-bottom: 35px;
-		}
-
-		+above($notebooks) {
-			display: none;
+		+below($phones) {
+			margin-bottom: 29px;
+			margin-left: 12px;
+			display: block;
+			width: 94%;
+			max-width: 350px;
 		}
 	}
 
 	&__title {
-		max-width: 440px;
+		margin-bottom: 52px;
+		max-width: 380px;
+		font-size: 2.4rem;
+		line-height: 1.6;
 		color: var(--title-color);
 
-		+above($mobile) {
-			margin-bottom: 35px;
+		+below($phones) {
+			margin-bottom: 20px;
 			font-size: 2rem;
 			font-weight: 500;
 			line-height: 1.5;
-		}
-
-		+above($notebooks) {
-			margin-bottom: 65px;
-			font-size: 3rem;
-			line-height: 1.4;
 		}
 	}
 
@@ -67,7 +78,14 @@
 
 		.btn {
 			margin-left: 0;
+			padding: 2px 10px 0;
+			width: 100%;
+			max-width: 247px;
 			line-height: 50px;
+
+			+below($phones) {
+				max-width: 100%;
+			}
 		}
 	}
 

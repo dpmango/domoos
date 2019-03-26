@@ -15,7 +15,7 @@
 		line-height: 1.45;
 		color: var(--title-color);
 
-		+above($phones) {
+		+below($phones) {
 			font-size: 1.8rem;
 			font-weight: 400;
 			line-height: 1.4;
@@ -29,36 +29,35 @@
 		max-width: 250px;
 
 		+below($phones) {
-			max-width: 285px;
+			line-height: 1.75;
 		}
+		// max-width: 90%;
 	}
 
 	&__text {
 		max-width: 285px;
 		max-height: 74px;
+		text();
 
 		+below($phones) {
 			max-width: 100%;
+			line-height: 1.9;
 		}
 	}
 
-	&__text {
-		text();
-	}
-
+	// &__text {
+	// text();
+	// }
 	&__list {
 		padding: 0;
 
 		+below($phones) {
-			padding: 0 0 0 8px;
+			// padding: 0 0 0 5px;
+			padding: 0;
 		}
 
 		.slick-slide {
 			position: relative;
-
-			+below($phones) {
-				left: 86px;
-			}
 		}
 
 		.not-real-carousel {
@@ -83,11 +82,12 @@
 		un-block();
 
 		+below($phones) {
-			margin-right: 10px;
-			margin-left: 10px;
-
+			margin-right: 20px;
+			margin-left: 0;
 			padding: 25px 15px;
 			width: 100%;
+			max-width: 100%;
+			min-height: 362px;
 			block();
 		}
 	}
@@ -117,17 +117,25 @@
 		}
 
 		+below($phones) {
-			margin: 0 0 15px;
+			margin: 0 0 10px;
 			float: none;
 			width: 120px;
 			height: 120px;
+			font-size: 1.2rem;
 		}
 	}
 
 	.slick-slider {
+		+below($phones) {
+			left: 0;
+			overflow: visible;
+			width: calc(77.7% + 11px);
+		}
+	}
 
-		// left: -10px;
-		// margin: 0;
-		// width: calc(100% + 35px);
+	.slick-list {
+		+below($phones) {
+			overflow: visible;
+		}
 	}
 }

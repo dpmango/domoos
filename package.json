@@ -33,7 +33,8 @@
     "patch": "gulp patch",
     "minor": "gulp minor",
     "major": "gulp major",
-    "prepush": "npm run lint"
+    "prepush": "npm run lint",
+    "surge": "npm run build && surge --domain domoos.surge.sh --project ./dist"
   },
   "repository": {
     "type": "git",

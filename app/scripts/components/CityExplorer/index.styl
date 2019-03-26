@@ -3,13 +3,41 @@
 	width: 100%;
 	min-height: 100vh;
 
+	.slick-arrow.slick-next {
+		right: -17px;
+	}
+
+	.slick-arrow.slick-prev {
+		left: -17px;
+	}
+
+	+below($notebooks) {
+		.slick-arrow.slick-next {
+			right: -28px;
+		}
+
+		.slick-arrow.slick-prev {
+			left: -28px;
+		}
+	}
+
+	+below($tablet) {
+		.slick-arrow.slick-next {
+			display: none !important;
+		}
+
+		.slick-arrow.slick-prev {
+			display: none !important;
+		}
+	}
+
 	&.loading {
 		min-height: 1400px;
 
 		&:before {
 			pseudo();
 			position: absolute;
-			z-index: 10000;
+			z-index: 7000;
 			top: 0;
 			left: 0;
 			width: 100%;
@@ -24,28 +52,22 @@
 
 	.slick-slide {
 		position: relative;
+		left: 0;
+		width: 100%;
 
-		+above($mobile) {
-			left: 85px;
-			width: 100%;
-		}
-
-		+above($notebooks) {
+		+below($phones) {
 			left: 0;
 			width: 100%;
 		}
 	}
 
 	.Suggest {
+		margin-bottom: 58px;
 		width: 100%;
 		max-width: 400px;
 
-		+above($mobile) {
-			margin-bottom: 30px;
-		}
-
-		+above($notebooks) {
-			margin-bottom: 55px;
+		+below($phones) {
+			margin-bottom: 20px;
 		}
 	}
 
@@ -57,15 +79,12 @@
 
 	&__title {
 		h3();
-		margin-bottom: 15px;
+		margin-bottom: 7px;
+		display: block;
 		font-weight: 400;
 
-		+above($mobile) {
+		+below($phones) {
 			display: none;
-		}
-
-		+above($notebooks) {
-			display: block;
 		}
 	}
 
@@ -88,6 +107,8 @@
 		}
 
 		.to-category-link {
+			margin: auto 0 0 auto;
+			font-size: 1.6rem;
 			white-space: nowrap;
 
 			&:after {
@@ -95,83 +116,83 @@
 				margin-left: 12px;
 			}
 
-			+above($mobile) {
+			+below($tablet) {
 				margin-top: 5px;
-				margin-right: auto;
-				margin-left: 0;
+				margin-right: 0;
+				margin-left: auto;
 				font-size: 1.2rem;
 			}
 
-			+above($notebooks) {
-				margin: auto 0 0 auto;
-				font-size: 1.6rem;
+			+below($phones) {
+				margin-top: 10px;
+				margin-right: auto;
+				margin-left: 0;
+				width: 100%;
 			}
 		}
 	}
 
 	&__description {
 		text();
-		max-width: 620px;
+		width: 48%;
+		max-width: 460px;
+		order: 1;
 
 		p {
-			+above($mobile) {
+			margin-bottom: 30px;
+			padding-right: 0;
+			font-size: 1.5rem;
+			line-height: 1.9;
+
+			+below($phones) {
 				margin-bottom: 20px;
 				padding-right: 0;
+				width: 100%;
 				font-size: 1.4rem;
 				line-height: 1.8;
 			}
-
-			+above($notebooks) {
-				margin-bottom: 30px;
-				padding-right: 70px;
-				font-size: 1.7rem;
-			}
 		}
 
-		+above($mobile) {
+		+below($phones) {
+			width: 100%;
+			max-width: 100%;
 			order: 2;
-		}
-
-		+above($notebooks) {
-			width: 50%;
-			order: 1;
-		}
-
-		+above($desktop-hq) {
-			width: auto;
 		}
 	}
 
 	&__about {
-		width: 100%;
+		margin-left: auto;
+		padding: 30px 50px 10px 44px;
+		width: 49%;
+		max-width: 435px;
+		border: 1px solid var(--border-color);
+		order: 2;
 
-		+above($mobile) {
-			order: 1;
+		+below($tablet) {
+			padding: 30px 30px 0;
 		}
 
-		+above($notebooks) {
-			margin-left: auto;
-			padding: 30px 50px 10px 55px;
-			width: 50%;
-			max-width: 445px;
-			border: 1px solid var(--border-color);
-			order: 2;
+		+below($phones) {
+			margin-right: auto;
+			margin-left: 0;
+			padding: 0 1px;
+			width: 100%;
+			max-width: 404px;
+			border: none;
+			order: 1;
 		}
 
 		.city {
 			&__header {
 				margin-bottom: 15px;
+				display: flex;
+				align-items: center;
 				height: 60px;
 				font-size: 1.8rem;
 				color: var(--title-color);
 
-				+above($mobile) {
+				+below($phones) {
 					display: none;
-				}
-
-				+above($notebooks) {
-					display: flex;
-					align-items: center;
 				}
 			}
 
@@ -183,26 +204,21 @@
 
 			&__properties {
 				padding: 10px 0;
+				font-size: 1.6rem;
 				line-height: 1em;
 				bulls();
 
-				+above($mobile) {
+				+below($phones) {
 					font-size: 1.4rem;
 				}
 
-				+above($notebooks) {
-					font-size: 1.6rem;
-				}
-
 				.property {
-					margin-bottom: 25px;
+					margin-bottom: 29px;
+					display: block;
 
-					+above($mobile) {
+					+below($phones) {
+						margin-bottom: 21px;
 						display: flex;
-					}
-
-					+above($notebooks) {
-						display: block;
 					}
 				}
 
@@ -212,15 +228,13 @@
 				}
 
 				.value {
+					margin-left: 0;
 					text-transform: lowercase;
 					color: var(--text-color);
 
-					+above($mobile) {
+					+below($phones) {
 						margin-left: auto;
-					}
-
-					+above($notebooks) {
-						margin-left: 0;
+						text-align: right;
 					}
 				}
 			}
@@ -228,7 +242,10 @@
 	}
 
 	&__learn-more {
+		margin-right: 0;
+		margin-left: auto;
 		display: inline-block;
+		font-size: 1.6rem;
 		line-height: 1em;
 
 		&:after {
@@ -237,25 +254,58 @@
 			margin-left: 12px;
 		}
 
-		+above($mobile) {
+		+below($phones) {
 			margin-right: auto;
-			font-size: 1.4rem;
-		}
-
-		+above($notebooks) {
-			margin-right: 0;
-			margin-left: auto;
-			font-size: 1.6rem;
+			font-size: 1.5rem;
 		}
 	}
 
 	&__developer, &__agencies {
-		+above($mobile) {
+		margin-top: 30px;
+
+		+below($phones) {
 			margin-top: 10px;
 		}
+	}
 
-		+above($notebooks) {
-			margin-top: 30px;
+	&__developer {
+		+above($phones) {
+			.slick-list {
+				height: auto !important;
+			}
+
+			.slick-track {
+				display: flex;
+				flex-wrap: wrap;
+				width: 100% !important;
+				transform: none !important;
+				justify-content: space-between;
+
+				&:before, &:after {
+					display: none;
+				}
+			}
+
+			.slick-slide.slick-cloned, .slick-arrow {
+				display: none !important;
+			}
+
+			.slick-slide {
+				padding: 0 !important;
+				width: 31.9% !important;
+				max-width: 313px;
+			}
+
+			.slick-slider {
+				left: 0 !important;
+				width: 100% !important;
+			}
+		}
+
+		+below($phones) {
+			.slick-list {
+				left: -10px;
+			}
 		}
 	}
 
@@ -270,18 +320,30 @@
 		flex-wrap: wrap;
 		justify-content: space-between;
 
+		+below($phones) {
+			margin: 0 -10px;
+			width: calc(100% + 10px);
+		}
+
 		.developer {
+			margin-bottom: 30px;
+			padding: 35px 20px 35px 45px;
+			width: calc(33.3% - 20px);
 			border: 1px solid var(--border-color);
 
-			+above($mobile) {
-				margin-bottom: 0;
-				padding: 20px 25px;
+			+below($notebooks) {
+				padding: 25px;
 			}
 
-			+above($notebooks) {
-				margin-bottom: 30px;
-				padding: 30px 50px;
-				width: calc(33.3% - 20px);
+			+below($tablet) {
+				padding: 20px;
+				width: calc(33.3% - 15px);
+			}
+
+			+below($phones) {
+				margin: 0 10px;
+				margin-bottom: 0;
+				padding: 20px 25px;
 			}
 
 			&__logo {
@@ -292,6 +354,11 @@
 				background-repeat: no-repeat;
 				background-position: left center;
 				background-size: contain;
+
+				+below($tablet) {
+					margin-bottom: 15px;
+					height: 80px;
+				}
 
 				.dummy {
 					position: absolute;
@@ -333,9 +400,25 @@
 		.building {
 			position: relative;
 			width: 100%;
+			transition: .25s;
 
 			&.premium {
-				background-color: var(--yellow-light);
+				.add-to-cart, .premium-checked {
+					opacity: 0;
+					transition: .25s;
+				}
+
+				&:hover {
+					background-color: var(--yellow-light);
+
+					.building__district span, .building__subway span {
+						background-color: transparent;
+					}
+
+					.add-to-cart, .premium-checked {
+						opacity: 1;
+					}
+				}
 
 				.building {
 					&__title, &__content {
@@ -392,14 +475,12 @@
 				}
 
 				&--building {
+					font-size: 1.8rem;
 					font-weight: 500;
+					color: #343434;
 
-					+above($mobile) {
+					+below($phones) {
 						font-size: 1.6rem;
-					}
-
-					+above($notebooks) {
-						font-size: 1.8rem;
 					}
 				}
 			}
@@ -426,20 +507,18 @@
 				display: flex;
 
 				span {
+					padding: 0 10px;
 					display: inline-block;
 					font-size: 1.2rem;
 					line-height: 2.3rem;
 					color: var(--title-color);
+					background-color: #eceff6;
 					border-radius: 50px;
 					opacity: .62;
+					transition: .25s;
 
-					+above($mobile) {
+					+below($phones) {
 						padding: 0 0 0 4px;
-					}
-
-					+above($notebooks) {
-						padding: 0 10px;
-						background-color: #eceff6;
 					}
 				}
 
@@ -502,6 +581,20 @@
 
 			&__services, &__title, &__offers {
 				margin-bottom: 10px;
+			}
+		}
+
+		.slick-slider {
+			+below($phones) {
+				left: 0;
+				overflow: visible;
+				width: calc(77.7% + 11px);
+			}
+		}
+
+		.slick-list {
+			+below($phones) {
+				overflow: visible;
 			}
 		}
 	}

@@ -1,5 +1,11 @@
 - var cities = ['Москва', 'Санкт-Петербург', 'Барнаул', 'Киров', 'Краснодар', 'Пермь', 'Москва', 'Санкт-Петербург', 'Барнаул', 'Киров', 'Краснодар', 'Кириши', 'Москва', 'Санкт-Петербург', 'Барнаул', 'Киров', 'Краснодар'];
 
+section.selection
+	.wrap
+		p.selection__title Не нашли что искали?
+		p.selection__text Закажите подбор квартиры
+		a.btn.btn__full(href="#") Заказать подбор
+
 section.footer
 	.wrap
 		.footer__cities
@@ -18,16 +24,22 @@ section.footer
 				a.links__link(href="/") Каталог новостроек
 				a.links__link(href="/") Статьи
 			.addition
+				a.hotcall__phone(href="tel:+78126159251") +7 (812) 615-92-51
 				a.addition__link(href="/") Юридическая информация
 				a.addition__link(href="/") Политика конфиденциальности
 				a.addition__link(href="/") Карта сайта
+				.socials
+					a.socials__link(href="#")
+						i.fab.fa-facebook-f
+					a.socials__link(href="#")
+						i.fab.fa-instagram
+					a.socials__link(href="#")
+						i.fab.fa-pinterest
+					a.socials__link(href="#")
+						i.fab.fa-twitter
 			.contacts
 				+hotcall('footer-form')
 		.footer__nav
 			.copy © ООО Домус. Все права защищены.
-			.socials
-				a.socials__link(href="")
-				a.socials__link(href="")
-				a.socials__link(href="")
 
 

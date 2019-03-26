@@ -59,8 +59,8 @@ $(document).ready(function($) {
 			{
 				breakpoint: 9999,
 				settings: {
-					slidesToShow: 4,
-					slidesToScroll: 3,
+					slidesToShow: 3,
+					slidesToScroll: 2,
 					arrows: true,
 				},
 			},
@@ -69,13 +69,13 @@ $(document).ready(function($) {
 				settings: {
 					slidesToShow: 3,
 					slidesToScroll: 2,
-					arrows: true,
+					arrows: false,
 				},
 			},
 			{
 				breakpoint: 768,
 				settings: {
-					slidesToShow: 1.3,
+					slidesToShow: 1,
 					slidesToScroll: 1,
 					arrows: false,
 				},
@@ -123,7 +123,7 @@ $(document).ready(function($) {
 						{
 							breakpoint: 768,
 							settings: {
-								slidesToShow: 1.3,
+								slidesToShow: 1,
 								slidesToScroll: 1,
 								arrows: false,
 							},
@@ -139,6 +139,35 @@ $(document).ready(function($) {
 	$(window).resize(function() {
 		personalInfoSliderInit();
 	});
+
+	// $('.not-real-carousel-developer').slick({
+	// 	dots: false,
+	// 	infinite: true,
+	// 	speed: 500,
+	// 	rows: 0,
+	// 	responsive: [
+	// 		{
+	// 			breakpoint: 9999,
+	// 			settings: 'unslick',
+	// 		},
+	// 		{
+	// 			breakpoint: 768,
+	// 			settings: {
+	// 				slidesToShow: 2,
+	// 				slidesToScroll: 1,
+	// 				arrows: false,
+	// 			},
+	// 		},
+	// 		{
+	// 			breakpoint: 528,
+	// 			settings: {
+	// 				slidesToShow: 1,
+	// 				slidesToScroll: 1,
+	// 				arrows: false,
+	// 			},
+	// 		},
+	// 	],
+	// });
 
 	var allCities = $('#cities-filter').children();
 

@@ -101,13 +101,11 @@ bulls() {
 			width: 8px;
 			height: 8px;
 			background-color: var(--blue);
+			top: -2px;
 
-			+above($mobile) {
-				top: 3px;
-			}
-
-			+above($notebooks) {
-				top: -2px;
+			+below($phones) {
+				top: 1px;
+				margin-right: 13px;
 			}
 		}
 	}

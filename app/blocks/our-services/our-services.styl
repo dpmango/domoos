@@ -1,12 +1,15 @@
 .our-services {
 	margin-top: 80px;
+	display: block;
 
-	+above($mobile) {
-		display: none;
+	.wrap {
+		+below($notebooks) {
+			padding: 0 30px;
+		}
 	}
 
-	+above($notebooks) {
-		display: block;
+	+below($phones) {
+		display: none;
 	}
 
 	&__title {
@@ -16,9 +19,13 @@
 	}
 
 	&__content {
-		padding: 75px 85px;
+		padding: 68px 45px 64px;
 		border: 1px solid var(--border-color);
 		wrap-pad();
+
+		+below($tablet) {
+			padding: 30px;
+		}
 	}
 
 	.tabs {
@@ -29,7 +36,7 @@
 		}
 
 		#exchange-tab:checked~#content-exchange, #selection-tab:checked~#content-selection, #credit-tab:checked~#content-credit, #regions-tab:checked~#content-regions, #programs-tab:checked~#content-programs {
-			display: block;
+			display: flex;
 		}
 	}
 
@@ -40,9 +47,14 @@
 		flex-wrap: wrap;
 		align-items: flex-start;
 		width: 100%;
-		max-width: 350px;
+		max-width: 304px;
 		align-content: flex-start;
 		bulls();
+
+		+below($tablet) {
+			width: 50%;
+			max-width: 250px;
+		}
 
 		&__item {
 			position: relative;
@@ -52,6 +64,9 @@
 
 			label {
 				cursor: pointer;
+				+below($tablet) {
+					font-size: 1.4rem;
+				}
 			}
 
 			&.active {
@@ -63,10 +78,16 @@
 	}
 
 	.content {
-		padding-left: 110px;
+		padding-top: 2px;
+		padding-left: 58px;
 		display: flex;
 		flex-wrap: wrap;
+		width: 100%;
 		border-left: 1px solid var(--border-color);
+
+		+below($tablet) {
+			padding-left: 30px;
+		}
 
 		&__item {
 			display: none;
@@ -76,9 +97,15 @@
 			display: none;
 		}
 
+		&__info {
+			+below($tablet) {
+				width: 100%;
+			}
+		}
+
 		&__title {
 			h4();
-			margin-bottom: 20px;
+			margin-bottom: 15px;
 			max-width: 380px;
 		}
 
@@ -86,6 +113,24 @@
 			text();
 			margin-bottom: 20px;
 			max-width: 500px;
+			line-height: 2;
+		}
+
+		&__image {
+			margin-left: 50px;
+			width: 29%;
+			max-width: 160px;
+
+			+below($tablet) {
+				margin-left: 30px;
+			}
+		}
+
+		&__image-logotype {
+			padding: 10px;
+			width: 100%;
+			height: auto;
+			border: 1px solid #DAE0ED;
 		}
 
 		&__link {
@@ -101,6 +146,17 @@
 				width: 100%;
 				max-width: 247px;
 			}
+		}
+
+		.hotcall__content {
+			margin-top: 3px;
+		}
+
+		.hotcall__submit {
+			padding: 0 10px;
+			display: inline-block;
+			width: 100%;
+			max-width: 140px;
 		}
 	}
 }

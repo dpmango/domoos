@@ -20,7 +20,10 @@ section.our-services
 					each item in items
 						input.content__radio(id='#{item.id}-tab' type="radio" name="tabs" checked= item.isChecked )
 						.content__item(id='content-#{item.id}')
-							.content__title= item.title
-							.content__text= item.text
-							a.content__link.to-arrow(href=item.href)= item.link
-							+hotcall('home-help-form')
+							.content__info
+								.content__title= item.title
+								.content__text= item.text
+								a.content__link.to-arrow(href=item.href)= item.link
+								+hotcall('home-help-form')
+							.content__image
+								img.content__image-logotype(src="/images/isk-algoritm.png")

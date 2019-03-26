@@ -1,37 +1,45 @@
 .city-explorer {
-	margin-top: 100px;
+	margin-top: 75px;
 	display: flex;
 
-	+above($mobile) {
+	.wrap {
+		+below($notebooks) {
+			padding: 0 30px;
+		}
+
+		+below($phones) {
+			padding: 0 15px;
+		}
+	}
+
+	+below($phones) {
 		margin-top: 0;
 	}
 
-	+above($notebooks) {
-		margin-top: 100px;
-	}
-
 	&__title {
-		h2();
+		margin-bottom: 35px;
+		font-size: 2.7rem;
+		font-weight: 500;
+		color: var(--title-color);
 
-		+above($mobile) {
+		+below($phones) {
 			margin-bottom: 25px;
-		}
-
-		+above($notebooks) {
-			margin-bottom: 35px;
+			font-size: 2rem;
 		}
 	}
 
 	&__block {
 		wrap-pad();
+		padding: 78px 55px;
+		block();
 
-		+above($mobile) {
-			padding: 45px 15px;
+		+below($tablet) {
+			padding: 50px 25px;
 		}
 
-		+above($notebooks) {
-			padding: 90px 120px;
-			block();
+		+below($phones) {
+			padding: 13px 0 45px;
+			box-shadow: none;
 		}
 	}
 }
