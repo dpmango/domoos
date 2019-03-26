@@ -1,77 +1,56 @@
 .BuildingModal {
 	display: flex;
+	width: 100%;
 	height: 100%;
 	block();
+	padding: 70px 45px;
 
 	.wrap {
-		+above($mobile) {
+		padding: 0;
+		display: flex;
+
+		+below($mobile) {
 			display: block;
 		}
-
-		+above($notebooks) {
-			padding: 0;
-			display: flex;
-		}
-	}
-
-	+above($notebooks) {
-		padding: 63px 47px;
-	}
-
-	+above($desktop) {
-		padding: 80px 110px;
 	}
 
 	&__content {
 		display: flex;
 		flex-wrap: wrap;
+		width: 64%;
 		align-content: flex-start;
 
-		+above($mobile) {
+		+below($mobile) {
 			width: 100%;
-		}
-
-		+above($notebooks) {
-			width: 64%;
-		}
-
-		+above($desktop) {
-			width: 62%;
 		}
 	}
 
 	&__side {
 		position: relative;
+		padding-right: 0;
+		padding-left: 45px;
+		padding-bottom: 0;
+		width: 38%;
 
-		+above($mobile) {
+		+below($phones) {
 			padding-right: 15px;
 			padding-left: 15px;
 			padding-bottom: 20px;
 			width: 100%;
 		}
-
-		+above($notebooks) {
-			padding-right: 0;
-			padding-left: 45px;
-			padding-bottom: 0;
-			width: 38%;
-		}
 	}
 
 	&__info {
 		position: relative;
+		margin-bottom: 30px;
+		padding: 0;
 		display: flex;
 		flex-wrap: wrap;
 		width: 100%;
+		height: 77px;
 
-		+above($mobile) {
+		+below($phones) {
 			padding: 22px 15px 15px 14px;
-		}
-
-		+above($notebooks) {
-			margin-bottom: 30px;
-			padding: 0;
-			height: 77px;
 		}
 
 		.logo {

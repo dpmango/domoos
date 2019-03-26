@@ -2,6 +2,7 @@ import svg4everybody from 'svg4everybody';
 import $ from 'jquery';
 import slick from 'slick-carousel';
 import inputmask from 'inputmask';
+import 'simplebar';
 
 $(() => {
 	svg4everybody();

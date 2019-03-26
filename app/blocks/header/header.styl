@@ -8,6 +8,12 @@
 	background-position: top center;
 	background-size: cover;
 
+	.wrap {
+		+below($phones) {
+			overflow: visible;
+		}
+	}
+
 	+below($tablet) {
 		min-height: 1px;
 	}
@@ -30,6 +36,7 @@
 
 		+below($phones) {
 			padding: 0;
+			height: 60px;
 		}
 
 		&:before {
@@ -107,7 +114,7 @@
 		}
 
 		+below($phones) {
-			margin-top: 58px;
+			margin-top: 53px;
 			margin-bottom: 18px;
 			line-height: 1.35;
 		}
@@ -678,6 +685,7 @@
 				&:before {
 					// display: none;
 					background-color: #e7ebf4;
+
 					+below($phones) {
 						display: none;
 					}

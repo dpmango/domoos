@@ -14,6 +14,8 @@
 		padding: 30px 0;
 		width: 100%;
 		max-width: 350px;
+		height: auto;
+		max-height: calc(100vh - 186px);
 		block();
 
 		+below($tablet) {
@@ -69,7 +71,7 @@
 		padding: 15px 30px 30px;
 		width: 100%;
 		max-width: 360px;
-		min-height: 100%;
+		// max-height: calc(100vh - 126px);
 		order: 2;
 		block();
 
@@ -80,7 +82,9 @@
 			padding: 10px 15px 15px;
 			display: flex;
 			flex-direction: column;
+			max-width: 100%;
 			min-height: 1px;
+			height: auto;
 		}
 
 		&__header {
