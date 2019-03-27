@@ -1,11 +1,13 @@
 .country-map {
 	position: relative;
 	height: 100vh;
-	min-height: 896px;
+	// min-height: 896px;
+	// min-height: calc(100vh - 126px);
+	max-height: calc(100vh - 126px);
 
 	+below($phones) {
 		height: auto;
-		min-height: calc(100vh - 55px);
+		min-height: calc(100vh - 60px);
 	}
 
 	.CountryMap {
@@ -13,12 +15,14 @@
 		align-items: flex-start;
 		width: 100%;
 		height: 100vh;
-		min-height: 896px;
+		// min-height: 896px;
+		// min-height: calc(100vh - 126px);
+		max-height: calc(100vh - 126px);
 		justify-content: space-between;
 
 		+below($phones) {
-			min-height: calc(100vh - 55px);
-			max-height: calc(100vh - 55px);
+			min-height: calc(100vh - 60px);
+			max-height: calc(100vh - 60px);
 		}
 	}
 
@@ -45,6 +49,10 @@
 		padding: 0;
 		width: 100%;
 		height: 100%;
+		max-height: calc(100vh - 126px);
+		+below($phones) {
+			max-height: calc(100vh - 60px);
+		}
 	}
 
 	.map-form {
@@ -62,7 +70,7 @@
 		.btn {
 			padding: 0 10px;
 			display: inline-block;
-			width: 100%;
+			// width: 100%;
 			width: 38%;
 			max-width: 140px;
 		}
@@ -84,6 +92,7 @@
 		.btn {
 			line-height: 52px;
 		}
+
 		+below($phones) {
 			display: block;
 		}

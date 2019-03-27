@@ -3,6 +3,13 @@
 	padding-bottom: 30px;
 	overflow: hidden;
 
+	.wrap {
+		padding: 0 30px;
+		+below($phones) {
+			padding: 0;
+		}
+	}
+
 	+below($phones) {
 		padding-top: 30px;
 		padding-bottom: 20px;
@@ -31,7 +38,6 @@
 		+below($phones) {
 			line-height: 1.75;
 		}
-		// max-width: 90%;
 	}
 
 	&__text {
