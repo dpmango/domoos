@@ -224,7 +224,7 @@
 		padding-right: 15px;
 		display: block;
 		width: 32%;
-		max-width: 357px;
+		// max-width: 357px;
 		order: 2;
 
 		+below($phones) {
@@ -304,6 +304,10 @@
 
 		+below($tablet) {
 			padding: 0;
+		}
+
+		+below($phones) {
+			display: none;
 		}
 
 		&-content {
