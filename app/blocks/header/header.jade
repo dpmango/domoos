@@ -1,5 +1,7 @@
 - var navigation = [{ title: 'Все города', href: '/goroda.html', isDropdown: false, }, { title: 'Города на карте', href: '/goroda-na-karte.html', isDropdown: false }, { title: 'Услуги', href: '#', isDropdown: true, data: [{href:'/', title: 'Переезд'}, {href:'/', title: 'Переезд'}, {href:'/', title: 'Подбор'}]}, { title: 'Все агенства', href: '#', isDropdown: false }, { title: 'Все застройщики', href: '#', isDropdown: false }];
 
+- var navigationFixed = [{ title: 'Застройщики', href: '#', isDropdown: false, }, { title: 'Районы', href: '#', isDropdown: false }, { title: 'Другие', href: '#', isDropdown: true, data: [{href:'/', title: 'Новостройки'}, {href:'/', title: 'Все агенства'}, {href:'/', title: 'Квартиры'}, {href:'/', title: 'Статьи'},]}];
+
 block header
 
 section.header(class=isMap ? 'goroda-na-karte' : isСities ? 'goroda' : '')
@@ -7,7 +9,7 @@ section.header(class=isMap ? 'goroda-na-karte' : isСities ? 'goroda' : '')
 		.wrap
 			a.logo(href="/") Domoos
 			.nav
-				each item in navigation
+				each item in navigationFixed
 					if item.isDropdown
 						.nav__item
 							+dropdown(item.title, item.data)
@@ -15,10 +17,6 @@ section.header(class=isMap ? 'goroda-na-karte' : isСities ? 'goroda' : '')
 						.nav__item
 							a.nav__link(href=item.href)= item.title
 			.menu
-				a.menu__item.menu__item--phone(href='tel: +78121339999')
-					+icon('phone-black', true).icon.icon__phone
-					span.menu__title.menu__title--phone
-						| +7 (812) 133-99-99
 				.menu__item.menu__item--about
 					+icon('question', true).icon.icon__question
 					span.menu__title О Сервисе
@@ -30,6 +28,10 @@ section.header(class=isMap ? 'goroda-na-karte' : isСities ? 'goroda' : '')
 					span.menu__title Выбор города
 				.menu__item.menu__item--burger
 					+icon('burger-black', true).icon.icon__burger#sidebar-toggle-fixed
+				a.menu__item.menu__item--phone(href='tel: +78121339999')
+					+icon('phone-black', true).icon.icon__phone
+					span.menu__title.menu__title--phone
+						| +7 (812) 133-99-99
 	.wrap
 		.header__top
 			a.logo(href="/") Domoos
