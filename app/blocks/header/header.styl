@@ -8,6 +8,12 @@
 	background-position: top center;
 	background-size: cover;
 
+	.wrap {
+		+below($phones) {
+			overflow: visible;
+		}
+	}
+
 	+below($tablet) {
 		min-height: 1px;
 	}
@@ -30,6 +36,7 @@
 
 		+below($phones) {
 			padding: 0;
+			height: 60px;
 		}
 
 		&:before {
@@ -107,7 +114,7 @@
 		}
 
 		+below($phones) {
-			margin-top: 58px;
+			margin-top: 53px;
 			margin-bottom: 18px;
 			line-height: 1.35;
 		}
@@ -241,7 +248,7 @@
 		}
 
 		.dropdown {
-			top: 26px;
+			top: 25px;
 			height: 1em;
 
 			+below($tablet) {
@@ -351,7 +358,7 @@
 					border-radius: 50%;
 				}
 
-				+below($mobile) {
+				+below($phones) {
 					display: none;
 				}
 			}
@@ -359,9 +366,10 @@
 			&--burger {
 				margin-right: 0;
 				display: none;
+				cursor: pointer;
 
 				+below($phones) {
-					margin-right: 10px;
+					margin-right: 15px;
 					display: flex;
 				}
 			}
@@ -405,14 +413,14 @@
 
 					+below($phones) {
 						display: block;
-						width: 21px;
-						height: 21px;
+						width: 26px;
+						height: 23px;
 					}
 				}
 
 				&__burger {
-					width: 24px;
-					height: 21px;
+					width: 26px;
+					height: 23px;
 				}
 			}
 		}
@@ -475,12 +483,13 @@
 			bottom: -2px;
 			display: flex;
 
-			+below($tablet) {
+			+below($phones) {
 				display: none;
 			}
 
 			&__link {
 				margin-top: 27px;
+				font-size: 1.4rem;
 				color: var(--gray-light);
 
 				&:last-child {
@@ -521,7 +530,7 @@
 			.Cart {
 				&__counter {
 					top: 24px;
-					left: 21px;
+					left: 14px;
 
 					+below($phones) {
 						top: 15px;
@@ -534,46 +543,79 @@
 				}
 
 				&__label {
-					display: none;
+					// display: none;
+					color: var(--gray-light);
+
+					+below($tablet) {
+						display: none;
+					}
 				}
 			}
 
 			.icon {
-				padding: 10px;
+				// padding: 10px;
 				width: 40px;
 				height: 40px;
 				cursor: pointer;
-				border: 1px solid var(--border-color);
+				// border: 1px solid var(--border-color);
+				border: 1px solid transparent;
 
 				&__question, &__like {
 					margin: 0;
+					margin-right: 10px;
+					width: 20px;
+					height: 20px;
+					fill: #dae0ed;
+
+					+below($phones) {
+						margin-right: 0;
+						width: 22px;
+						height: 22px;
+						fill: var(--text-color);
+					}
+				}
+
+				&__question {
+					padding: 4px;
+					border: 1px solid #dae0ed;
+					border-radius: 50%;
 				}
 
 				&__phone {
-					+below($notebooks) {
-						display: flex;
-					}
-
+					// +below($notebooks) {
+					// display: flex;
+					// }
 					+below($phones) {
 						display: block;
+						width: 25px;
+						height: 25px;
+						fill: var(--text-color);
 					}
+				}
+
+				&__burger {
+					width: 26px;
+					height: 25px;
+					fill: var(--text-color);
 				}
 			}
 
 			&__item {
+				margin-top: 1px;
+				margin-bottom: -1px;
 				margin-left: 15px;
 				display: flex;
 				align-items: center;
 				justify-content: center;
 
 				+below($phones) {
-					margin-left: 10px;
+					margin: 0 0 0 17px;
 				}
 
 				&:hover {
 					.icon {
-						background-color: rgba(68, 68, 68, .4);
-						border: 1px solid transparent;
+						// background-color: rgba(68, 68, 68, .4);
+						// border: 1px solid transparent;
 					}
 
 					&.menu {
@@ -594,6 +636,11 @@
 					}
 				}
 
+				&--phone {
+					margin: 0 0 0 15px;
+					margin-left: 22px;
+				}
+
 				&--about {
 					display: flex;
 
@@ -609,12 +656,11 @@
 				&--burger {
 					display: none;
 
-					+below($tablet) {
-						display: flex;
-					}
-
 					+below($phones) {
-						margin-right: 15px;
+						margin-right: 19px;
+						margin-left: 21px;
+						display: flex;
+						order: 2;
 					}
 				}
 
@@ -648,13 +694,14 @@
 				&--phone {
 					position: relative;
 					bottom: -2px;
-					margin-right: 10px;
+					// margin-right: 10px;
 					display: block;
 					font-size: 1.6rem;
 					font-weight: normal;
-					color: var(--title-color);
+					// color: var(--title-color);
+					color: var(--gray-light);
 
-					+below($notebooks) {
+					+below($phones) {
 						display: none;
 					}
 				}
@@ -678,6 +725,7 @@
 				&:before {
 					// display: none;
 					background-color: #e7ebf4;
+
 					+below($phones) {
 						display: none;
 					}
@@ -739,6 +787,12 @@
 				&:hover {
 					.Cart__label, .menu__title {
 						color: var(--title-color);
+					}
+				}
+
+				.icon {
+					+below($phones) {
+						fill: var(--text-color);
 					}
 				}
 			}
