@@ -2,7 +2,11 @@
 	margin: 12px 0 9px;
 
 	.wrap {
-		padding: 0 30px;
+		padding: 0 34px;
+
+		+below($tablet) {
+			padding: 0 30px;
+		}
 
 		+below($phones) {
 			padding: 0 15px;
@@ -21,11 +25,11 @@
 		width: 100%;
 		max-width: 730px;
 		min-height: 380px;
-		background-image: url('/images/your-opinion-bg@2x.png');
+		background-image: url(/images/your-opinion-bg@2x.png);
 		background-repeat: no-repeat;
 		background-position: right 40px center;
 		background-size: 310px 245px;
-		// align-content: center;
+		align-content: center;
 		block();
 
 		+below($tablet) {
@@ -55,7 +59,6 @@
 	}
 
 	&__title {
-		margin-top: auto;
 		margin-bottom: 52px;
 		max-width: 380px;
 		font-size: 2.4rem;
@@ -71,7 +74,6 @@
 	}
 
 	&__cta {
-		margin-bottom: auto;
 		width: 100%;
 
 		.btn {

@@ -100,7 +100,7 @@ class CountryMap extends PureComponent {
 
 		return (
 			<div className="CountryMap" style={{ height: '100vh', width: '100%' }}>
-				<div data-simplebar className="filter">
+				<div className="filter">
 					<div className="filter__title">О сервисе</div>
 					<div className="filter__content">
 						Наша миссия - упрощение покупки квартиры в новостройке. Точная и актуальная
@@ -122,7 +122,7 @@ class CountryMap extends PureComponent {
 					</div>
 				</div>
 				{isSidebarActive && activeCity && (
-					<div data-simplebar className="sidebar city">
+					<div className="sidebar city">
 						<div className="sidebar__header">
 							<div
 								className="sidebar__close"

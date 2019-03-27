@@ -75,10 +75,6 @@
 		padding-bottom: 30px;
 		display: flex;
 		flex-wrap: wrap;
-
-		+below($phones) {
-			padding-bottom: 0;
-		}
 	}
 
 	&__title {
@@ -95,15 +91,14 @@
 	&__header {
 		margin-bottom: 33px;
 		display: flex;
-		flex-wrap: nowrap;
 		width: 100%;
 
-		+below($phones) {
-			margin-bottom: 25px;
+		+above($mobile) {
+			flex-wrap: wrap;
 		}
 
-		+below($phones) {
-			flex-wrap: wrap;
+		+above($notebooks) {
+			flex-wrap: nowrap;
 		}
 
 		.title {
@@ -129,9 +124,6 @@
 			}
 
 			+below($phones) {
-				position: absolute;
-				left: 0;
-				bottom: 0;
 				margin-top: 10px;
 				margin-right: auto;
 				margin-left: 0;
@@ -272,15 +264,13 @@
 		margin-top: 30px;
 
 		+below($phones) {
-			position: relative;
-			padding-bottom: 30px;
+			margin-top: 10px;
 		}
 	}
 
 	&__developer {
 		+above($phones) {
 			.slick-list {
-				overflow: visible;
 				height: auto !important;
 			}
 
@@ -302,8 +292,8 @@
 
 			.slick-slide {
 				padding: 0 !important;
-				width: 32% !important;
-				max-width: 310px;
+				width: 31.9% !important;
+				max-width: 313px;
 			}
 
 			.slick-slider {
@@ -317,21 +307,11 @@
 				left: -10px;
 			}
 		}
-
-		.CityExplorer__header {
-			margin-bottom: 18px;
-		}
 	}
 
 	&__buildings {
 		margin-top: 70px;
 		padding-bottom: 40px;
-
-		+below($phones) {
-			position: relative;
-			margin-top: 30px;
-			padding-bottom: 30px;
-		}
 	}
 
 	&__content {
@@ -346,18 +326,10 @@
 		}
 
 		.developer {
-			margin-bottom: 35px;
+			margin-bottom: 30px;
 			padding: 35px 20px 35px 45px;
 			width: calc(33.3% - 20px);
 			border: 1px solid var(--border-color);
-			transition: .25s;
-
-			&:hover {
-				+above($phones) {
-					border-color: transparent;
-					box-shadow: 0 0 25px 0 rgba(0, 0, 0, .3);
-				}
-			}
 
 			+below($notebooks) {
 				padding: 25px;
@@ -376,9 +348,9 @@
 
 			&__logo {
 				z-index: 100;
-				margin-bottom: 20px;
+				margin-bottom: 30px;
 				width: 50%;
-				height: 65px;
+				height: 100px;
 				background-repeat: no-repeat;
 				background-position: left center;
 				background-size: contain;
@@ -399,7 +371,7 @@
 			}
 
 			&__title {
-				margin-bottom: 13px;
+				margin-bottom: 12px;
 
 				a {
 					font-size: 1.6rem;
@@ -431,31 +403,23 @@
 			transition: .25s;
 
 			&.premium {
-				// .add-to-cart, .premium-checked {
-				// opacity: 0;
-				// transition: .25s;
-				// }
-				background-color: var(--yellow-light);
-
-				.building__district span, .building__subway span {
-					background-color: transparent;
-				}
-
 				.add-to-cart, .premium-checked {
-					opacity: 1;
+					opacity: 0;
+					transition: .25s;
 				}
 
-				// &:hover {
-				// background-color: var(--yellow-light);
+				&:hover {
+					background-color: var(--yellow-light);
 
-				// .building__district span, .building__subway span {
-				// background-color: transparent;
-				// }
+					.building__district span, .building__subway span {
+						background-color: transparent;
+					}
 
-				// .add-to-cart, .premium-checked {
-				// opacity: 1;
-				// }
-				// }
+					.add-to-cart, .premium-checked {
+						opacity: 1;
+					}
+				}
+
 				.building {
 					&__title, &__content {
 						padding: 0 20px;
