@@ -1,24 +1,24 @@
-import React, { PureComponent } from "react";
+import React, { PureComponent } from 'react';
 
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-import Modal from "react-modal";
+import Modal from 'react-modal';
 
-import { initCart, deleteFromCart, selectCartItems } from "../../ducks/cart/items";
-import { selectSessionID } from "../../ducks/user/session";
+import { initCart, deleteFromCart, selectCartItems } from '../../ducks/cart/items';
+import { selectSessionID } from '../../ducks/user/session';
 
-import AdvancedCart from "./AdvancedCart";
-import SimpleCart from "./SimpleCart";
+import AdvancedCart from './AdvancedCart';
+import SimpleCart from './SimpleCart';
 
-import { modalStyles } from "../../libs/utils";
+import { modalStyles } from '../../libs/utils';
 
 const useTag = '<use xlink:href="/assets/images/icon.svg#icon_like" />';
 
 class Cart extends PureComponent {
 	state = {
 		isSimpleView: false,
-		isAdvancedView: false
+		isAdvancedView: false,
 	};
 
 	componentDidMount = () => {
@@ -31,12 +31,12 @@ class Cart extends PureComponent {
 
 	handleHover = action => {
 		this.setState({
-			isSimpleView: action === "enter" ? true : false
+			isSimpleView: action === 'enter' ? true : false,
 		});
 	};
 	handleClick = () => {
 		this.setState({
-			isAdvancedView: true
+			isAdvancedView: true,
 		});
 	};
 
@@ -46,13 +46,13 @@ class Cart extends PureComponent {
 
 		cartItems.data.length > 0 &&
 			this.setState({
-				isAdvancedView: !isAdvancedView
+				isAdvancedView: !isAdvancedView,
 			});
 	};
 
 	handleCloseCart = () => {
 		this.setState({
-			isAdvancedView: false
+			isAdvancedView: false,
 		});
 	};
 
@@ -67,11 +67,7 @@ class Cart extends PureComponent {
 
 		return (
 			<React.Fragment>
-				<div
-					className="Cart__content"
-					onMouseEnter={() => this.handleHover("enter")}
-					onMouseLeave={() => this.handleHover("leave")}
-				>
+				<div className="Cart__content" onMouseEnter={() => this.handleHover('enter')}>
 					<span className="Cart__counter" onClick={() => this.handleClick()}>
 						{cartItems.data.length}
 					</span>
@@ -112,19 +108,19 @@ class Cart extends PureComponent {
 
 const mapStateToProps = state => ({
 	sessionID: selectSessionID(state),
-	cartItems: selectCartItems(state)
+	cartItems: selectCartItems(state),
 });
 
 const mapDispatchToProps = dispatch =>
 	bindActionCreators(
 		{
 			initCart,
-			deleteFromCart
+			deleteFromCart,
 		},
-		dispatch
+		dispatch,
 	);
 
 export default connect(
 	mapStateToProps,
-	mapDispatchToProps
+	mapDispatchToProps,
 )(Cart);

@@ -36,17 +36,14 @@
 		position: absolute;
 		top: 50px;
 		right: 0;
-		padding: 16px 18px 15px;
-		min-width: 175px;
+		padding: 16px 10px 15px 18px;
+		display: block;
+		min-width: 405px;
 		font-size: 1.2rem;
 		color: var(--title-color);
 
-		+above($mobile) {
+		+below($phones) {
 			display: none;
-		}
-
-		+above($notebooks) {
-			display: block;
 		}
 
 		&:before {
@@ -59,12 +56,12 @@
 
 	&__label {
 		margin-left: 4px;
+		font-size: 1.2rem;
 		line-height: 1em;
 		white-space: nowrap;
 		cursor: pointer;
 		color: rgba(255, 255, 255, 1);
 
-		font-size: 1.2rem;
 		+below($phones) {
 			font-size: 0;
 		}
@@ -100,7 +97,7 @@
 	}
 
 	&__call {
-		position: absolute;
+		// position: absolute;
 		left: 0;
 		bottom: 0;
 		padding: 40px 45px;
@@ -120,14 +117,18 @@
 	}
 
 	&__content {
-		padding: 0 75px 159px;
+		padding: 0 75px;
 		display: flex;
-		overflow: scroll;
+		overflow: hidden;
 		flex-wrap: wrap;
 		width: 100%;
-		max-height: 625px;
+		// max-height: 385px;
 		font-size: 1.2rem;
 		line-height: 1em;
+	}
+
+	&__items {
+		max-height: 385px;
 	}
 
 	&__item {
@@ -156,6 +157,12 @@
 			background-color: var(--border-color);
 		}
 
+		&:last-child {
+			&:before {
+				display: none;
+			}
+		}
+
 		.featured {
 			position: relative;
 			top: -1px;
@@ -168,13 +175,7 @@
 		}
 
 		.developer, .ready, .district, .city {
-			+above($notebooks) {
-				padding: 0 15px 0 0;
-			}
-
-			+above($desktop) {
-				padding: 0 30px 0 0;
-			}
+			padding: 0 15px 0 0;
 		}
 
 		.name {
@@ -222,7 +223,12 @@
 					position: relative;
 					margin-left: 10px;
 					padding: 3px 15px 0;
+					font-size: 0;
 					text-transform: capitalize;
+
+					&:after {
+						display: block;
+					}
 
 					&:after {
 						arrow(1px, 1px, var(--arrow-color), 45deg);
@@ -232,22 +238,6 @@
 						left: 0;
 						bottom: 0;
 						margin: auto;
-					}
-
-					+above($notebooks) {
-						font-size: 0;
-
-						&:after {
-							display: block;
-						}
-					}
-
-					+above($desktop) {
-						font-size: 1.2rem;
-
-						&:after {
-							display: none;
-						}
 					}
 				}
 			}
@@ -308,7 +298,8 @@
 	}
 
 	&__content {
-		overflow: scroll;
+		// overflow: scroll;
+		padding-right: 2px;
 		max-height: 400px;
 	}
 
@@ -318,7 +309,7 @@
 		padding: 12px 0;
 		display: flex;
 		align-items: center;
-		min-width: 350px;
+		// min-width: 320px;
 
 		&:before {
 			pseudo();
@@ -361,7 +352,7 @@
 	}
 
 	&__show-full {
-		padding: 30px 15px 15px;
+		padding: 15px;
 
 		.btn {
 			margin-left: 0;
