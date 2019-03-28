@@ -143,7 +143,7 @@
 	&__description {
 		text();
 		width: 48%;
-		max-width: 460px;
+		max-width: 560px;
 		order: 1;
 
 		p {
@@ -287,7 +287,8 @@
 			.slick-track {
 				display: flex;
 				flex-wrap: wrap;
-				width: 100% !important;
+				width: 101% !important;
+				max-width: calc(100% + 2px);
 				transform: none !important;
 				justify-content: space-between;
 
@@ -302,8 +303,9 @@
 
 			.slick-slide {
 				padding: 0 !important;
-				width: 32% !important;
-				max-width: 310px;
+				width: calc(33.333333% - 20px) !important;
+				max-width: 350px;
+				// max-width: 314px;
 			}
 
 			.slick-slider {

@@ -115,7 +115,7 @@
 		text();
 		margin-top: 16px;
 		margin-bottom: 0;
-		max-width: 350px;
+		max-width: 450px;
 		font-size: 1.3rem;
 		line-height: 1.7;
 
@@ -129,6 +129,14 @@
 			+below($phones) {
 				display: none;
 			}
+		}
+	}
+
+	.help__form {
+		max-width: 370px;
+
+		+below($tablet) {
+			max-width: 100%;
 		}
 	}
 
