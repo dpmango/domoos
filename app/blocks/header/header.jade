@@ -4,7 +4,9 @@
 
 block header
 
-section.header(class=isMap ? 'goroda-na-karte' : isСities ? 'goroda' : '')
+section.header(class=isMap ? 'goroda-na-karte' : isСities ? 'goroda' : '' style=isСities ? "background-image: url('/images/bg-main-cities.jpg')" : isMap ? 'background-color: #fff;' : "background-image: url('/images/bg-main.jpg')")
+	if isСities
+		span.mobile-bg(style="background-image: url('/images/bg-main-cities-mobile.jpg')")
 	.header__sticky.sticky
 		.wrap
 			a.logo(href="/") Domoos
