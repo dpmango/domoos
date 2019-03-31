@@ -22,7 +22,7 @@ class AdvancedCart extends PureComponent {
 				<div className="AdvancedCart__close" onClick={handleClose} />
 				<div className="AdvancedCart__content">
 					<div className="AdvancedCart__title">Отложенные новостройки</div>
-					<div className="AdvancedCart__items" data-simplebar>
+					<div className="AdvancedCart__items">
 						{console.log('items', items)}
 						{items.length > 0 &&
 							items.map((item, key) => (
