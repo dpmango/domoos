@@ -206,7 +206,11 @@ class CountryMap extends PureComponent {
 				)}
 				<div className="map-container">
 					<a href="/goroda" className="to-category">
-						В каталог городов
+						<span />В каталог городов
+					</a>
+					<a href="/goroda" className="to-new-buildings">
+						В каталог новостроек
+						<span />
 					</a>
 					<GoogleMapReact
 						bootstrapURLKeys={{
