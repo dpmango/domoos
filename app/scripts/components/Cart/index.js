@@ -67,7 +67,11 @@ class Cart extends PureComponent {
 
 		return (
 			<React.Fragment>
-				<div className="Cart__content" onMouseEnter={() => this.handleHover('enter')}>
+				<div
+					className="Cart__content"
+					onMouseEnter={() => this.handleHover('enter')}
+					onMouseLeave={() => this.handleHover('leave')}
+				>
 					<span className="Cart__counter" onClick={() => this.handleClick()}>
 						{cartItems.data.length}
 					</span>

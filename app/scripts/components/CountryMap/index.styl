@@ -233,12 +233,24 @@
 		width: 25px;
 		height: 25px;
 		cursor: pointer;
+		background: url('/images/bull.png');
 		background-image: url('/images/bull-blue@2x.png');
 		background-repeat: no-repeat;
 		background-position: center center;
 		background-size: contain;
 		opacity: 1;
+		transition: .2s;
 		t();
+
+		&:focus, &.is-active {
+			z-index: 2000;
+			background: url('/images/bull.png');
+			background-repeat: no-repeat;
+			background-position: center center;
+			background-size: contain;
+			opacity: 1;
+			transform: scale(1.3);
+		}
 
 		&:hover {
 			opacity: 1;
