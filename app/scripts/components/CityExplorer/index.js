@@ -264,21 +264,29 @@ class CitySelector extends PureComponent {
 													this.handleAddToCart(building, 'buildings')
 												}
 											/>
-											<a
-												className="building__featured"
-												onClick={() => this.handleModal(building)}
-												style={{
-													backgroundImage: `url('https://domoos.ru/images/novostroyki/${
-														building.citySlug
-													}/estates/${building.slug}.jpg')`,
-												}}
-											>
+											<div className="building__image">
+												<a
+													className="building__featured"
+													onClick={() => this.handleModal(building)}
+													style={{
+														backgroundImage: `url('https://domoos.ru/images/novostroyki/${
+															building.citySlug
+														}/estates/${building.slug}.jpg')`,
+													}}
+												/>
 												{building.isPremium && (
 													<div className="premium-checked">
 														Провереннная
 													</div>
 												)}
-											</a>
+												<a
+													href="#"
+													className="building__view"
+													onClick={() => this.handleModal(building)}
+												>
+													Быстрый просмотр
+												</a>
+											</div>
 											<div
 												className="building__header"
 												onClick={() => this.handleModal(building)}

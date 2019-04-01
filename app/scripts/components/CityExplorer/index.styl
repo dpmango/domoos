@@ -429,6 +429,7 @@
 
 		.building {
 			position: relative;
+			overflow: hidden;
 			width: 100%;
 			transition: .25s;
 
@@ -469,20 +470,63 @@
 				}
 			}
 
-			&__featured {
+			&__image {
 				position: relative;
 				margin-bottom: 5px;
+				overflow: hidden;
+				font-size: 0;
+				cursor: pointer;
+
+				&:hover {
+					.building__view {
+						opacity: 1;
+					}
+
+					.building__featured {
+						transform: rotate(1deg) scale(1.1);
+					}
+				}
+			}
+
+			&__view {
+				position: absolute;
+				z-index: 2;
+				left: 15px;
+				bottom: 15px;
+				padding: 10px 10px 8px;
+				display: flex;
+				align-items: center;
+				font-size: 12px;
+				line-height: 1;
+				cursor: pointer;
+				color: #fff;
+				background: rgba(#444444, .5);
+				opacity: 0;
+				transition: .4s;
+
+				&:before {
+					position: static;
+					margin-top: -6px;
+					margin-right: 8px;
+					display: block;
+					width: 17px;
+					height: 18px;
+					content: '';
+					background: url('/images/link-icon.svg') center center no-repeat;
+					background-size: contain;
+				}
+			}
+
+			&__featured {
+				position: relative;
+				// margin-bottom: 5px;
 				width: 100%;
 				max-width: 370px;
 				cursor: pointer;
 				background-repeat: no-repeat;
 				background-position: center;
 				background-size: 100% 100%;
-				transition: .1s;
-
-				&:hover {
-					background-size: 105% 105%;
-				}
+				transition: .5s;
 
 				+above($mobile) {
 					min-height: 140px;
