@@ -151,7 +151,7 @@ class CitySelector extends PureComponent {
 							}}
 						/>
 						<div className="developer__title">
-							<a href={`/zatroichki/${dev.slug}`}>CK {dev.title}</a>
+							<a href={`/zatroichki/${dev.slug}`}>{dev.title}</a>
 						</div>
 						<div className="developer__features">
 							{dev.features.map((feature, key) => (
