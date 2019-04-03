@@ -22,12 +22,13 @@ export default class InfoSection extends Component {
 						О {info.name_e}
 					</div>
 					<ul className="city__properties">
-						{info.properties.map((property, key) => (
-							<li className="property" key={key}>
-								<span className="title">{property.title}:</span>
-								<span className="value">{property.value}</span>
-							</li>
-						))}
+						{info.properties &&
+							info.properties.map((property, key) => (
+								<li className="property" key={key}>
+									<span className="title">{property.title}:</span>
+									<span className="value">{property.value}</span>
+								</li>
+							))}
 					</ul>
 				</div>
 			</React.Fragment>

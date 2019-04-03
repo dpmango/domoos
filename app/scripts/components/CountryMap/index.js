@@ -110,15 +110,16 @@ class CountryMap extends PureComponent {
 						самый качественный сервис от застройщиков, банков и агентств недвижимости.
 					</div>
 					<div className="filter__list">
-						{filters.map((item, key) => (
-							<div
-								className={`filter__item ${activeFilter === item.toLowerCase() && 'selected'} `}
-								key={key}
-								onClick={() => this.hadleFilterClick(item.toLowerCase())}
-							>
-								{item}
-							</div>
-						))}
+						{filters &&
+							filters.map((item, key) => (
+								<div
+									className={`filter__item ${activeFilter === item.toLowerCase() && 'selected'} `}
+									key={key}
+									onClick={() => this.hadleFilterClick(item.toLowerCase())}
+								>
+									{item}
+								</div>
+							))}
 					</div>
 				</div>
 				{isSidebarActive && activeCity && (
@@ -141,31 +142,33 @@ class CountryMap extends PureComponent {
 						<div className="city__name">{activeCity.name}</div>
 						<div className="city__description">{activeCity.description}</div>
 						<div className="city__ratings">
-							{activeCity.ratings.map((rating, key) => (
-								<div key={key} className="rating">
-									<div className="rating__title">{rating.title}</div>
-									<div className="rating__stars">
-										<ReactStars
-											count={5}
-											size={15}
-											value={rating.value}
-											edit={false}
-											half={false}
-											color2="#ffd72b"
-											color1="#eceff6"
-										/>
+							{activeCity.ratings &&
+								activeCity.ratings.map((rating, key) => (
+									<div key={key} className="rating">
+										<div className="rating__title">{rating.title}</div>
+										<div className="rating__stars">
+											<ReactStars
+												count={5}
+												size={15}
+												value={rating.value}
+												edit={false}
+												half={false}
+												color2="#ffd72b"
+												color1="#eceff6"
+											/>
+										</div>
 									</div>
-								</div>
-							))}
+								))}
 							<div />
 						</div>
 						<ul className="city__options">
-							{activeCity.options.map((option, key) => (
-								<li key={key} className="option">
-									<span className="option__title">{option.title}:</span>
-									<span className="option__value">{option.value}</span>
-								</li>
-							))}
+							{activeCity.ratings &&
+								activeCity.options.map((option, key) => (
+									<li key={key} className="option">
+										<span className="option__title">{option.title}:</span>
+										<span className="option__value">{option.value}</span>
+									</li>
+								))}
 							<div />
 						</ul>
 						<div className="city__neighbors">

@@ -17,33 +17,35 @@ export default class Developers extends Component {
 
 				<div className="CityExplorer__content">
 					<Slider {...sliderSettings}>
-						{developers.data.map((developer, idx) => (
-							<div className="developer" key={idx}>
-								<div
-									className="developer__logo"
-									style={{
-										backgroundImage: `url('https://domoos.ru/images/zastroyshchiki/${
-											developer.citySlug
-										}/${developer.slug}.jpg'), url('/images/domoos-dummy.png')`,
-									}}
-								/>
-								<div className="developer__title">
-									<span>{developer.title}</span>
+						{developers.data &&
+							developers.data.map((developer, idx) => (
+								<div className="developer" key={idx}>
+									<div
+										className="developer__logo"
+										style={{
+											backgroundImage: `url('https://domoos.ru/images/zastroyshchiki/${
+												developer.citySlug
+											}/${developer.slug}.jpg'), url('/images/domoos-dummy.png')`,
+										}}
+									/>
+									<div className="developer__title">
+										<span>{developer.title}</span>
+									</div>
+									<div className="developer__features">
+										{developer.features &&
+											developer.features.map((feature, idx) => (
+												<div
+													className="feature"
+													key={idx}
+													data-id={idx}
+													dangerouslySetInnerHTML={{
+														__html: feature,
+													}}
+												/>
+											))}
+									</div>
 								</div>
-								<div className="developer__features">
-									{developer.features.map((feature, idx) => (
-										<div
-											className="feature"
-											key={idx}
-											data-id={idx}
-											dangerouslySetInnerHTML={{
-												__html: feature,
-											}}
-										/>
-									))}
-								</div>
-							</div>
-						))}
+							))}
 					</Slider>
 				</div>
 			</React.Fragment>
