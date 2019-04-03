@@ -332,7 +332,7 @@ export default handleActions(
 						},
 						{
 							title: 'Стоимость квартир от',
-							value: item.price_min ? item.price_min + ' руб.' : '900 000 руб.',
+							value: item.price_min ? item.price_min + ' руб.' : 'недоступно',
 						},
 						{
 							title: 'Регион',

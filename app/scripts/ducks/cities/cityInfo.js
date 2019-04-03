@@ -40,7 +40,7 @@ export default handleActions(
 					},
 					{
 						title: 'Стоимость квартир от',
-						value: `${formatNumber(item.price_min)} 000 руб.`,
+						value: item.price_m ? `${formatNumber(item.price_m)} 000 руб.` : 'недоступно',
 					},
 					{
 						title: 'Регион',
