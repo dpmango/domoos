@@ -93,7 +93,7 @@ class CountryMap extends PureComponent {
 
 		const Marker = ({ slug, name }) => (
 			<div
-				className={'bull ' + (actitveMarker === slug && 'bounce is-active')}
+				className={'bull ' + (actitveMarker === slug ? 'bounce is-active' : '')}
 				id={slug}
 				title={name}
 				onClick={() => mapInfo.data.result && this.hadleCityClick(slug)}
@@ -105,16 +105,14 @@ class CountryMap extends PureComponent {
 				<div data-simplebar className="filter">
 					<div className="filter__title">О сервисе</div>
 					<div className="filter__content">
-						Наша миссия - упрощение покупки квартиры в новостройке. Точная и актуальная
-						информация поможет вам выбрать именно то, что нужно. Мы убеждены, что каждый
-						из нас заслуживает самый качественный сервис от застройщиков, банков и
-						агентств недвижимости.
+						Наша миссия - упрощение покупки квартиры в новостройке. Точная и актуальная информация
+						поможет вам выбрать именно то, что нужно. Мы убеждены, что каждый из нас заслуживает
+						самый качественный сервис от застройщиков, банков и агентств недвижимости.
 					</div>
 					<div className="filter__list">
 						{filters.map((item, key) => (
 							<div
-								className={`filter__item ${activeFilter === item.toLowerCase() &&
-									'selected'} `}
+								className={`filter__item ${activeFilter === item.toLowerCase() && 'selected'} `}
 								key={key}
 								onClick={() => this.hadleFilterClick(item.toLowerCase())}
 							>
@@ -126,10 +124,7 @@ class CountryMap extends PureComponent {
 				{isSidebarActive && activeCity && (
 					<div data-simplebar className="sidebar city">
 						<div className="sidebar__header">
-							<div
-								className="sidebar__close"
-								onClick={() => this.handleCloseSidebar()}
-							/>
+							<div className="sidebar__close" onClick={() => this.handleCloseSidebar()} />
 						</div>
 						<div
 							className="city__img"
@@ -140,11 +135,7 @@ class CountryMap extends PureComponent {
 							}}
 						/>
 
-						<a
-							className="city__link"
-							href={`/goroda/${activeCity.slug}`}
-							target="_blank"
-						>
+						<a className="city__link" href={`/goroda/${activeCity.slug}`} target="_blank">
 							Страница города
 						</a>
 						<div className="city__name">{activeCity.name}</div>
@@ -185,12 +176,7 @@ class CountryMap extends PureComponent {
 							<div className="title">Заказать подбор квартиры</div>
 							<div className="desc">Это бесплатная услуга</div>
 							<div className="hotcall__form">
-								<input
-									type="tel"
-									placeholder="+7"
-									className="hotcall__input"
-									im-insert="true"
-								/>
+								<input type="tel" placeholder="+7" className="hotcall__input" im-insert="true" />
 								<input
 									name="submit"
 									type="submit"
@@ -225,8 +211,7 @@ class CountryMap extends PureComponent {
 							!mapInfo.loading &&
 							mapInfo.data.coordinates
 								.filter(({ category }) => {
-									return category.indexOf(activeFilter) !== -1 ||
-										activeFilter === 'все'
+									return category.indexOf(activeFilter) !== -1 || activeFilter === 'все'
 										? true
 										: false;
 								})

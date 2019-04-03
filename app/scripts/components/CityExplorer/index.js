@@ -116,9 +116,9 @@ class CitySelector extends PureComponent {
 						href={`/${dev.slug}`}
 						className="developer__logo"
 						style={{
-							backgroundImage: `url('https://domoos.ru/images/zastroyshchiki/${
-								dev.citySlug
-							}/${dev.slug}.jpg'), url('/images/domoos-dummy.png')`,
+							backgroundImage: `url('https://domoos.ru/images/zastroyshchiki/${dev.citySlug}/${
+								dev.slug
+							}.jpg'), url('/images/domoos-dummy.png')`,
 						}}
 					/>
 
@@ -127,11 +127,7 @@ class CitySelector extends PureComponent {
 					</div>
 					<div className="developer__features">
 						{dev.features.map((feature, key) => (
-							<div
-								className="feature"
-								key={key}
-								dangerouslySetInnerHTML={{ __html: feature }}
-							/>
+							<div className="feature" key={key} dangerouslySetInnerHTML={{ __html: feature }} />
 						))}
 					</div>
 				</div>
@@ -145,9 +141,9 @@ class CitySelector extends PureComponent {
 							href={`/${dev.slug}`}
 							className="developer__logo"
 							style={{
-								backgroundImage: `url('https://domoos.ru/images/zastroyshchiki/${
-									dev.citySlug
-								}/${dev.slug}.jpg'), url('/images/domoos-dummy.png')`,
+								backgroundImage: `url('https://domoos.ru/images/zastroyshchiki/${dev.citySlug}/${
+									dev.slug
+								}.jpg'), url('/images/domoos-dummy.png')`,
 							}}
 						/>
 						<div className="developer__title">
@@ -170,7 +166,7 @@ class CitySelector extends PureComponent {
 		);
 
 		return (
-			<div className={`CityExplorer ${!info && !devs && !agencies && 'loading'}`}>
+			<div className={`CityExplorer ${!info && !devs && !agencies ? 'loading' : ''}`}>
 				<Suggest
 					payload={CitiesList}
 					placeholder={activeCity.name}
@@ -196,9 +192,7 @@ class CitySelector extends PureComponent {
 								<div className="city__header">
 									<img
 										className="city__logo"
-										src={`https://domoos.ru/images/goroda/gerb/${
-											activeCity.slug
-										}.jpg`}
+										src={`https://domoos.ru/images/goroda/gerb/${activeCity.slug}.jpg`}
 									/>
 									О {info.data.name_e}
 								</div>
@@ -250,19 +244,10 @@ class CitySelector extends PureComponent {
 							<div className="CityExplorer__content">
 								<Slider {...sliderSettings}>
 									{buildings.data.map((building, key) => (
-										<div
-											className={`building ${
-												building.isPremium ? 'premium' : ''
-											}`}
-											key={key}
-										>
+										<div className={`building ${building.isPremium ? 'premium' : ''}`} key={key}>
 											<div
-												className={`add-to-cart ${
-													this.isAdded(building.id) ? 'added' : ''
-												}`}
-												onClick={() =>
-													this.handleAddToCart(building, 'buildings')
-												}
+												className={`add-to-cart ${this.isAdded(building.id) ? 'added' : ''}`}
+												onClick={() => this.handleAddToCart(building, 'buildings')}
 											/>
 											<div className="building__image">
 												<a
@@ -274,11 +259,7 @@ class CitySelector extends PureComponent {
 														}/estates/${building.slug}.jpg')`,
 													}}
 												/>
-												{building.isPremium && (
-													<div className="premium-checked">
-														Провереннная
-													</div>
-												)}
+												{building.isPremium && <div className="premium-checked">Провереннная</div>}
 												<a
 													href="#"
 													className="building__view"
@@ -287,17 +268,12 @@ class CitySelector extends PureComponent {
 													Быстрый просмотр
 												</a>
 											</div>
-											<div
-												className="building__header"
-												onClick={() => this.handleModal(building)}
-											>
+											<div className="building__header" onClick={() => this.handleModal(building)}>
 												<a className="building__title building__title--developer">
 													Застройщик&nbsp;
 													{building.developer}
 												</a>
-												<a className="building__title building__title--building">
-													{building.name}
-												</a>
+												<a className="building__title building__title--building">{building.name}</a>
 											</div>
 											<div className="building__content">
 												<div className="building__features">
@@ -312,10 +288,7 @@ class CitySelector extends PureComponent {
 													<span>{building.district} район</span>
 												</div>
 
-												<div
-													className={`building__subway ${building.subway ===
-														'' && 'empty'}`}
-												>
+												<div className={`building__subway ${building.subway === '' && 'empty'}`}>
 													<span>м. {building.subway}</span>
 												</div>
 											</div>
@@ -326,48 +299,9 @@ class CitySelector extends PureComponent {
 						</React.Fragment>
 					)}
 				</div>
-				<div className="CityExplorer__agencies">
-					{info && !info.loading && agencies && !agencies.loading && (
-						<React.Fragment>
-							<div className="CityExplorer__header">
-								<span className="title">Проверенные агентства недвижимости</span>
-								<a
-									className="to-category-link"
-									href={`agentstva/${info.data.slug}`}
-									target="_blank"
-								>
-									Все агентства {info.data.name_a}
-								</a>
-							</div>
-							<div className="CityExplorer__content">
-								<Slider {...sliderSettings}>
-									{agencies.data.map((agency, key) => (
-										<div className="agency" key={key}>
-											<a
-												className="agency__logo"
-												style={{
-													backgroundImage: `url(
-														https://domoos.ru/images/agentstva/${activeCity.slug}/${
-														agency.slug
-													}.jpg), url('/images/domoos-dummy.png')`,
-												}}
-											/>
-											<a className="agency__title">{agency.name}</a>
-											<div className="agency__services">
-												Услуги:&nbsp;
-												{agency.services}
-											</div>
-											<div className="agency__offers">
-												В продаже обьектов:&nbsp;
-												{agency.offers}
-											</div>
-										</div>
-									))}
-								</Slider>
-							</div>
-						</React.Fragment>
-					)}
-				</div>
+
+				{/* CityExplorer__agencies - removed */}
+
 				<BuildingModal
 					isVisible={modal.isOpen}
 					handleClose={this.closeModal}
