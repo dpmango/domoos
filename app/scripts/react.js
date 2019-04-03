@@ -11,13 +11,11 @@ import CityExplorer from './components/CityExplorer';
 import CountryMap from './components/CountryMap';
 import Cart from './components/Cart';
 
-import configureStore from './libs/configureStore';
+import store from './libs/reduxStore';
 import { setSessionID } from './ducks/user/session';
 
 //hidden comps
 // import CallbackModal from './components/CallbackModal';
-
-const store = configureStore();
 
 store.dispatch(setSessionID());
 
