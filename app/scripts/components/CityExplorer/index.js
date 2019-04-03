@@ -13,9 +13,6 @@ import { selectCityBuildings, getCityBuildings } from '../../ducks/cities/cityBu
 import { selectCityDevelopers, getCityDevelopers } from '../../ducks/cities/cityDevelopers';
 import { selectCityAgencies, getCityAgencies } from '../../ducks/cities/cityAgencies';
 
-// todo сделать проверку загружены ли данные - ?
-// todo не загружать страницу если выбран тот же город что и в запросе
-
 import Suggest from '../Suggest';
 import BuildingModal from '../BuildingModal';
 
@@ -50,6 +47,12 @@ class CitySelector extends PureComponent {
 
 	handleSuggest = (name, slug) => {
 		const { getCityInfo, getCityDevelopers, getCityBuildings, getCityAgencies } = this.props;
+		const { activeCity } = this.state;
+
+		// if same city selected in suggest - do nothing
+		if (name === activeCity.name && slug === activeCity.slug) {
+			return;
+		}
 
 		getCityInfo(slug);
 		getCityDevelopers(slug);
