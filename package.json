@@ -135,6 +135,7 @@
     "google-map-react": "^1.1.2",
     "inputmask": "^4.0.6",
     "js-cookie": "^2.2.0",
+    "lodash": "^4.17.11",
     "match-sorter": "^2.3.0",
     "prop-types": "^15.7.2",
     "qs": "^6.6.0",

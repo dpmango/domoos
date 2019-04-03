@@ -1,11 +1,11 @@
-import { fetchCityInfo } from "./api";
-import { createAction, handleActions } from "redux-actions";
+import { fetchCityInfo } from './api';
+import { createAction, handleActions } from 'redux-actions';
 
-import { formatNumber } from "../../libs/utils";
+import { formatNumber } from '../../libs/utils';
 
 // SYNC ACTIONS
 
-export const setCityInfo = createAction("setCityInfo");
+export const setCityInfo = createAction('setCityInfo');
 
 // ASYNC ACTIONS
 
@@ -28,45 +28,41 @@ export default handleActions(
 				name_e: item.skl_gorode,
 				// description: item.description,
 				description:
-					"Москва – столица России, многонациональный город на Москве-реке в западной части страны. В его историческом центре находится средневековая крепость Кремль – резиденция российского президента. На ее территории можно посетить Оружейную палату, где выставляются драгоценные предметы, принадлежавшие царской семье.",
+					'Москва – столица России, многонациональный город на Москве-реке в западной части страны. В его историческом центре находится средневековая крепость Кремль – резиденция российского президента. На ее территории можно посетить Оружейную палату, где выставляются драгоценные предметы, принадлежавшие царской семье.',
 				properties: [
 					{
-						title: "Регион",
-						value: item.region
+						title: 'Численность населения',
+						value: `${formatNumber(item.naselenie)} человек`,
 					},
 					{
-						title: "Климат",
-						value: item.klimat
+						title: 'Средняя зарплата',
+						value: `${formatNumber(item.dohod)} руб.`,
 					},
 					{
-						title: "Население",
-						value: `${formatNumber(item.naselenie)} человек`
+						title: 'Стоимость квартир от',
+						value: `${formatNumber(item.price_min)} 000 руб.`,
 					},
 					{
-						title: "Доход",
-						value: `${formatNumber(item.dohod)} руб.`
+						title: 'Регион',
+						value: item.region,
 					},
 					{
-						title: "Метро",
-						value: item.metro === "" ? "нет" : item.metro
+						title: 'Климат',
+						value: item.klimat,
 					},
-					{
-						title: "Средняя цена за кв.м",
-						value: `${formatNumber(item.price_m)} 000 руб.`
-					}
-				]
+				],
 			}));
 
 			return {
 				...state,
 				[payload.slug]: {
 					data: result[0],
-					loading: false
-				}
+					loading: false,
+				},
 			};
-		}
+		},
 	},
-	initialState
+	initialState,
 );
 
 export const selectCityInfo = state => state.cities.cityInfo;

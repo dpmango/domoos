@@ -1,6 +1,21 @@
 import React, { Component } from 'react';
+// import sortBy from 'lodash/sortBy';
+// import indexOf from 'lodash/indexOf';
 
 export default class InfoSection extends Component {
+	// sort properties array in given order
+	// no need YET - hardcoded in ducks/cities/cityInfo.js
+	// applySorting = properties => {
+	// 	const order = [
+	// 		'Численность населения',
+	// 		'Средняя зарплата',
+	// 		'Стоимость квартир от',
+	// 		'Регион',
+	// 		'Климат',
+	// 	];
+	// 	return sortBy(properties, obj => indexOf(order, obj.title));
+	// };
+
 	render() {
 		const { info, city } = this.props;
 
