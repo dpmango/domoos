@@ -29,6 +29,7 @@ class CountryMap extends PureComponent {
 		isSidebarActive: false,
 		activeFilter: 'все',
 		activeCity: {},
+		activeMarker: undefined,
 	};
 
 	componentDidMount = () => {
@@ -37,11 +38,10 @@ class CountryMap extends PureComponent {
 	};
 
 	hadleCityClick = slug => {
-		var element = document.getElementById(slug);
-		element.className += ' bounce';
-
-		const { mapInfo } = this.props;
-		const { activeCity } = this.state;
+		const {
+			props: { mapInfo },
+			state: { activeCity },
+		} = this;
 
 		const result = matchSorter(mapInfo.data.result, slug, {
 			keys: [{ threshold: matchSorter.rankings.EQUAL, key: 'slug' }],
@@ -52,6 +52,7 @@ class CountryMap extends PureComponent {
 		this.setState({
 			activeCity: isEqual ? [] : result[0],
 			isSidebarActive: isEqual ? false : true,
+			actitveMarker: slug,
 		});
 	};
 
@@ -87,11 +88,12 @@ class CountryMap extends PureComponent {
 			activeCity,
 			isSidebarActive,
 			activeFilter,
+			actitveMarker,
 		} = this.state;
 
 		const Marker = ({ slug, name }) => (
 			<div
-				className="bull"
+				className={'bull ' + (actitveMarker === slug && 'bounce is-active')}
 				id={slug}
 				title={name}
 				onClick={() => mapInfo.data.result && this.hadleCityClick(slug)}
