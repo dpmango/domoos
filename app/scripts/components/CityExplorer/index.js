@@ -109,51 +109,28 @@ class CitySelector extends PureComponent {
 		const buildings = CityBuildings[activeCity.slug];
 		const agencies = CityAgencies[activeCity.slug];
 
-		const DevComp = () =>
-			devs.data.map((dev, index) => (
-				<div className="developer" key={index}>
-					<a
-						href={`/${dev.slug}`}
-						className="developer__logo"
-						style={{
-							backgroundImage: `url('https://domoos.ru/images/zastroyshchiki/${dev.citySlug}/${
-								dev.slug
-							}.jpg'), url('/images/domoos-dummy.png')`,
-						}}
-					/>
-
-					<div className="developer__title">
-						<a href={`/zatroichki/${dev.slug}`}>CK {dev.title}</a>
-					</div>
-					<div className="developer__features">
-						{dev.features.map((feature, key) => (
-							<div className="feature" key={key} dangerouslySetInnerHTML={{ __html: feature }} />
-						))}
-					</div>
-				</div>
-			));
-
-		const DevCompSlider = () => (
+		// developers sliders
+		const DevevelopersSlider = () => (
 			<Slider {...sliderSettings}>
-				{devs.data.map((dev, index) => (
-					<div className="developer" key={index}>
-						<a
-							href={`/${dev.slug}`}
+				{devs.data.map((developer, idx) => (
+					<div className="developer" key={idx}>
+						<div
 							className="developer__logo"
 							style={{
-								backgroundImage: `url('https://domoos.ru/images/zastroyshchiki/${dev.citySlug}/${
-									dev.slug
-								}.jpg'), url('/images/domoos-dummy.png')`,
+								backgroundImage: `url('https://domoos.ru/images/zastroyshchiki/${
+									developer.citySlug
+								}/${developer.slug}.jpg'), url('/images/domoos-dummy.png')`,
 							}}
 						/>
 						<div className="developer__title">
-							<a href={`/zatroichki/${dev.slug}`}>{dev.title}</a>
+							<span>{developer.title}</span>
 						</div>
 						<div className="developer__features">
-							{dev.features.map((feature, key) => (
+							{developer.features.map((feature, idx) => (
 								<div
 									className="feature"
-									key={key}
+									key={idx}
+									data-id={idx}
 									dangerouslySetInnerHTML={{
 										__html: feature,
 									}}
@@ -223,7 +200,7 @@ class CitySelector extends PureComponent {
 							</div>
 
 							<div className="CityExplorer__content">
-								<DevCompSlider />
+								<DevevelopersSlider />
 							</div>
 						</React.Fragment>
 					)}
