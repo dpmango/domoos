@@ -15,7 +15,7 @@ import configureStore from './libs/configureStore';
 import { setSessionID } from './ducks/user/session';
 
 //hidden comps
-import CallbackModal from './components/CallbackModal';
+// import CallbackModal from './components/CallbackModal';
 
 const store = configureStore();
 
