@@ -1,12 +1,13 @@
-import { fetchExistItems, fetchAddItem, fetchDeleteItem } from "./api";
-import { createAction, handleActions } from "redux-actions";
-import { selectSessionID } from "../user/session";
+import { fetchExistItems, fetchAddItem, fetchDeleteItem } from './api';
+import { createAction, handleActions } from 'redux-actions';
+import { notify } from 'reapop';
+import { selectSessionID } from '../user/session';
 
 // SYNC ACTIONS
 
-export const initCartItems = createAction("initCartItems");
-export const saveCartItems = createAction("saveCartItems");
-export const deleteCartItems = createAction("deleteCartItems");
+export const initCartItems = createAction('initCartItems');
+export const saveCartItems = createAction('saveCartItems');
+export const deleteCartItems = createAction('deleteCartItems');
 
 // ASYNC ACTIONS
 
@@ -16,13 +17,13 @@ export const initCart = id => async dispatch => {
 	const newRes = res.data.data.data.map(item => ({
 		id: item.id,
 		city: item.gorod,
-		citySlug: item.slug_gorod ? item.slug_gorod : "",
+		citySlug: item.slug_gorod ? item.slug_gorod : '',
 		name: item.novostoyka,
-		slug: item.novostoyka_slug ? item.novostoyka_slug : "",
-		developer: item.zastr ? item.zastr : "",
-		ready: item.srok ? item.srok : "",
-		price: item.price ? item.price : "",
-		type: item.category === "квартира" ? "buildings" : ""
+		slug: item.novostoyka_slug ? item.novostoyka_slug : '',
+		developer: item.zastr ? item.zastr : '',
+		ready: item.srok ? item.srok : '',
+		price: item.price ? item.price : '',
+		type: item.category === 'квартира' ? 'buildings' : '',
 	}));
 
 	dispatch(initCartItems({ res: newRes }));
@@ -41,12 +42,21 @@ export const saveToCart = item => async (dispatch, getState) => {
 		zastr: item.developer,
 		srok: item.features[2],
 		price: item.price,
-		category: item.type === "buildings" ? "квартира" : ""
+		category: item.type === 'buildings' ? 'квартира' : '',
 	};
 
 	await fetchAddItem(id, reObj);
 
 	dispatch(saveCartItems({ item }));
+	dispatch(
+		notify({
+			title: 'Добавлено',
+			message: 'Новостройка успешно добавлена в корзину',
+			status: 'success',
+			dismissible: true,
+			dismissAfter: 2000,
+		}),
+	);
 };
 
 export const deleteFromCart = item => async (dispatch, getState) => {
@@ -61,7 +71,7 @@ export const deleteFromCart = item => async (dispatch, getState) => {
 const initialState = {
 	loading: true,
 	data: [],
-	error: null
+	error: null,
 };
 
 export default handleActions(
@@ -71,7 +81,7 @@ export default handleActions(
 
 			return {
 				loading: false,
-				data: [...result]
+				data: [...result],
 			};
 		},
 		[saveCartItems]: (state, { payload }) => {
@@ -86,22 +96,22 @@ export default handleActions(
 				developer: item.developer,
 				ready: item.features[2],
 				price: item.price,
-				type: item.type
+				type: item.type,
 			};
 
 			return {
-				data: [...state.data, newItem]
+				data: [...state.data, newItem],
 			};
 		},
 		[deleteCartItems]: (state, { payload }) => {
 			const result = state.data.filter(item => item.id !== payload.item.id);
 
 			return {
-				data: result
+				data: result,
 			};
-		}
+		},
 	},
-	initialState
+	initialState,
 );
 
 export const selectCartItems = state => state.cart.items;
