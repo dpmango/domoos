@@ -10,6 +10,7 @@ export const deleteCartItems = createAction('deleteCartItems');
 // ASYNC ACTIONS
 
 // TODO - incorrect mapping of server props and FE props
+// (getter - initCard), (setter - saveToCart)
 export const initCart = id => async dispatch => {
 	const res = await fetchExistItems(id);
 
@@ -17,25 +18,25 @@ export const initCart = id => async dispatch => {
 
 	// https://domoos.gitbook.io/docs/api-dokumentaciya/osobennosti-korzina
 	// category категория элемента: новостройка или квартира
-	// gorod город
-	// novostoyka новостройка
+	// + gorod город
+	// + novostoyka новостройка
 	// zastr застройщик
 	// srok срок сдачи
 	// raion район
 	// rooms кол-во комнат
 	// square площадь
-	// price стоимость
+	// + price стоимость
 
 	const newRes = res.data.data.data.map(res => ({
-		id: res.id,
-		city: res.gorod,
+		id: res.id, // ок
+		city: res.gorod, // ок
 		citySlug: returnValueOrEmpty(res.slug_gorod),
-		name: res.novostoyka,
+		name: res.novostoyka, // ок
 		slug: returnValueOrEmpty(res.novostoyka_slug),
 		developer: returnValueOrEmpty(res.zastr),
 		region: returnValueOrEmpty(res.region),
-		price: returnValueOrEmpty(res.price),
-		type: res.category === 'квартира' ? 'buildings' : '',
+		price: returnValueOrEmpty(res.price), // ок
+		type: res.category === 'квартира' ? 'buildings' : '', // ок
 	}));
 
 	dispatch(initCartItems({ res: newRes }));
