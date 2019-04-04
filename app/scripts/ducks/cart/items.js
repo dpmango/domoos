@@ -82,6 +82,16 @@ export const deleteFromCart = item => async (dispatch, getState) => {
 };
 
 // SYNC ACTIONS
+export const showUnavailNotification = () => (dispatch, getState) => {
+	dispatch(
+		notify({
+			message: 'У вас нет отложенных новостроек',
+			status: 'warning',
+			dismissible: true,
+			dismissAfter: 2000,
+		}),
+	);
+};
 
 const initialState = {
 	loading: true,

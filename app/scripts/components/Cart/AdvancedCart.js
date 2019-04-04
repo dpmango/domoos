@@ -9,12 +9,6 @@ class AdvancedCart extends PureComponent {
 		handleClose: PropTypes.func.isRequired,
 	};
 
-	// TODO - refactor to getDerivedStateFromProps
-	componentWillReceiveProps = nextProps => {
-		const { handleClose } = this.props;
-		nextProps.items.length == 0 && handleClose();
-	};
-
 	render() {
 		const { items, handleDelete, handleClose } = this.props;
 
@@ -34,7 +28,6 @@ class AdvancedCart extends PureComponent {
 						Отложенные новостройки
 					</div>
 					<div className="AdvancedCart__items">
-						{console.log('items', items)}
 						{items.length > 0 &&
 							items.map((item, key) => (
 								<div className="AdvancedCart__item" key={key}>
