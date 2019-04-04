@@ -26,14 +26,14 @@ export const initCart = id => async dispatch => {
 	// rooms кол-во комнат
 	// square площадь
 	// + price стоимость
-
+	console.log(res.data.data.data);
 	const newRes = res.data.data.data.map(res => ({
 		id: res.id, // ок
 		city: res.gorod, // ок
-		citySlug: returnValueOrEmpty(res.slug_gorod),
+		citySlug: returnValueOrEmpty(res.slug_gorod), // ок
 		name: res.novostoyka, // ок
 		slug: returnValueOrEmpty(res.novostoyka_slug),
-		developer: returnValueOrEmpty(res.zastr),
+		developer: returnValueOrEmpty(res.zastr), // ок
 		region: returnValueOrEmpty(res.region),
 		price: returnValueOrEmpty(res.price), // ок
 		type: res.category === 'квартира' ? 'buildings' : '', // ок
