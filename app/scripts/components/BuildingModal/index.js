@@ -91,13 +91,11 @@ class BuildingModal extends PureComponent {
 								<div className="featured">
 									<img
 										className="featured__image"
-										src={`https://domoos.ru/images/novostroyki/${
-											data.citySlug
-										}/estates/${data.slug}.jpg`}
+										src={`https://domoos.ru/images/novostroyki/${data.citySlug}/estates/${
+											data.slug
+										}.jpg`}
 									/>
-									<div className="subway">
-										Рядом со станцией метро {data.subway}
-									</div>
+									<div className="subway">Рядом со станцией метро {data.subway}</div>
 								</div>
 							</div>
 							<div className="BuildingModal__side">
@@ -105,9 +103,7 @@ class BuildingModal extends PureComponent {
 									<div className="labels">
 										{tabs.map((item, key) => (
 											<div
-												className={`labels__item ${
-													activeTab === item.id ? 'active' : ''
-												}`}
+												className={`labels__item ${activeTab === item.id ? 'active' : ''}`}
 												key={key}
 												onClick={() => this.handleTabChange(item.id)}
 											>
@@ -120,19 +116,13 @@ class BuildingModal extends PureComponent {
 											if (item.id === 'about' && item.id === activeTab)
 												return (
 													<div key={key} className="content__item">
-														<div className="content__title">
-															{item.title}
-														</div>
+														<div className="content__title">{item.title}</div>
 														<div className="content__list">
 															{aboutObj &&
 																aboutObj.map((about, key) => (
 																	<li key={key}>
-																		<span className="title">
-																			{about.title}:{' '}
-																		</span>
-																		<span className="value">
-																			{about.value}
-																		</span>
+																		<span className="title">{about.title}: </span>
+																		<span className="value">{about.value}</span>
 																	</li>
 																))}
 														</div>
@@ -141,18 +131,14 @@ class BuildingModal extends PureComponent {
 											if (item.id === 'prices' && item.id === activeTab)
 												return (
 													<div key={key} className="content__item">
-														<div className="content__title">
-															{item.title}
-														</div>
+														<div className="content__title">{item.title}</div>
 														<div className="content__list">1</div>
 													</div>
 												);
 											if (item.id === 'location' && item.id === activeTab)
 												return (
 													<div key={key} className="content__item">
-														<div className="content__title">
-															{item.title}
-														</div>
+														<div className="content__title">{item.title}</div>
 														<div className="content__list">1</div>
 													</div>
 												);

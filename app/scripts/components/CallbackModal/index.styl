@@ -1,23 +1,36 @@
 .CallbackModal {
-	position: absolute;
-	top: 0;
-	bottom: 0;
 	margin: auto;
 	width: 100%;
+	max-width: 610px;
 	block();
 
 	+above($mobile) {
-		padding: 15px;
-		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
 		max-height: 100%;
-		align-content: center;
 	}
 
 	+above($notebooks) {
-		padding: 80px 15px;
 		max-height: 520px;
+	}
+
+	&__wrapper {
+		position: relative;
+
+		+above($mobile) {
+			padding: 15px;
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			align-content: center;
+		}
+
+		+above($notebooks) {
+			padding: 80px 15px;
+		}
+	}
+
+	.default-close {
+		top: 35px;
+		right: 25px;
 	}
 
 	&__title {
