@@ -5,7 +5,12 @@ import { connect } from 'react-redux';
 
 import Modal from 'react-modal';
 
-import { initCart, deleteFromCart, selectCartItems } from '../../ducks/cart/items';
+import {
+	initCart,
+	deleteFromCart,
+	selectCartItems,
+	showUnavailNotification,
+} from '../../ducks/cart/items';
 import { selectSessionID } from '../../ducks/user/session';
 
 import AdvancedCart from './AdvancedCart';
@@ -41,13 +46,15 @@ class Cart extends PureComponent {
 	};
 
 	handleOpenCart = () => {
-		const { cartItems } = this.props;
-		const { isAdvancedView } = this.state;
+		const { cartItems, showUnavailNotification } = this.props;
 
-		cartItems.data.length > 0 &&
+		if (cartItems.data.length > 0) {
 			this.setState({
-				isAdvancedView: !isAdvancedView,
+				isAdvancedView: !this.state.isAdvancedView,
 			});
+		} else {
+			showUnavailNotification();
+		}
 	};
 
 	handleCloseCart = () => {
@@ -72,16 +79,16 @@ class Cart extends PureComponent {
 					onMouseEnter={() => this.handleHover('enter')}
 					onMouseLeave={() => this.handleHover('leave')}
 				>
-					<span className="Cart__counter" onClick={() => this.handleClick()}>
-						{cartItems.data.length}
-					</span>
-					<svg
-						className="Cart__icon icon icon__like"
-						dangerouslySetInnerHTML={{ __html: useTag }}
-						onClick={() => this.handleClick()}
-					/>
-					<span className="Cart__label" onClick={() => this.handleOpenCart()}>
-						Отложено
+					<span className="Cart__content-wrapper" onClick={this.handleOpenCart}>
+						<span className="Cart__counter" onClick={this.handleClick}>
+							{cartItems.data.length}
+						</span>
+						<svg
+							className="Cart__icon icon icon__like"
+							dangerouslySetInnerHTML={{ __html: useTag }}
+							onClick={() => this.handleClick()}
+						/>
+						<span className="Cart__label">Отложено</span>
 					</span>
 					{isSimpleView && (
 						<div className="Cart__items">
@@ -94,7 +101,7 @@ class Cart extends PureComponent {
 					)}
 				</div>
 				<Modal
-					isOpen={isAdvancedView}
+					isOpen={isAdvancedView && cartItems.data && cartItems.data.length > 0}
 					style={modalStyles}
 					ariaHideApp={false}
 					onRequestClose={this.handleCloseCart}
@@ -120,6 +127,7 @@ const mapDispatchToProps = dispatch =>
 		{
 			initCart,
 			deleteFromCart,
+			showUnavailNotification,
 		},
 		dispatch,
 	);
