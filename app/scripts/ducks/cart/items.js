@@ -3,27 +3,39 @@ import { createAction, handleActions } from 'redux-actions';
 import { notify } from 'reapop';
 import { selectSessionID } from '../user/session';
 
-// SYNC ACTIONS
-
 export const initCartItems = createAction('initCartItems');
 export const saveCartItems = createAction('saveCartItems');
 export const deleteCartItems = createAction('deleteCartItems');
 
 // ASYNC ACTIONS
 
+// TODO - incorrect mapping of server props and FE props
 export const initCart = id => async dispatch => {
 	const res = await fetchExistItems(id);
 
-	const newRes = res.data.data.data.map(item => ({
-		id: item.id,
-		city: item.gorod,
-		citySlug: item.slug_gorod ? item.slug_gorod : '',
-		name: item.novostoyka,
-		slug: item.novostoyka_slug ? item.novostoyka_slug : '',
-		developer: item.zastr ? item.zastr : '',
-		ready: item.srok ? item.srok : '',
-		price: item.price ? item.price : '',
-		type: item.category === 'квартира' ? 'buildings' : '',
+	const returnValueOrEmpty = x => (x ? x : '');
+
+	// https://domoos.gitbook.io/docs/api-dokumentaciya/osobennosti-korzina
+	// category категория элемента: новостройка или квартира
+	// gorod город
+	// novostoyka новостройка
+	// zastr застройщик
+	// srok срок сдачи
+	// raion район
+	// rooms кол-во комнат
+	// square площадь
+	// price стоимость
+
+	const newRes = res.data.data.data.map(res => ({
+		id: res.id,
+		city: res.gorod,
+		citySlug: returnValueOrEmpty(res.slug_gorod),
+		name: res.novostoyka,
+		slug: returnValueOrEmpty(res.novostoyka_slug),
+		developer: returnValueOrEmpty(res.zastr),
+		region: returnValueOrEmpty(res.region),
+		price: returnValueOrEmpty(res.price),
+		type: res.category === 'квартира' ? 'buildings' : '',
 	}));
 
 	dispatch(initCartItems({ res: newRes }));
@@ -40,7 +52,7 @@ export const saveToCart = item => async (dispatch, getState) => {
 		novostoyka: item.name,
 		novostoyka_slug: item.slug,
 		zastr: item.developer,
-		srok: item.features[2],
+		region: item.district,
 		price: item.price,
 		category: item.type === 'buildings' ? 'квартира' : '',
 	};
@@ -68,12 +80,15 @@ export const deleteFromCart = item => async (dispatch, getState) => {
 	dispatch(deleteCartItems({ item }));
 };
 
+// SYNC ACTIONS
+
 const initialState = {
 	loading: true,
 	data: [],
 	error: null,
 };
 
+// instant actions saving to State without validating API
 export default handleActions(
 	{
 		[initCartItems]: (state, { payload }) => {
@@ -94,7 +109,7 @@ export default handleActions(
 				name: item.name,
 				slug: item.slug,
 				developer: item.developer,
-				ready: item.features[2],
+				region: item.district,
 				price: item.price,
 				type: item.type,
 			};
