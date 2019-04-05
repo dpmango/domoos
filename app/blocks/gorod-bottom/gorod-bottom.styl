@@ -1,0 +1,100 @@
+.gorod-bottom {
+	margin-top: 90px;
+	margin-bottom: 90px;
+
+	.wrap {
+		padding: 0 30px;
+
+		+below($phones) {
+			padding: 0 15px;
+		}
+	}
+
+	.comments__block {
+		margin-top: 30px;
+	}
+
+	&__grid {
+		display: flex;
+		align-items: flex-start;
+	}
+
+	&__content {
+		margin-right: 35px;
+
+		+below($phones) {
+			margin-right: 0;
+		}
+	}
+
+	&__right {
+		margin-left: auto;
+		width: 32%;
+
+		+below($phones) {
+			display: none;
+		}
+	}
+
+	&__banner {
+		margin-left: auto;
+		padding: 25px 25px 20px;
+		width: 100%;
+		text-align: center;
+		// max-width: 385px;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: cover;
+
+		+below($tablet) {
+			padding: 15px;
+		}
+
+		img {
+			width: 100%;
+			max-width: 140px;
+			height: auto;
+		}
+
+		p {
+			font-family: 'Gotham Pro Medium';
+			font-size: 16px;
+			font-weight: 600;
+			text-align: left;
+			color: rgba(#fff, .7);
+
+			+below($tablet) {
+				font-size: 14px;
+				line-height: 1.4;
+			}
+
+			&.banner-title {
+				margin-top: 220px;
+				margin-left: -25px;
+
+				+below($tablet) {
+					margin-top: 140px;
+					margin-left: -15px;
+				}
+
+				span {
+					padding: 15px 15px 15px 25px;
+					display: inline-block;
+					width: auto;
+					font-size: 24px;
+					font-weight: 700;
+					line-height: 1;
+					color: #fff;
+					background: var(--blue);
+				}
+			}
+
+			&.banner-description {
+				margin: 20px 0 15px;
+				font-family: 'Gotham Pro';
+				font-weight: 400;
+				color: #fff;
+			}
+		}
+	}
+}

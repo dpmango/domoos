@@ -4,7 +4,7 @@
 
 block header
 
-section.header(class=isMap ? 'goroda-na-karte' : isСities ? 'goroda' : '' style=isСities ? "background-image: url('/images/bg-main-cities.jpg')" : isMap ? 'background-color: #fff;' : "background-image: url('/images/bg-main.jpg')")
+section.header(class=isMap ? 'goroda-na-karte' : isСities ? 'goroda' : '' style=isСities ? "background-image: url('/images/bg-main-cities.jpg')" : isСity ? "background-image: url('/images/bg-main-cities.jpg')" : isMap ? 'background-color: #fff;' : "background-image: url('/images/bg-main.jpg')")
 	if isСities
 		span.mobile-bg(style="background-image: url('/images/bg-main-cities-mobile.jpg')")
 	.header__sticky.sticky
@@ -78,6 +78,25 @@ section.header(class=isMap ? 'goroda-na-karte' : isСities ? 'goroda' : '' style
 
 				h1.header__title
 					| Все города России на Domoos
+				div.header__description
+					| Санкт-Петербург — один из самых красивых городов Европы, культурная столица России, а также важнейший экономический и транспортный центр страны с населением более 5 миллионов человек.
+
+				div.header__zhk
+					div.header__zhk-image
+						img(src="images/pik.png", alt="")
+					div.header__zhk-info
+						p.header__zhk-title ЖК «Орловский парк»
+						p.header__zhk-description Старт продаж нового жилого комплекса от надежного застройщика
+						div.header__zhk-row
+							a.header__zhk-btn(href="#") Узнать цены
+							p.header__zhk-plain Предложение от «ПИК группа»
+
+			if isСity
+
+				a.to-home-screen(href="#") На главную
+
+				h1.header__title
+					| Санкт-Петербург
 				div.header__description
 					| Санкт-Петербург — один из самых красивых городов Европы, культурная столица России, а также важнейший экономический и транспортный центр страны с населением более 5 миллионов человек.
 
