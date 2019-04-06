@@ -396,80 +396,46 @@
 			&__list {
 				bulls();
 				padding-left: 3px;
-				font-size: 14px;
+				font-size: 1.6rem;
 
 				+below($phones) {
-					font-size: 12px;
+					font-size: 1.4rem;
 				}
 
 				li {
 					padding: 10px 0;
 
-					+below($phones) {
-						padding: 7px 0;
-					}
-
 					&:before {
-						top: 0;
-						margin-right: 15px;
+						top: 3px;
+						margin-right: 20px;
 
 						+below($tablet) {
-							margin-right: 10px;
-						}
-
-						+below($phones) {
+							top: 0;
 							margin-right: 10px;
 						}
 					}
 
-					&.no-bullet {
-						&::before {
-							display: none;
+					+below($phones) {
+						padding: 7px 0;
+
+						&:before {
+							top: 0;
+							margin-right: 15px;
 						}
 					}
 				}
 
 				.title {
-					font-weight: 500;
 					color: var(--title-color);
+
+					+below($tablet) {
+						font-size: 1.2rem;
+					}
 				}
 
 				.value {
-					font-weight: 300;
-					color: #7B7B7D;
-				}
-
-				&--row {
-					margin-right: -10px;
-					margin-left: -10px;
-					display: flex;
-					flex-wrap: wrap;
-
-					li {
-						padding-right: 10px;
-						padding-left: 10px;
-						width: 50%;
-						min-width: 1px;
-						max-width: 100%;
-						min-height: 0;
-						flex: 0 0 50%;
-
-						.title {
-							font-size: 12px;
-							font-weight: 300;
-							color: #7B7B7D;
-						}
-					}
-				}
-			}
-
-			&__cta {
-				margin: 10px 0;
-
-				.link {
-					&:after {
-						arrow(2px, 1px, var(--arrow-color), 45deg);
-						margin-left: 8px;
+					+below($tablet) {
+						font-size: 1.2rem;
 					}
 				}
 			}

@@ -1,19 +1,17 @@
-import React, { PureComponent } from 'react';
-import InputMask from 'react-input-mask';
-import PropTypes from 'prop-types';
+import React, { PureComponent } from "react";
+import InputMask from "react-input-mask";
+import PropTypes from "prop-types";
 
 class PhoneForm extends PureComponent {
 	static propTypes = {
-		placeholder: PropTypes.string,
+		placeholder: PropTypes.string
 	};
 
 	render() {
 		const { placeholder, label } = this.props;
 		return (
 			<div className="PhoneForm">
-				{label && (
-					<label className="PhoneForm__label" dangerouslySetInnerHTML={{ __html: label }} />
-				)}
+				{label && <label className="PhoneForm__label">{label}</label>}
 				<div className="PhoneForm__content">
 					<InputMask
 						{...this.props}
@@ -35,7 +33,7 @@ class PhoneForm extends PureComponent {
 }
 
 PhoneForm.defaultProps = {
-	placeholder: '+7',
+	placeholder: "+7"
 };
 
 export default PhoneForm;
