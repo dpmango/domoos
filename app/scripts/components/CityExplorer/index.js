@@ -114,7 +114,11 @@ class CitySelector extends PureComponent {
 				</div>
 				<div className="CityExplorer__developer">
 					{info && !info.loading && devs && !devs.loading && (
-						<DevelopersSection city={activeCity} cityDecl={info.data.name_a} developers={devs} />
+						<DevelopersSection
+							city={activeCity}
+							cityDecl={info.data.name_a}
+							premiumDevelopers={devs.premium}
+						/>
 					)}
 				</div>
 				<div className="CityExplorer__buildings">
@@ -122,7 +126,7 @@ class CitySelector extends PureComponent {
 						<BuildingsSection
 							slug={info.data.slug}
 							cityDecl={info.data.name_a}
-							buildings={buildings}
+							premiumBuildings={buildings.premium}
 							handleModal={this.openBuildingsModal}
 						/>
 					)}

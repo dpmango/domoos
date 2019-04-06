@@ -24,7 +24,7 @@ class BuildingsSection extends Component {
 	};
 
 	render() {
-		const { slug, cityDecl, buildings, handleModal } = this.props;
+		const { slug, cityDecl, premiumBuildings, handleModal } = this.props;
 
 		return (
 			<React.Fragment>
@@ -36,8 +36,8 @@ class BuildingsSection extends Component {
 				</div>
 				<div className="CityExplorer__content">
 					<Slider {...sliderSettings}>
-						{buildings.data &&
-							buildings.data.map((building, key) => (
+						{premiumBuildings &&
+							premiumBuildings.map((building, key) => (
 								<div className={`building ${building.isPremium ? 'premium' : ''}`} key={key}>
 									<div
 										className={`add-to-cart ${this.isAdded(building.id) ? 'added' : ''}`}

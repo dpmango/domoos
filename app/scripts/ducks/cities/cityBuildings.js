@@ -41,7 +41,8 @@ export default handleActions(
 			return {
 				...state,
 				[payload.slug]: {
-					data: [...withPremium, withoutPremium].splice(0, 12),
+					premium: [...withPremium].splice(0, 12),
+					regular: [...withoutPremium],
 					loading: false,
 				},
 			};
