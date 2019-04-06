@@ -8,8 +8,26 @@ import { modalStyles } from '../../libs/utils';
 class CallbackModal extends PureComponent {
 	state = {
 		modal: {
-			isOpen: true,
+			isOpen: false,
 		},
+	};
+
+	componentDidMount() {
+		// bind selector from non-react part
+		var openSelector = document.querySelector('[data-open-modal="callback"]');
+		openSelector.addEventListener('click', this.handleTriggerClick, false);
+	}
+	componentWillUnmount() {
+		var openSelector = document.querySelector('[data-open-modal="callback"]');
+		openSelector.removeEventListener('click', this.handleTriggerClick, false);
+	}
+
+	handleTriggerClick = () => {
+		this.setState({
+			modal: {
+				isOpen: true,
+			},
+		});
 	};
 
 	closeModal = () => {
