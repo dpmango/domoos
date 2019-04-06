@@ -13,11 +13,14 @@
 - cities.push({name: 'Санкт-Петербург11', description: 'В каталоге сайта собраны все города России, в каталоге сайта собраны все города России.', img: '/images/city-3.jpg'})
 
 
-section.about-cities
+section.about-cities(class=isСity ? 'gorod' : '')
 	.wrap
 		.about-cities__header
 			.about-cities__title Мы работаем в 45 регионах России
 			.about-cities__description Наша цель собрать абсолютно все города нашей страны в единый цифровой каталог недвижимости. Выбирайте, сравнивайте, изучайте с удовольствием на Domoos.ru
+			//- if isСity
+			//- 	.about-cities__title Районы Петербурга
+			//- 	.about-cities__description
 		.about-cities__slider
 			+citySlider('cities', cities)
 		a.to-category-link(href="/goroda") Все города

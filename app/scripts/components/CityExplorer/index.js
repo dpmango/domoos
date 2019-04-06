@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import DevelopersSection from './Developers';
 import InfoSection from './CityInfo';
 import BuildingsSection from './Buildings';
+import Loader from '../UI/Loader';
 
 import { selectCityInfo, getCityInfo } from '../../ducks/cities/cityInfo';
 import { selectCitiesList, getCitiesList } from '../../ducks/cities/citiesList';
@@ -103,6 +104,7 @@ class CitySelector extends PureComponent {
 					handleSuggest={this.handleSuggest}
 					id={id}
 				/>
+				{!info && !devs && !agencies && <Loader />}
 				<div className="CityExplorer__info ">
 					{info && !info.loading && (
 						<React.Fragment>

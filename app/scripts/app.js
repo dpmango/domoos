@@ -36,6 +36,17 @@ $('#sidebar-close').on('click', function(e) {
 	$('#sidebar').removeClass('open');
 });
 
+$('[js-open-comments]').on('click', function(e) {
+	e.preventDefault();
+	e.stopPropagation();
+	$(this)
+		.parent()
+		.addClass('is-hidden');
+	$(this)
+		.parents('.comments__block')
+		.removeClass('is-closed');
+});
+
 $('#all-cities-filter-toggle').on('click', function(e) {
 	e.stopPropagation();
 	$('#cities-filter-tags').toggleClass('open');

@@ -1,50 +1,46 @@
-import React, { PureComponent } from "react";
-import PropTypes from "prop-types";
-import Modal from "react-modal";
+import React, { PureComponent } from 'react';
+import Modal from 'react-modal';
 
-import PhoneForm from "../PhoneForm";
+import PhoneForm from '../PhoneForm';
 
-import { modalStyles } from "../../libs/utils";
+import { modalStyles } from '../../libs/utils';
 
 class CallbackModal extends PureComponent {
-	static propTypes = {
-		isVisible: PropTypes.bool.isRequired
+	state = {
+		modal: {
+			isOpen: true,
+		},
 	};
 
-	state = {};
-
-	handleTabChange = id => {
+	closeModal = () => {
 		this.setState({
-			activeTab: id
+			modal: {
+				isOpen: false,
+			},
 		});
 	};
 
 	render() {
-		const { isVisible, handleClose } = this.props;
-
 		return (
-			<Modal isOpen={isVisible} style={modalStyles} ariaHideApp={false} onRequestClose={handleClose}>
+			<Modal isOpen={this.state.modal.isOpen} style={modalStyles} ariaHideApp={false}>
 				<div className="CallbackModal">
-					<div className="default-close" onClick={handleClose} />
-					<div className="CallbackModal__title">Заказать обратный звонок</div>
-					<div className="CallbackModal__content">
-						<p>
-							Услуга абсолютно бесплатная. Пожалуйста, укажите ваши контактные данные и наш специалист по
-							подбору квартиры перезвонит вам в течение 10 минут.
-						</p>
-					</div>
-					<div className="CallbackModal__form">
-						<PhoneForm />
+					<div className="CallbackModal__wrapper">
+						<div className="default-close" onClick={this.closeModal} />
+						<div className="CallbackModal__title">Заказать обратный звонок</div>
+						<div className="CallbackModal__content">
+							<p>
+								Услуга абсолютно бесплатная. Пожалуйста, укажите ваши контактные данные и наш
+								специалист по подбору квартиры перезвонит вам в течение 10 минут.
+							</p>
+						</div>
+						<div className="CallbackModal__form">
+							<PhoneForm />
+						</div>
 					</div>
 				</div>
 			</Modal>
 		);
 	}
 }
-
-CallbackModal.defaultProps = {
-	isVisible: true,
-	handleClose: () => {}
-};
 
 export default CallbackModal;
