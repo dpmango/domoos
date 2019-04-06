@@ -11,6 +11,7 @@ import CityExplorer from './components/CityExplorer';
 import CountryMap from './components/CountryMap';
 import Cart from './components/Cart';
 import CallbackModal from './components/CallbackModal';
+import AboutModal from './components/AboutModal';
 
 import store from './libs/reduxStore';
 import { setSessionID } from './ducks/user/session';
@@ -25,6 +26,7 @@ const countryMapSelector = document.getElementById('country-map');
 const cartSelector = document.getElementById('cart');
 const cartNavbarSelector = document.getElementById('cart-navbar');
 const callbackSelector = document.getElementById('callback-modal');
+const aboutSelector = document.getElementById('about-modal');
 
 const ComponentConstructor = props => {
 	return (
@@ -85,5 +87,14 @@ if (callbackSelector) {
 			<CallbackModal />
 		</ComponentConstructor>,
 		callbackSelector,
+	);
+}
+
+if (aboutSelector) {
+	ReactDOM.render(
+		<ComponentConstructor>
+			<AboutModal />
+		</ComponentConstructor>,
+		aboutSelector,
 	);
 }
