@@ -13,12 +13,18 @@ class AboutModal extends Component {
 
 	componentDidMount() {
 		// bind selector from non-react part
-		var openSelector = document.querySelector('[data-open-modal="about"]');
-		openSelector.addEventListener('click', this.handleTriggerClick, false);
+		const _this = this;
+		var openSelector = document.querySelectorAll('[data-open-modal="about"]');
+		[].forEach.call(openSelector, function(button) {
+			button.addEventListener('click', _this.handleTriggerClick, false);
+		});
 	}
 	componentWillUnmount() {
-		var openSelector = document.querySelector('[data-open-modal="about"]');
-		openSelector.removeEventListener('click', this.handleTriggerClick, false);
+		const _this = this;
+		var openSelector = document.querySelectorAll('[data-open-modal="about"]');
+		[].forEach.call(openSelector, function(button) {
+			button.removeEventListener('click', _this.handleTriggerClick, false);
+		});
 	}
 
 	handleTriggerClick = () => {
