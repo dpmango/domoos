@@ -4,7 +4,7 @@ import { sliderSettings } from '../../libs/utils';
 
 export default class Developers extends Component {
 	render() {
-		const { developers, city, cityDecl } = this.props;
+		const { premiumDevelopers, city, cityDecl } = this.props;
 
 		return (
 			<React.Fragment>
@@ -17,8 +17,8 @@ export default class Developers extends Component {
 
 				<div className="CityExplorer__content">
 					<Slider {...sliderSettings}>
-						{developers.data &&
-							developers.data.map((developer, idx) => (
+						{premiumDevelopers &&
+							premiumDevelopers.map((developer, idx) => (
 								<div className="developer" key={idx}>
 									<div
 										className="developer__logo"

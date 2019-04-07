@@ -8,8 +8,32 @@ import { modalStyles } from '../../libs/utils';
 class CallbackModal extends PureComponent {
 	state = {
 		modal: {
-			isOpen: true,
+			isOpen: false,
 		},
+	};
+
+	componentDidMount() {
+		// bind selector from non-react part
+		const _this = this;
+		var openSelector = document.querySelectorAll('[data-open-modal="callback"]');
+		[].forEach.call(openSelector, function(button) {
+			button.addEventListener('click', _this.handleTriggerClick, false);
+		});
+	}
+	componentWillUnmount() {
+		const _this = this;
+		var openSelector = document.querySelectorAll('[data-open-modal="callback"]');
+		[].forEach.call(openSelector, function(button) {
+			button.removeEventListener('click', _this.handleTriggerClick, false);
+		});
+	}
+
+	handleTriggerClick = () => {
+		this.setState({
+			modal: {
+				isOpen: true,
+			},
+		});
 	};
 
 	closeModal = () => {

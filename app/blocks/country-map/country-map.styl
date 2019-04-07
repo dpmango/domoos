@@ -129,21 +129,27 @@
 		}
 
 		.desc {
+			margin-bottom: 10px;
 			font-size: 14px;
 			color: #AEB2C2;
 		}
 
 		.btn {
-			padding: 0 10px;
+			margin-left: 15px;
+			padding: 0 15px;
 			display: inline-block;
 			// width: 100%;
-			width: 38%;
-			max-width: 140px;
+			width: 40%;
+			max-width: 120px;
 		}
 
 		input[type='tel'] {
 			margin-left: auto;
 			width: 60%;
+
+			&::placeholder {
+				color: var(--title-color);
+			}
 		}
 
 		+below($phones) {

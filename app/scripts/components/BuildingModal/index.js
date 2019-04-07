@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
+import ReactStars from 'react-stars';
 
 import PhoneForm from '../PhoneForm';
 
@@ -28,6 +29,7 @@ class BuildingModal extends PureComponent {
 		const { isVisible, data, tabs, handleClose } = this.props;
 		const { activeTab } = this.state;
 
+		// TODO get
 		const aboutObj = [
 			{
 				title: 'Район',
@@ -43,7 +45,6 @@ class BuildingModal extends PureComponent {
 			},
 			{
 				title: 'Отделка',
-
 				value: data.features && data.features[1],
 			},
 			{
@@ -51,6 +52,64 @@ class BuildingModal extends PureComponent {
 				value: data.material ? data.material : 'кирпичный',
 			},
 		];
+
+		const priceObj = {
+			list: [
+				{
+					title: 'Как купить',
+					value: 'ипотека, рассрочка, обмен',
+				},
+				{
+					title: 'Банки',
+					value: 'Сбербанк, ВТБ, Абсолют, Открытие',
+				},
+			],
+			prices: [
+				{
+					title: '1к - 38,9 кв.м',
+					value: '2 900 000 ₽',
+				},
+				{
+					title: '2к - 45,9 кв.м',
+					value: '4 100 000 ₽',
+				},
+				{
+					title: '3к - 61,9 кв.м',
+					value: '5 900 000 ₽',
+				},
+			],
+		};
+
+		const locationObj = {
+			list: [
+				{
+					title: 'Район',
+					value: 'центральный',
+				},
+				{
+					title: 'Адрес',
+					value: 'мкр. Восход, ул. Есенина',
+				},
+				{
+					title: 'До центра',
+					value: '6 км',
+				},
+				{
+					title: 'Метро',
+					value: data.subway,
+				},
+			],
+			metrics: [
+				{
+					title: 'Экология',
+					value: 5,
+				},
+				{
+					title: 'Инфраструктура',
+					value: 3,
+				},
+			],
+		};
 
 		return (
 			<Modal
@@ -116,8 +175,7 @@ class BuildingModal extends PureComponent {
 											if (item.id === 'about' && item.id === activeTab)
 												return (
 													<div key={key} className="content__item">
-														<div className="content__title">{item.title}</div>
-														<div className="content__list">
+														<ul className="content__list">
 															{aboutObj &&
 																aboutObj.map((about, key) => (
 																	<li key={key}>
@@ -125,28 +183,73 @@ class BuildingModal extends PureComponent {
 																		<span className="value">{about.value}</span>
 																	</li>
 																))}
-														</div>
+														</ul>
 													</div>
 												);
 											if (item.id === 'prices' && item.id === activeTab)
 												return (
 													<div key={key} className="content__item">
-														<div className="content__title">{item.title}</div>
-														<div className="content__list">1</div>
+														<ul className="content__list">
+															{priceObj.list &&
+																priceObj.list.map((li, key) => (
+																	<li className="no-bullet" key={key}>
+																		<span className="title">{li.title}: </span>
+																		<span className="value">{li.value}</span>
+																	</li>
+																))}
+															{priceObj.prices &&
+																priceObj.prices.map((price, key) => (
+																	<li className="no-bullet" key={key}>
+																		<span className="value">{price.title} — </span>
+																		<span className="title">{price.value}</span>
+																	</li>
+																))}
+															{priceObj.prices && (
+																<div class="content__cta">
+																	<a href="/" className="link">
+																		Все цены
+																	</a>
+																</div>
+															)}
+														</ul>
 													</div>
 												);
 											if (item.id === 'location' && item.id === activeTab)
 												return (
 													<div key={key} className="content__item">
-														<div className="content__title">{item.title}</div>
-														<div className="content__list">1</div>
+														<ul className="content__list content__list--row">
+															{locationObj.metrics &&
+																locationObj.metrics.map((metric, key) => (
+																	<li className="no-bullet" key={key}>
+																		<span className="title">{metric.title}: </span>
+																		<ReactStars
+																			count={5}
+																			size={15}
+																			value={metric.value}
+																			edit={false}
+																			half={false}
+																			color2="#ffd72b"
+																			color1="#eceff6"
+																		/>
+																	</li>
+																))}
+														</ul>
+														<ul className="content__list">
+															{locationObj.list &&
+																locationObj.list.map((li, key) => (
+																	<li key={key}>
+																		<span className="title">{li.title}: </span>
+																		<span className="value">{li.value}</span>
+																	</li>
+																))}
+														</ul>
 													</div>
 												);
 										})}
 									</div>
 								</div>
 								<div className="BuildingModal__contact">
-									<PhoneForm label="Оставь заявку  на обратный звонок" />
+									<PhoneForm label="Оставь заявку <br/>на обратный звонок" />
 								</div>
 							</div>
 						</div>

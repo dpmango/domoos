@@ -26,6 +26,10 @@ $(document).on('click', function(e) {
 	}
 });
 
+$(document).on('click', '[href="#"]', function(e) {
+	e.preventDefault();
+});
+
 $('#sidebar-toggle, #sidebar-toggle-fixed').on('click', function(e) {
 	e.stopPropagation();
 	$('#sidebar').toggleClass('open');

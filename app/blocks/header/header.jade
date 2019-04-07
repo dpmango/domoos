@@ -20,7 +20,7 @@ section.header(class=isMap ? 'goroda-na-karte' : isСities ? 'goroda' : '' style
 							a.nav__link(href=item.href)= item.title
 			.menu
 				.menu__item.menu__item--about
-					+icon('question', true).icon.icon__question
+					+icon('question', true).icon.icon__question(data-open-modal="about")
 					span.menu__title О Сервисе
 				.menu__item
 					#cart-navbar.Cart
@@ -38,7 +38,7 @@ section.header(class=isMap ? 'goroda-na-karte' : isСities ? 'goroda' : '' style
 		.header__top
 			a.logo(href="/") Domoos
 			.menu
-				.menu__item.menu__item--about
+				.menu__item.menu__item--about(data-open-modal="about")
 					+icon('question', true).icon.icon__question
 					span.menu__title О Сервисе
 

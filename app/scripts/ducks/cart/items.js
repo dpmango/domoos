@@ -16,27 +16,16 @@ export const initCart = id => async dispatch => {
 
 	const returnValueOrEmpty = x => (x ? x : '');
 
-	// https://domoos.gitbook.io/docs/api-dokumentaciya/osobennosti-korzina
-	// category категория элемента: новостройка или квартира
-	// + gorod город
-	// + novostoyka новостройка
-	// zastr застройщик
-	// srok срок сдачи
-	// raion район
-	// rooms кол-во комнат
-	// square площадь
-	// + price стоимость
-	console.log(res.data.data.data);
 	const newRes = res.data.data.data.map(res => ({
-		id: res.id, // ок
-		city: res.gorod, // ок
-		citySlug: returnValueOrEmpty(res.slug_gorod), // ок
-		name: res.novostoyka, // ок
+		id: res.id, // getting wrong id (should be building id, not counter)
+		city: res.gorod,
+		citySlug: returnValueOrEmpty(res.slug_gorod),
+		name: res.novostoyka,
 		slug: returnValueOrEmpty(res.novostoyka_slug),
-		developer: returnValueOrEmpty(res.zastr), // ок
+		developer: returnValueOrEmpty(res.zastr),
 		region: returnValueOrEmpty(res.region),
-		price: returnValueOrEmpty(res.price), // ок
-		type: res.category === 'квартира' ? 'buildings' : '', // ок
+		price: returnValueOrEmpty(res.price),
+		type: res.category === 'квартира' ? 'buildings' : '',
 	}));
 
 	dispatch(initCartItems({ res: newRes }));
@@ -64,10 +53,10 @@ export const saveToCart = item => async (dispatch, getState) => {
 	dispatch(
 		notify({
 			title: 'Добавлено',
-			message: 'Новостройка успешно добавлена в корзину',
+			message: 'Новостройка добавлена в избранное',
 			status: 'success',
 			dismissible: true,
-			dismissAfter: 2000,
+			dismissAfter: 1500,
 		}),
 	);
 };
@@ -79,6 +68,15 @@ export const deleteFromCart = item => async (dispatch, getState) => {
 	await fetchDeleteItem(id, item);
 
 	dispatch(deleteCartItems({ item }));
+	dispatch(
+		notify({
+			title: 'Удалено',
+			message: 'Новостройка удалена из избранного',
+			status: 'info',
+			dismissible: true,
+			dismissAfter: 1000,
+		}),
+	);
 };
 
 // SYNC ACTIONS

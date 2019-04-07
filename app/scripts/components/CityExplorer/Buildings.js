@@ -5,18 +5,24 @@ import Slider from 'react-slick';
 import { sliderSettings } from '../../libs/utils';
 
 import { saveToCart, selectCartItems, deleteFromCart } from '../../ducks/cart/items';
+import BuildingModal from '../BuildingModal';
 
 class BuildingsSection extends Component {
-	isAdded = id => {
+	isAdded = (name, developer, price) => {
 		const { CartItems } = this.props;
-		const result = CartItems.data.filter(item => item.id === id);
+		// TODO - refactor to ID's. Backed saving CartItems with wrong ids
+		// const result = CartItems.data.filter(item => item.id === id);
+		const result = CartItems.data.find(
+			x => x.name === name && x.developer === developer && x.price === price,
+		);
 
-		return result[0] && result[0].id === id ? true : false;
+		// return result[0] && result[0].id === id ? true : false;
+		return result ? true : false;
 	};
 
 	handleAddToCart = item => {
 		const { saveToCart, deleteFromCart } = this.props;
-		if (this.isAdded(item.id)) {
+		if (this.isAdded(item.name, item.developer, item.price)) {
 			deleteFromCart(item);
 		} else {
 			saveToCart(item);
@@ -24,7 +30,7 @@ class BuildingsSection extends Component {
 	};
 
 	render() {
-		const { slug, cityDecl, buildings, handleModal } = this.props;
+		const { slug, cityDecl, premiumBuildings, handleModal } = this.props;
 
 		return (
 			<React.Fragment>
@@ -36,11 +42,17 @@ class BuildingsSection extends Component {
 				</div>
 				<div className="CityExplorer__content">
 					<Slider {...sliderSettings}>
-						{buildings.data &&
-							buildings.data.map((building, key) => (
-								<div className={`building ${building.isPremium ? 'premium' : ''}`} key={key}>
+						{premiumBuildings &&
+							premiumBuildings.map((building, key) => (
+								<div
+									className={`building ${building.isPremium ? 'premium' : ''}`}
+									key={key}
+									data-id={building.id}
+								>
 									<div
-										className={`add-to-cart ${this.isAdded(building.id) ? 'added' : ''}`}
+										className={`add-to-cart ${
+											this.isAdded(building.name, building.developer, building.price) ? 'added' : ''
+										}`}
 										onClick={() => this.handleAddToCart(building, 'buildings')}
 									/>
 									<div className="building__image">
