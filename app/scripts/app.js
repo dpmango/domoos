@@ -64,6 +64,18 @@ $(document).ready(function($) {
 			.removeClass('active');
 	});
 
+	$(document).ready(function($) {
+		var output = document.getElementById('output');
+		var input = document.getElementById('range');
+
+		input.addEventListener('input', rangeHandler);
+		input.addEventListener('change', rangeHandler);
+
+		function rangeHandler(e) {
+			output.textContent = e.target.value;
+		}
+	});
+
 	$('.carousel').slick({
 		dots: false,
 		infinite: true,
@@ -90,6 +102,38 @@ $(document).ready(function($) {
 			},
 			{
 				breakpoint: 768,
+				settings: {
+					slidesToShow: 1,
+					slidesToScroll: 1,
+					arrows: false,
+				},
+			},
+		],
+	});
+
+	$('.carousel-builders').slick({
+		dots: false,
+		infinite: true,
+		speed: 500,
+		adaptiveHeight: true,
+		responsive: [
+			{
+				breakpoint: 9999,
+				settings: {
+					slidesToShow: 3,
+					slidesToScroll: 3,
+				},
+			},
+			{
+				breakpoint: 768,
+				settings: {
+					slidesToShow: 2,
+					slidesToScroll: 1,
+					arrows: false,
+				},
+			},
+			{
+				breakpoint: 528,
 				settings: {
 					slidesToShow: 1,
 					slidesToScroll: 1,

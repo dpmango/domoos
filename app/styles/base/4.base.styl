@@ -13,6 +13,10 @@ body, html {
 	-webkit-font-smoothing: antialiased;
 }
 
+body {
+	overflow-x: hidden;
+}
+
 section {
 	font-size: 1.6rem;
 }
@@ -29,6 +33,16 @@ h1, h2, h3, h4 {
 	font-family: var(--title-font);
 	font-weight: 400;
 	color: var(--title-color);
+}
+
+.bg-grey {
+	background-color: #F8F9FD;
+	padding-bottom: 90px;
+
+	+below($phones) {
+		background-color: #fff;
+		padding-bottom: 0;
+	}
 }
 
 h1 {
@@ -48,16 +62,15 @@ h1 {
 }
 
 h2 {
-	font-weight: 600;
-	letter-spacing: -1px;
-	font-size: 2.8rem;
 	font-family: 'Gotham Pro Medium';
+	font-size: 2.8rem;
+	font-weight: 600;
 	font-weight: 700;
+	letter-spacing: -1px;
 
 	+below($phones) {
 		font-size: 2rem;
 	}
-
 }
 
 h3 {

@@ -993,4 +993,74 @@
 			}
 		}
 	}
+
+	.dropdown {
+		margin-left: 30px;
+		display: flex;
+
+		+below($phones) {
+			display: none;
+		}
+
+		&__handler {
+			margin-right: 20px;
+			font-size: 14px;
+			cursor: pointer;
+			color: #fff;
+			background-color: transparent;
+
+			+below($tablet) {
+				margin-right: 22px;
+			}
+
+			+below($phones) {
+				font-size: 14px;
+			}
+
+			&:hover {
+				color: var(--text-color);
+
+				&:after {
+					border-color: var(--text-color);
+				}
+			}
+
+			&:after {
+				arrow(2px, 1px, #fff, 135deg);
+				top: 1px;
+				margin-bottom: 3px;
+				margin-left: 13px;
+				opacity: .8;
+
+				+above($phones) {
+					top: 1px;
+				}
+
+				+below($tablet) {
+					top: 1px;
+					right: 5px;
+				}
+			}
+		}
+
+		&__menu {
+			top: 40px;
+			right: 0;
+			padding: 14px 20px;
+			min-width: 200px;
+			background-color: #fff;
+			box-shadow: 0 2px 5px 0 rgba(140, 140, 140, .3);
+		}
+
+		&__link {
+			width: 100%;
+			font-size: 1.4rem;
+			line-height: 3.6rem;
+			color: var(--text-color);
+
+			&:hover {
+				color: var(--blue);
+			}
+		}
+	}
 }

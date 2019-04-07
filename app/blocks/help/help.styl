@@ -55,6 +55,72 @@
 			width: 100%;
 			max-width: 100%;
 		}
+
+		&.gorod {
+			margin: 0;
+			padding: 50px 45px;
+			flex-direction: column;
+
+			+below($tablet) {
+				padding: 35px;
+			}
+
+			+below($phones) {
+				margin-top: 45px;
+				padding: 0 15px;
+				box-shadow: none;
+			}
+
+			.help__form {
+				margin-top: 44px;
+				width: 100%;
+				max-width: 100%;
+
+				+below($phones) {
+					margin-top: 20px;
+				}
+			}
+
+			.help__text {
+				min-height: 132px;
+
+				+below($phones) {
+					min-height: 1px;
+				}
+			}
+
+			.help__image {
+				width: 130px;
+
+				+below($tablet) {
+					display: block;
+				}
+
+				+below($phones) {
+					margin: 0 auto;
+					width: 108px;
+				}
+			}
+
+			.help__title {
+				margin-top: 25px;
+			}
+
+			.home-help-form {
+				text-align: left;
+
+				input {
+					width: 65%;
+				}
+			}
+
+			.hotcall__submit {
+				padding: 0 10px;
+				display: inline-block;
+				width: 40%;
+				max-width: 140px;
+			}
+		}
 	}
 
 	&__description {
