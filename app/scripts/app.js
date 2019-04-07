@@ -90,7 +90,7 @@ $(document).ready(function($) {
 			.fadeIn();
 	});
 
-	$(document).ready(function($) {
+	$(document).ready(function() {
 		var output = document.getElementById('output');
 		var input = document.getElementById('range');
 
