@@ -2,6 +2,10 @@
 	margin-top: 90px;
 	margin-bottom: 90px;
 
+	+below($phones) {
+		margin-top: 45px;
+	}
+
 	.wrap {
 		padding: 0 30px;
 
@@ -17,6 +21,10 @@
 	&__grid {
 		display: flex;
 		align-items: flex-start;
+
+		+below($phones) {
+			flex-direction: column;
+		}
 	}
 
 	&__content {
@@ -32,11 +40,15 @@
 		width: 32%;
 
 		+below($phones) {
-			display: none;
+			margin: 0 -15px;
+			width: 100%;
+			width: calc(100% + 30px);
+			order: -1;
 		}
 	}
 
 	&__banner {
+		position: relative;
 		margin-left: auto;
 		padding: 25px 25px 20px;
 		width: 100%;
@@ -50,10 +62,19 @@
 			padding: 15px;
 		}
 
+		+below($phones) {
+			text-align: left;
+			background-position: center center;
+		}
+
 		img {
 			width: 100%;
 			max-width: 140px;
 			height: auto;
+
+			+below($phones) {
+				max-width: 100px;
+			}
 		}
 
 		p {
@@ -76,6 +97,11 @@
 					margin-left: -15px;
 				}
 
+				+below($phones) {
+					margin-top: 55px;
+					margin-left: 0;
+				}
+
 				span {
 					padding: 15px 15px 15px 25px;
 					display: inline-block;
@@ -85,6 +111,11 @@
 					line-height: 1;
 					color: #fff;
 					background: var(--blue);
+
+					+below($phones) {
+						padding: 15px;
+						font-size: 20px;
+					}
 				}
 			}
 
@@ -93,6 +124,18 @@
 				font-family: 'Gotham Pro';
 				font-weight: 400;
 				color: #fff;
+
+				+below($phones) {
+					max-width: 250px;
+				}
+			}
+
+			&.banner-name {
+				+below($phones) {
+					position: absolute;
+					top: 15px;
+					right: 15px;
+				}
 			}
 		}
 	}
