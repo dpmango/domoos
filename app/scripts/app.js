@@ -64,6 +64,20 @@ $(document).ready(function($) {
 			.removeClass('active');
 	});
 
+	$(document).on('click', '[js-gorod-tab]', function(e) {
+		e.preventDefault();
+		var $self = $(this),
+			tabIndex = $self.index();
+		$self.siblings().removeClass('is-active');
+		$self.addClass('is-active');
+		// $(".top10__tab").removeClass("is-active");
+		$('.about-city__tab')
+			.removeClass('is-active')
+			.css('display', 'none')
+			.eq(tabIndex)
+			.fadeIn();
+	});
+
 	$(document).ready(function($) {
 		var output = document.getElementById('output');
 		var input = document.getElementById('range');
@@ -192,6 +206,55 @@ $(document).ready(function($) {
 				});
 			}
 		}
+	}
+
+	personalInfoSliderInit();
+
+	$(window).resize(function() {
+		personalInfoSliderInit();
+	});
+
+	function personalInfoSliderInit() {
+		if ($(document).width() > 768) {
+			if ($('.gorod-carousel').hasClass('slick-initialized')) $('.gorod-carousel').slick('unslick');
+		} else {
+			if (!$('.gorod-carousel').hasClass('slick-initialized')) {
+				$('.gorod-carousel').slick({
+					dots: false,
+					infinite: true,
+					speed: 500,
+					rows: 0,
+					responsive: [
+						{
+							breakpoint: 9999,
+							settings: 'unslick',
+						},
+						{
+							breakpoint: 768,
+							settings: {
+								slidesToShow: 1,
+								slidesToScroll: 1,
+								arrows: false,
+								// dots: true,
+								customPaging: function(slider, i) {
+									var thumb = $(slider.$slides[i]).data();
+									return '<a>' + i + '</a>';
+								},
+							},
+						},
+					],
+				});
+			}
+		}
+		//custom function showing current slide
+		var $status = $('.pagingInfo');
+		var $slickElement = $('.gorod-carousel');
+
+		$slickElement.on('init reInit afterChange', function(event, slick, currentSlide, nextSlide) {
+			//currentSlide is undefined on init -- set it to 0 in this case (currentSlide is 0 based)
+			var i = (currentSlide ? currentSlide : 0) + 1;
+			$status.text(i + '/' + slick.slideCount);
+		});
 	}
 
 	personalInfoSliderInit();
