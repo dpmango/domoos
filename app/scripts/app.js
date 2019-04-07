@@ -70,8 +70,20 @@ $(document).ready(function($) {
 			tabIndex = $self.index();
 		$self.siblings().removeClass('is-active');
 		$self.addClass('is-active');
-		// $(".top10__tab").removeClass("is-active");
 		$('.about-city__tab')
+			.removeClass('is-active')
+			.css('display', 'none')
+			.eq(tabIndex)
+			.fadeIn();
+	});
+
+	$(document).on('click', '[js-buildings-tab]', function(e) {
+		e.preventDefault();
+		var $self = $(this),
+			tabIndex = $self.index();
+		$self.siblings().removeClass('is-active');
+		$self.addClass('is-active');
+		$('.gorod-popular__tab')
 			.removeClass('is-active')
 			.css('display', 'none')
 			.eq(tabIndex)
@@ -177,6 +189,50 @@ $(document).ready(function($) {
 	// 		},
 	// 	],
 	// });
+
+	function personalInfoSliderInit2() {
+		if ($(document).width() > 768) {
+			if ($('.mobile-gorod-carousel').hasClass('slick-initialized'))
+				$('.mobile-gorod-carousel').slick('unslick');
+		} else {
+			if (!$('.mobile-gorod-carousel').hasClass('slick-initialized')) {
+				$('.mobile-gorod-carousel').slick({
+					dots: false,
+					infinite: true,
+					speed: 500,
+					rows: 0,
+					responsive: [
+						{
+							breakpoint: 9999,
+							settings: 'unslick',
+						},
+						{
+							breakpoint: 768,
+							settings: {
+								slidesToShow: 2,
+								slidesToScroll: 1,
+								arrows: false,
+							},
+						},
+						{
+							breakpoint: 568,
+							settings: {
+								slidesToShow: 1,
+								slidesToScroll: 1,
+								arrows: false,
+							},
+						},
+					],
+				});
+			}
+		}
+	}
+
+	personalInfoSliderInit2();
+
+	$(window).resize(function() {
+		personalInfoSliderInit2();
+	});
 
 	function personalInfoSliderInit() {
 		if ($(document).width() > 768) {
