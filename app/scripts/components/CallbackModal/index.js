@@ -14,12 +14,18 @@ class CallbackModal extends PureComponent {
 
 	componentDidMount() {
 		// bind selector from non-react part
-		var openSelector = document.querySelector('[data-open-modal="callback"]');
-		openSelector.addEventListener('click', this.handleTriggerClick, false);
+		const _this = this;
+		var openSelector = document.querySelectorAll('[data-open-modal="callback"]');
+		[].forEach.call(openSelector, function(button) {
+			button.addEventListener('click', _this.handleTriggerClick, false);
+		});
 	}
 	componentWillUnmount() {
-		var openSelector = document.querySelector('[data-open-modal="callback"]');
-		openSelector.removeEventListener('click', this.handleTriggerClick, false);
+		const _this = this;
+		var openSelector = document.querySelectorAll('[data-open-modal="callback"]');
+		[].forEach.call(openSelector, function(button) {
+			button.removeEventListener('click', _this.handleTriggerClick, false);
+		});
 	}
 
 	handleTriggerClick = () => {
