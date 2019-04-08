@@ -1,0 +1,86 @@
+section.help-podbor
+	.wrap
+		.help-podbor__grid
+			.help-podbor__left
+				.help__content(class=isСity ? 'gorod' : '')
+					.help__image
+						img.help__personal-manager(src="/images/personal-manager@2x.png")
+					.help__description
+						.help__title
+							| Бесплатная помощь специалистов
+						.help__text
+							span Вы можете довериться профессионалам.
+							| Всю работу по подбору, бронированию и оформлению возьмут на себя специалисты центра новостроек.
+							span Это совершенно бесплатная и очень популярная услуга.
+					.help__form
+						+hotcall('home-help-form')
+			.help-podbor__right
+				.help-podbor__content
+					.help-podbor__title Подберите квартиру онлайн
+					.help-podbor__description Заполните форму, выберите параметры квартиры и мы перезвоним вам с лучшим предложением
+					.help-podbor__form
+						form(action="#" method="#")
+							.help-podbor__row
+								input(type="text" name="name" placeholder="Ваше имя")
+								input(type="tel" placeholder="+7")
+							.help-podbor__select
+								.RegionSelector#help-podbor-region-select
+									//- .Suggest
+									//- 	label.Suggest__label(for='header-city-select-input') Выберите город
+									//- 	input#header-city-select-input.Suggest__input(type='text', autocomplete='new-password', placeholder='Санкт-Петербург', value='')
+									//- 	.Suggest__result.false
+									//- 		.Suggest__link.false Москва
+									//- 		.Suggest__link.false Санкт-Петербург
+									//- 		.Suggest__link.false Барнаул
+									//- 		.Suggest__link.false Воронеж
+									//- 		.Suggest__link.false Екатеринбург
+									//- 		.Suggest__link.false Киров
+									//- 		.Suggest__link.false Красноярск
+									//- 		.Suggest__link.false Пермь
+									//- 		.Suggest__link.false Томск
+									//- 		.Suggest__link.false Тюмень
+									//- 		.Suggest__link.false Уфа
+									//- 		.Suggest__link.false Новосибирск
+									//- 		.Suggest__link.false Челябинск
+							.help-podbor__block
+								p Когда сдача:
+								.help-podbor__checkboxes
+									.checkbox-container
+										input#c1(type="checkbox", name="")
+										label(for="c1") сдан
+									.checkbox-container
+										input#c2(type="checkbox", name="")
+										label(for="c2") 2018
+									.checkbox-container
+										input#c3(type="checkbox", name="" checked)
+										label(for="c3") 2019
+									.checkbox-container
+										input#c4(type="checkbox", name="")
+										label(for="c4") 2020
+							.help-podbor__block
+								p Максимальная сумма:
+								.help-podbor__range
+									style#style(scoped)
+									p#output.output 1576123
+									input#range.range(type='range', min='200000', max='100000000', value='1576123')
+								.help-podbor__row
+									.help-podbor__value.help-podbor__value--min 800 000 ₽
+									.help-podbor__value.help-podbor__value--max более 100 млн. ₽
+							.help-podbor__block
+								.help-podbor__checkboxes-types
+									.checkbox-container
+										input#c11(type="checkbox", name="")
+										label(for="c11")
+											span
+											| Ипотека
+									.checkbox-container
+										input#c12(type="checkbox", name="")
+										label(for="c12")
+											span
+											| Чистовая отделка
+									.checkbox-container
+										input#c13(type="checkbox", name="")
+										label(for="c13")
+											span
+											| Эко-район
+							input.btn.btn__full.btn__full--yellow(type="submit")

@@ -1,0 +1,234 @@
+.CityMap {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	max-height: 690px;
+
+	+below($phones) {
+		margin-bottom: 40px;
+		min-height: 560px;
+		max-height: 560px;
+	}
+
+	.gm-fullscreen-control {
+		display: none;
+	}
+
+	.city__link {
+		margin-bottom: auto;
+		margin-left: auto;
+		padding-left: 15px;
+	}
+
+	.sidebar {
+		position: absolute;
+		z-index: 7000;
+		top: 30px;
+		right: 30px;
+		margin-left: auto;
+		padding: 15px 30px 30px;
+		width: 100%;
+		max-width: 360px;
+		max-height: calc(100% - 60px);
+		order: 2;
+		block();
+
+		+below($phones) {
+			position: absolute;
+			top: auto;
+			right: 3%;
+			bottom: -40px;
+			padding: 10px 15px 15px;
+			display: flex;
+			flex-direction: column;
+			max-width: 94%;
+			height: auto;
+			min-height: 1px;
+		}
+
+		&__header {
+			margin-bottom: 15px;
+			display: flex;
+
+			+below($phones) {
+				margin-bottom: 2px;
+				padding-top: 20px;
+			}
+		}
+
+		&__close {
+			cross();
+			margin-left: auto;
+			width: 25px;
+			height: 25px;
+
+			+below($phones) {
+				position: absolute;
+				top: 10px;
+				right: 10px;
+				display: block;
+			}
+		}
+
+		.city {
+			&__img {
+				margin-bottom: 10px;
+				width: 300px;
+				height: 186px;
+				background-repeat: no-repeat;
+				background-position: center center;
+				background-size: cover;
+
+				+below($phones) {
+					display: none;
+				}
+			}
+
+			&__link {
+				margin-bottom: 10px;
+				font-size: 1.4rem;
+				font-weight: 300;
+
+				&:after {
+					arrow(1.5px, 1px, var(--arrow-color), 45deg);
+					top: -1px;
+					margin-left: 6px;
+				}
+
+				+below($phones) {
+					position: absolute;
+					left: 0;
+					bottom: 0;
+					order: 4;
+				}
+			}
+
+			&__name {
+				h5();
+				font-weight: 500;
+			}
+
+			&__description {
+				margin-bottom: 15px;
+				font-size: 1.2rem;
+
+				+below($phones) {
+					display: none;
+				}
+			}
+
+			&__ratings {
+				margin-bottom: 10px;
+				display: flex;
+				flex-wrap: wrap;
+
+				.rating {
+					margin-bottom: 15px;
+					width: 50%;
+
+					&__title {
+						margin-bottom: 0;
+						font-size: 12px;
+						font-weight: 300;
+						color: var(--title-color);
+					}
+				}
+
+				span {
+					margin-right: 4px;
+				}
+
+				+below($phones) {
+					display: none;
+				}
+			}
+
+			&__options {
+				bulls();
+				margin-bottom: 20px;
+
+				.option {
+					margin-bottom: 17px;
+					font-size: 1.4rem;
+
+					&:before {
+						margin-right: 12px;
+						margin-left: 4px;
+					}
+
+					&__title {
+						margin-right: 5px;
+						color: var(--title-color);
+					}
+
+					&__value {
+						color: var(--text-color);
+					}
+				}
+
+				+below($phones) {
+					display: none;
+				}
+			}
+
+			&__neighbors {
+				margin-bottom: 25px;
+				padding-bottom: 25px;
+				border-bottom: 1px solid var(--border-color);
+
+				+below($phones) {
+					padding-bottom: 0;
+					border-bottom: none;
+				}
+
+				.title {
+					margin-bottom: 5px;
+					width: 100%;
+					font-size: 1.2rem;
+				}
+
+				.content {
+					width: 100%;
+					font-size: 1.4rem;
+					color: var(--title-color);
+				}
+			}
+		}
+	}
+
+	.bull {
+		position: absolute;
+		z-index: 1001;
+		top: -27px;
+		left: -12px;
+		margin-top: 1px;
+		margin-right: 12px;
+		display: block;
+		width: 25px;
+		height: 25px;
+		cursor: pointer;
+		background: url('/images/bull.png');
+		background-image: url('/images/bull-blue@2x.png');
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: contain;
+		opacity: 1;
+		transition: .2s;
+		t();
+
+		&:focus, &.is-active {
+			z-index: 2000;
+			background: url('/images/bull.png');
+			background-repeat: no-repeat;
+			background-position: center center;
+			background-size: contain;
+			opacity: 1;
+			transform: scale(1.3);
+		}
+
+		&:hover {
+			opacity: 1;
+			transform: scale(1.3);
+		}
+	}
+}

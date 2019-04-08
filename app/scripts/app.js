@@ -64,6 +64,45 @@ $(document).ready(function($) {
 			.removeClass('active');
 	});
 
+	$(document).on('click', '[js-gorod-tab]', function(e) {
+		e.preventDefault();
+		var $self = $(this),
+			tabIndex = $self.index();
+		$self.siblings().removeClass('is-active');
+		$self.addClass('is-active');
+		$('.about-city__tab')
+			.removeClass('is-active')
+			.css('display', 'none')
+			.eq(tabIndex)
+			.fadeIn();
+	});
+
+	$(document).on('click', '[js-buildings-tab]', function(e) {
+		e.preventDefault();
+		var $self = $(this),
+			tabIndex = $self.index();
+		$self.siblings().removeClass('is-active');
+		$self.addClass('is-active');
+		$('.gorod-popular__tab')
+			.removeClass('is-active')
+			.css('display', 'none')
+			.eq(tabIndex)
+			.fadeIn();
+		$('.mobile-gorod-carousel').slick('setPosition');
+	});
+
+	$(document).ready(function() {
+		var output = document.getElementById('output');
+		var input = document.getElementById('range');
+
+		input.addEventListener('input', rangeHandler);
+		input.addEventListener('change', rangeHandler);
+
+		function rangeHandler(e) {
+			output.textContent = e.target.value;
+		}
+	});
+
 	$('.carousel').slick({
 		dots: false,
 		infinite: true,
@@ -99,6 +138,38 @@ $(document).ready(function($) {
 		],
 	});
 
+	$('.carousel-builders').slick({
+		dots: false,
+		infinite: true,
+		speed: 500,
+		adaptiveHeight: true,
+		responsive: [
+			{
+				breakpoint: 9999,
+				settings: {
+					slidesToShow: 3,
+					slidesToScroll: 3,
+				},
+			},
+			{
+				breakpoint: 768,
+				settings: {
+					slidesToShow: 2,
+					slidesToScroll: 1,
+					arrows: false,
+				},
+			},
+			{
+				breakpoint: 528,
+				settings: {
+					slidesToShow: 1,
+					slidesToScroll: 1,
+					arrows: false,
+				},
+			},
+		],
+	});
+
 	// $('.not-real-carousel').slick({
 	// 	dots: false,
 	// 	infinite: true,
@@ -119,6 +190,51 @@ $(document).ready(function($) {
 	// 		},
 	// 	],
 	// });
+
+	function personalInfoSliderInit2() {
+		if ($(document).width() > 768) {
+			if ($('.mobile-gorod-carousel').hasClass('slick-initialized'))
+				$('.mobile-gorod-carousel').slick('unslick');
+		} else {
+			if (!$('.mobile-gorod-carousel').hasClass('slick-initialized')) {
+				$('.mobile-gorod-carousel').slick({
+					dots: false,
+					infinite: true,
+					speed: 500,
+					slidesToShow: 1,
+					slidesToScroll: 1,
+					responsive: [
+						{
+							breakpoint: 9999,
+							settings: 'unslick',
+						},
+						{
+							breakpoint: 768,
+							settings: {
+								slidesToShow: 2,
+								slidesToScroll: 1,
+								arrows: false,
+							},
+						},
+						{
+							breakpoint: 568,
+							settings: {
+								slidesToShow: 1,
+								slidesToScroll: 1,
+								arrows: false,
+							},
+						},
+					],
+				});
+			}
+		}
+	}
+
+	personalInfoSliderInit2();
+
+	$(window).resize(function() {
+		personalInfoSliderInit2();
+	});
 
 	function personalInfoSliderInit() {
 		if ($(document).width() > 768) {
@@ -148,6 +264,55 @@ $(document).ready(function($) {
 				});
 			}
 		}
+	}
+
+	personalInfoSliderInit();
+
+	$(window).resize(function() {
+		personalInfoSliderInit();
+	});
+
+	function personalInfoSliderInit() {
+		if ($(document).width() > 768) {
+			if ($('.gorod-carousel').hasClass('slick-initialized')) $('.gorod-carousel').slick('unslick');
+		} else {
+			if (!$('.gorod-carousel').hasClass('slick-initialized')) {
+				$('.gorod-carousel').slick({
+					dots: false,
+					infinite: true,
+					speed: 500,
+					rows: 0,
+					responsive: [
+						{
+							breakpoint: 9999,
+							settings: 'unslick',
+						},
+						{
+							breakpoint: 768,
+							settings: {
+								slidesToShow: 1,
+								slidesToScroll: 1,
+								arrows: false,
+								// dots: true,
+								customPaging: function(slider, i) {
+									var thumb = $(slider.$slides[i]).data();
+									return '<a>' + i + '</a>';
+								},
+							},
+						},
+					],
+				});
+			}
+		}
+		//custom function showing current slide
+		var $status = $('.pagingInfo');
+		var $slickElement = $('.gorod-carousel');
+
+		$slickElement.on('init reInit afterChange', function(event, slick, currentSlide, nextSlide) {
+			//currentSlide is undefined on init -- set it to 0 in this case (currentSlide is 0 based)
+			var i = (currentSlide ? currentSlide : 0) + 1;
+			$status.text(i + '/' + slick.slideCount);
+		});
 	}
 
 	personalInfoSliderInit();

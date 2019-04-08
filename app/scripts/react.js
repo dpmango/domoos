@@ -7,8 +7,10 @@ import NotificationsSystem from 'reapop';
 import theme from './theme/reapop';
 
 import CitySelector from './components/CitySelector';
+import RegionSelector from './components/RegionSelector';
 import CityExplorer from './components/CityExplorer';
 import CountryMap from './components/CountryMap';
+import CityMap from './components/CityMap';
 import Cart from './components/Cart';
 import CallbackModal from './components/CallbackModal';
 import AboutModal from './components/AboutModal';
@@ -21,8 +23,10 @@ import { setSessionID } from './ducks/user/session';
 store.dispatch(setSessionID());
 
 const headerSuggestSelector = document.getElementById('header-city-select');
+const helpPodborSuggestSelector = document.getElementById('help-podbor-region-select');
 const cityExplorerSelector = document.getElementById('city-explorer');
 const countryMapSelector = document.getElementById('country-map');
+const cityMapSelector = document.getElementById('city-map');
 const cartSelector = document.getElementById('cart');
 const cartNavbarSelector = document.getElementById('cart-navbar');
 const callbackSelector = document.getElementById('callback-modal');
@@ -63,6 +67,15 @@ if (headerSuggestSelector) {
 	);
 }
 
+if (helpPodborSuggestSelector) {
+	ReactDOM.render(
+		<ComponentConstructor>
+			<RegionSelector id="help-podbor-region-select" />
+		</ComponentConstructor>,
+		helpPodborSuggestSelector,
+	);
+}
+
 if (cityExplorerSelector) {
 	ReactDOM.render(
 		<ComponentConstructor>
@@ -78,6 +91,15 @@ if (countryMapSelector) {
 			<CountryMap />
 		</ComponentConstructor>,
 		countryMapSelector,
+	);
+}
+
+if (cityMapSelector) {
+	ReactDOM.render(
+		<ComponentConstructor>
+			<CityMap />
+		</ComponentConstructor>,
+		cityMapSelector,
 	);
 }
 
