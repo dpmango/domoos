@@ -88,6 +88,7 @@ $(document).ready(function($) {
 			.css('display', 'none')
 			.eq(tabIndex)
 			.fadeIn();
+		$('.mobile-gorod-carousel').slick('setPosition');
 	});
 
 	$(document).ready(function() {
@@ -200,7 +201,8 @@ $(document).ready(function($) {
 					dots: false,
 					infinite: true,
 					speed: 500,
-					rows: 0,
+					slidesToShow: 1,
+					slidesToScroll: 1,
 					responsive: [
 						{
 							breakpoint: 9999,
