@@ -3,6 +3,7 @@ import $ from 'jquery';
 import slick from 'slick-carousel';
 import inputmask from 'inputmask';
 import 'simplebar';
+import 'nouislider';
 
 $(() => {
 	svg4everybody();
@@ -101,6 +102,23 @@ $(document).ready(function($) {
 		function rangeHandler(e) {
 			output.textContent = e.target.value;
 		}
+	});
+
+	// Initialize slider:
+	$(document).ready(function() {
+		var slider = document.getElementById('range');
+		noUiSlider.create(slider, {
+			start: [20, 80],
+			connect: true,
+			step: 1,
+			range: {
+				min: 0,
+				max: 100,
+			},
+			format: wNumb({
+				decimals: 0,
+			}),
+		});
 	});
 
 	$('.carousel').slick({
