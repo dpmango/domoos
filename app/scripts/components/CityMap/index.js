@@ -7,27 +7,13 @@ import GoogleMapReact from 'google-map-react';
 import matchSorter from 'match-sorter';
 import ReactStars from 'react-stars';
 
-import { selectcitiesMapInfo, getCitiesMapInfo } from '../../ducks/cities/citiesMapInfo';
+import { selectCityBySlug, getCitiesMapInfo } from '../../ducks/cities/citiesMapInfo';
 
 class CityMap extends PureComponent {
 	state = {
 		key: 'AIzaSyAOFKzxkxuZDqNzPqHk1PxUPPBaecsjlIM',
 		center: { lat: 45.751244, lng: 50.618423 },
-		zoom: 4,
-		filters: [
-			'Милионник',
-			'Высокие зарплаты',
-			'Западная Россия',
-			'Развитый город',
-			'Больше 500 тысяч',
-			'Метро',
-			'Недорогое жилье',
-			'Теплый климат',
-			'Курортный',
-		],
-		toggle: true,
-		isSidebarActive: false,
-		activeFilter: 'все',
+		zoom: 7,
 		activeCity: {},
 		activeMarker: undefined,
 	};
@@ -35,60 +21,49 @@ class CityMap extends PureComponent {
 	componentDidMount = () => {
 		const { getCitiesMapInfo } = this.props;
 		getCitiesMapInfo();
+		this.bindCurrentCity();
 	};
 
-	hadleCityClick = slug => {
+	componentWillReceiveProps = nextProps => {
+		if (nextProps.mapInfo && nextProps.mapInfo[0].slug !== this.state.activeMarker) {
+			this.bindCurrentCity();
+		}
+	};
+
+	bindCurrentCity = () => {
 		const {
-			props: { mapInfo },
-			state: { activeCity },
+			props: { mapInfo, slug },
 		} = this;
 
-		const result = matchSorter(mapInfo.data.result, slug, {
-			keys: [{ threshold: matchSorter.rankings.EQUAL, key: 'slug' }],
-		});
+		if (mapInfo) {
+			const result = matchSorter(mapInfo, slug, {
+				keys: [{ threshold: matchSorter.rankings.EQUAL, key: 'slug' }],
+			});
 
-		const isEqual = JSON.stringify(result[0]) === JSON.stringify(activeCity);
-
-		this.setState({
-			activeCity: isEqual ? [] : result[0],
-			isSidebarActive: isEqual ? false : true,
-			actitveMarker: slug,
-		});
-	};
-
-	handleCloseSidebar = () => {
-		this.setState({
-			isSidebarActive: false,
-			activeCity: {},
-		});
+			this.setState({
+				activeCity: result[0],
+				actitveMarker: slug,
+				center: { lat: result[0].lat, lng: result[0].lng + 1 },
+			});
+		}
 	};
 
 	render() {
 		const { mapInfo } = this.props;
-		const {
-			key,
-			center,
-			zoom,
-			activeCity,
-			isSidebarActive,
-			activeFilter,
-			actitveMarker,
-		} = this.state;
+		const { key, center, zoom, activeCity, actitveMarker } = this.state;
 
 		const Marker = ({ slug, name }) => (
 			<div
-				className={'bull ' + (actitveMarker === slug ? 'bounce is-active' : '')}
+				className={'bull ' + (actitveMarker === slug ? 'is-active' : '')}
 				id={slug}
 				title={name}
-				onClick={() => mapInfo.data.result && this.hadleCityClick(slug)}
 			/>
 		);
 
 		return (
 			<div className="CityMap" style={{ height: '100vh', width: '100%' }}>
-				{isSidebarActive && activeCity && (
+				{activeCity && (
 					<div data-simplebar className="sidebar city">
-						<div className="sidebar__close" onClick={() => this.handleCloseSidebar()} />
 						<div className="sidebar__header">
 							<div className="city__name">{activeCity.name}</div>
 							<a className="city__link" href={`/goroda/${activeCity.slug}`} target="_blank">
@@ -145,26 +120,13 @@ class CityMap extends PureComponent {
 						bootstrapURLKeys={{
 							key,
 						}}
-						defaultCenter={center}
+						center={center}
 						defaultZoom={zoom}
 					>
-						{mapInfo.data &&
-							!mapInfo.loading &&
-							mapInfo.data.coordinates
-								.filter(({ category }) => {
-									return category.indexOf(activeFilter) !== -1 || activeFilter === 'все'
-										? true
-										: false;
-								})
-								.map((city, key) => (
-									<Marker
-										key={key}
-										slug={city.slug}
-										name={city.name}
-										lat={city.lat}
-										lng={city.lng}
-									/>
-								))}
+						{mapInfo &&
+							mapInfo.map((city, key) => (
+								<Marker key={key} slug={city.slug} name={city.name} lat={city.lat} lng={city.lng} />
+							))}
 					</GoogleMapReact>
 				</div>
 			</div>
@@ -172,8 +134,8 @@ class CityMap extends PureComponent {
 	}
 }
 
-const mapStateToProps = state => ({
-	mapInfo: selectcitiesMapInfo(state),
+const mapStateToProps = (state, ownProps) => ({
+	mapInfo: selectCityBySlug(state, ownProps.slug),
 });
 
 const mapDispatchToProps = dispatch =>

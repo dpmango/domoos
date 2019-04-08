@@ -95,9 +95,10 @@ if (countryMapSelector) {
 }
 
 if (cityMapSelector) {
+	const citySlug = cityMapSelector.dataset.slug;
 	ReactDOM.render(
 		<ComponentConstructor>
-			<CityMap />
+			<CityMap slug={citySlug} />
 		</ComponentConstructor>,
 		cityMapSelector,
 	);
