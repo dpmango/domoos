@@ -362,3 +362,7 @@ export default handleActions(
 );
 
 export const selectcitiesMapInfo = state => state.cities.citiesMapInfo;
+
+export const selectCityBySlug = (state, slug) => {
+	return state.cities.citiesMapInfo.data.result.filter(x => x.slug === slug);
+};
