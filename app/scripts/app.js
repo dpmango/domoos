@@ -236,7 +236,7 @@ $(document).ready(function($) {
 		personalInfoSliderInit2();
 	});
 
-	function personalInfoSliderInit() {
+	function personalInfoSliderInitMain() {
 		if ($(document).width() > 768) {
 			if ($('.not-real-carousel').hasClass('slick-initialized'))
 				$('.not-real-carousel').slick('unslick');
@@ -266,10 +266,10 @@ $(document).ready(function($) {
 		}
 	}
 
-	personalInfoSliderInit();
+	personalInfoSliderInitMain();
 
 	$(window).resize(function() {
-		personalInfoSliderInit();
+		personalInfoSliderInitMain();
 	});
 
 	function personalInfoSliderInit() {
