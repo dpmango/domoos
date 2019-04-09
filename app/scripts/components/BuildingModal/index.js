@@ -205,7 +205,7 @@ class BuildingModal extends PureComponent {
 																	</li>
 																))}
 															{priceObj.prices && (
-																<div class="content__cta">
+																<div className="content__cta">
 																	<a href="/" className="link">
 																		Все цены
 																	</a>

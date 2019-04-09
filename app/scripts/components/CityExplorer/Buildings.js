@@ -6,6 +6,7 @@ import { sliderSettings } from '../../libs/utils';
 
 import { saveToCart, selectCartItems, deleteFromCart } from '../../ducks/cart/items';
 import BuildingModal from '../BuildingModal';
+import Building from './SingleBuilding';
 
 class BuildingsSection extends Component {
 	isAdded = (name, developer, price) => {
@@ -43,59 +44,14 @@ class BuildingsSection extends Component {
 				<div className="CityExplorer__content">
 					<Slider {...sliderSettings}>
 						{premiumBuildings &&
-							premiumBuildings.map((building, key) => (
-								<div
-									className={`building ${building.isPremium ? 'premium' : ''}`}
-									key={key}
-									data-id={building.id}
-								>
-									<div
-										className={`add-to-cart ${
-											this.isAdded(building.name, building.developer, building.price) ? 'added' : ''
-										}`}
-										onClick={() => this.handleAddToCart(building, 'buildings')}
-									/>
-									<div className="building__image">
-										<a
-											className="building__featured"
-											onClick={() => handleModal(building)}
-											style={{
-												backgroundImage: `url('https://domoos.ru/images/novostroyki/${
-													building.citySlug
-												}/estates/${building.slug}.jpg')`,
-											}}
-										/>
-										{building.isPremium && <div className="premium-checked">Провереннная</div>}
-										<a href="#" className="building__view" onClick={() => handleModal(building)}>
-											Быстрый просмотр
-										</a>
-									</div>
-									<div className="building__header" onClick={() => handleModal(building)}>
-										<a className="building__title building__title--developer">
-											Застройщик&nbsp;
-											{building.developer}
-										</a>
-										<a className="building__title building__title--building">{building.name}</a>
-									</div>
-									<div className="building__content">
-										<div className="building__features">
-											{building.features &&
-												building.features.map((feature, key) => (
-													<div className="feature" key={key}>
-														{key === 2 && 'Сдача: '}
-														{feature}
-													</div>
-												))}
-										</div>
-										<div className="building__district">
-											<span>{building.district} район</span>
-										</div>
-
-										<div className={`building__subway ${building.subway === '' && 'empty'}`}>
-											<span>м. {building.subway}</span>
-										</div>
-									</div>
-								</div>
+							premiumBuildings.map((building, idx) => (
+								<Building
+									building={building}
+									key={idx}
+									handleAddToCart={this.handleAddToCart}
+									handleModal={handleModal}
+									isAdded={this.isAdded}
+								/>
 							))}
 					</Slider>
 				</div>

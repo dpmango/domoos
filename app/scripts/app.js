@@ -94,14 +94,14 @@ $(document).ready(function($) {
 
 	// TODO - зачем здесь повтор ready ?
 	$(document).ready(function() {
-		var output = document.getElementById('output');
-		var input = document.getElementById('range');
+		var $output = $('#output');
+		var $input = $('#range');
 
-		input.addEventListener('input', rangeHandler);
-		input.addEventListener('change', rangeHandler);
+		$input.on('input', rangeHandler);
+		$input.on('change', rangeHandler);
 
 		function rangeHandler(e) {
-			output.textContent = formatNumberWithSpaces(e.target.value);
+			$output.text(formatNumberWithSpaces(e.target.value));
 		}
 	});
 
