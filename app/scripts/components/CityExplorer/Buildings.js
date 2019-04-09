@@ -9,21 +9,16 @@ import BuildingModal from '../BuildingModal';
 import Building from '../Shared/Building/Building';
 
 class BuildingsSection extends Component {
-	isAdded = (name, developer, price) => {
+	isAdded = id => {
 		const { CartItems } = this.props;
-		// TODO - refactor to ID's. Backed saving CartItems with wrong ids
-		// const result = CartItems.data.filter(item => item.id === id);
-		const result = CartItems.data.find(
-			x => x.name === name && x.developer === developer && x.price === price,
-		);
+		const result = CartItems.data.filter(item => item.id === id);
 
-		// return result[0] && result[0].id === id ? true : false;
-		return result ? true : false;
+		return result[0] && result[0].id === id ? true : false;
 	};
 
 	handleAddToCart = item => {
 		const { saveToCart, deleteFromCart } = this.props;
-		if (this.isAdded(item.name, item.developer, item.price)) {
+		if (this.isAdded(item.id)) {
 			deleteFromCart(item);
 		} else {
 			saveToCart(item);

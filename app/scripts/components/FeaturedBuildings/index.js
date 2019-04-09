@@ -20,6 +20,10 @@ class FeatuedBuildings extends Component {
 		activeCity: {
 			slug: undefined,
 		},
+		filter: {
+			list: ['Под ключ', 'Сданные', 'Недорогие', 'Элитные'],
+			activeFilter: 'Под ключ',
+		},
 		modal: {
 			building: {},
 			isOpen: false,
@@ -64,32 +68,61 @@ class FeatuedBuildings extends Component {
 		});
 	};
 
-	isAdded = (name, developer, price) => {
+	isAdded = id => {
 		const { CartItems } = this.props;
-		// TODO - refactor to ID's. Backed saving CartItems with wrong ids
-		// const result = CartItems.data.filter(item => item.id === id);
-		const result = CartItems.data.find(
-			x => x.name === name && x.developer === developer && x.price === price,
-		);
-
-		// return result[0] && result[0].id === id ? true : false;
-		return result ? true : false;
+		const result = CartItems.data.filter(item => item.id === id);
+		return result[0] && result[0].id === id ? true : false;
 	};
 
 	handleAddToCart = item => {
 		const { saveToCart, deleteFromCart } = this.props;
-		if (this.isAdded(item.name, item.developer, item.price)) {
+		if (this.isAdded(item.id)) {
 			deleteFromCart(item);
 		} else {
 			saveToCart(item);
 		}
 	};
 
+	// Filter functions
+	handleFilterChange = name => {
+		console.log(name);
+		this.setState({
+			...this.state,
+			filter: {
+				...this.state.filter,
+				activeFilter: name,
+			},
+		});
+	};
+
+	// computed render property
+	applyFilters = buildings => {
+		const { filter } = this.state;
+		const allBuildings = [...buildings.premium, ...buildings.regular];
+
+		let result = [];
+
+		if (filter.activeFilter === 'Под ключ') {
+			result = allBuildings.filter(x => x.features[1] === 'под ключ');
+		} else if (filter.activeFilter === 'Сданные') {
+			result = allBuildings.filter(x => x.features[2] === 'сдан');
+		} else if (filter.activeFilter === 'Недорогие') {
+			result = allBuildings.filter(x => x.features[0] === 'комфорт-класс');
+		} else if (filter.activeFilter === 'Элитные') {
+			result = allBuildings.filter(x => x.features[0] === 'элит-класс');
+		} else {
+			result = buildings.premium;
+		}
+
+		// limit filtered to 6 items
+		return result.slice(0, 6);
+	};
+
 	render() {
 		const { CityBuildings } = this.props;
-		const { activeCity, modal } = this.state;
+		const { activeCity, modal, filter } = this.state;
 
-		const buildings = CityBuildings[activeCity.slug];
+		const buildings = this.applyFilters(CityBuildings[activeCity.slug]);
 
 		return (
 			<React.Fragment>
@@ -97,18 +130,19 @@ class FeatuedBuildings extends Component {
 					<div className="gorod-popular__buttons">
 						<div className="gorod-popular__overlay">
 							<div className="gorod-popular__scroll">
-								<a className="gorod-popular__btn is-active" href="#">
-									Под ключ
-								</a>
-								<a className="gorod-popular__btn" href="#">
-									Сданные
-								</a>
-								<a className="gorod-popular__btn" href="#">
-									Недорогие
-								</a>
-								<a className="gorod-popular__btn" href="#">
-									Элитные
-								</a>
+								{filter.list &&
+									filter.list.map((name, idx) => (
+										<span
+											key={idx}
+											onClick={() => this.handleFilterChange(name)}
+											className={
+												'gorod-popular__btn' +
+												(filter.activeFilter.indexOf(name) !== -1 ? ' is-active' : '')
+											}
+										>
+											{name}
+										</span>
+									))}
 							</div>
 						</div>
 					</div>
@@ -129,18 +163,16 @@ class FeatuedBuildings extends Component {
 						<Loader />
 					) : (
 						<div className="gorod-popular__grid mobile-gorod-carousel">
-							{buildings.premium &&
-								buildings.premium
-									.slice(0, 6)
-									.map((building, idx) => (
-										<Building
-											building={building}
-											key={idx}
-											handleAddToCart={this.handleAddToCart}
-											handleModal={this.openBuildingsModal}
-											isAdded={this.isAdded}
-										/>
-									))}
+							{buildings &&
+								buildings.map((building, idx) => (
+									<Building
+										building={building}
+										key={idx}
+										handleAddToCart={this.handleAddToCart}
+										handleModal={this.openBuildingsModal}
+										isAdded={this.isAdded}
+									/>
+								))}
 						</div>
 					)}
 				</div>

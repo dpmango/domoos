@@ -4,9 +4,7 @@ const Building = ({ building, handleAddToCart, handleModal, isAdded }) => {
 	return (
 		<div className={`building ${building.isPremium ? 'premium' : ''}`} data-id={building.id}>
 			<div
-				className={`add-to-cart ${
-					isAdded(building.name, building.developer, building.price) ? 'added' : ''
-				}`}
+				className={`add-to-cart ${isAdded(building.id) ? 'added' : ''}`}
 				onClick={() => handleAddToCart(building, 'buildings')}
 			/>
 			<div className="building__image">

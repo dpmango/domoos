@@ -41,7 +41,7 @@ export default handleActions(
 			return {
 				...state,
 				[payload.slug]: {
-					premium: [...withPremium].splice(0, 12),
+					premium: [...withPremium].splice(0, 12), // araray modification - splice or slice ?
 					regular: [...withoutPremium],
 					loading: false,
 				},
