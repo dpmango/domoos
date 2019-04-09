@@ -3,7 +3,7 @@ import $ from 'jquery';
 import slick from 'slick-carousel';
 import inputmask from 'inputmask';
 import 'simplebar';
-import 'nouislider';
+import noUiSlider from 'nouislider';
 
 $(() => {
 	svg4everybody();
@@ -92,6 +92,7 @@ $(document).ready(function($) {
 		$('.mobile-gorod-carousel').slick('setPosition');
 	});
 
+	// TODO - зачем здесь повтор ready ?
 	$(document).ready(function() {
 		var output = document.getElementById('output');
 		var input = document.getElementById('range');
@@ -100,26 +101,31 @@ $(document).ready(function($) {
 		input.addEventListener('change', rangeHandler);
 
 		function rangeHandler(e) {
-			output.textContent = e.target.value;
+			output.textContent = formatNumberWithSpaces(e.target.value);
 		}
 	});
 
+	// Format with spaces
+	function formatNumberWithSpaces(num) {
+		return num.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+	}
+
 	// Initialize slider:
-	$(document).ready(function() {
-		var slider = document.getElementById('range');
-		noUiSlider.create(slider, {
-			start: [20, 80],
-			connect: true,
-			step: 1,
-			range: {
-				min: 0,
-				max: 100,
-			},
-			format: wNumb({
-				decimals: 0,
-			}),
+	var rangeSlider = $('#range');
+	if (rangeSlider.length) {
+		rangeSlider.each(function(i, slider) {
+			var $slider = $(slider);
+			noUiSlider.create(slider, {
+				start: [4500000],
+				connect: true,
+				step: 1,
+				range: {
+					min: 200000,
+					max: 100000000,
+				},
+			});
 		});
-	});
+	}
 
 	$('.carousel').slick({
 		dots: false,
