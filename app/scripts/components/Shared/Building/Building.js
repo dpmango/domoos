@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SingleBuilding = ({ building, handleAddToCart, handleModal, isAdded }) => {
+const Building = ({ building, handleAddToCart, handleModal, isAdded }) => {
 	return (
 		<div className={`building ${building.isPremium ? 'premium' : ''}`} data-id={building.id}>
 			<div
@@ -53,4 +53,4 @@ const SingleBuilding = ({ building, handleAddToCart, handleModal, isAdded }) => 
 	);
 };
 
-export default SingleBuilding;
+export default Building;
