@@ -85,7 +85,6 @@ class FeatuedBuildings extends Component {
 
 	// Filter functions
 	handleFilterChange = name => {
-		console.log(name);
 		this.setState({
 			...this.state,
 			filter: {
