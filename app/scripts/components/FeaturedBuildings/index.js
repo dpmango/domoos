@@ -96,6 +96,7 @@ class FeatuedBuildings extends Component {
 
 	// computed render property
 	applyFilters = buildings => {
+		if (!buildings) return [];
 		const { filter } = this.state;
 		const allBuildings = [...buildings.premium, ...buildings.regular];
 
