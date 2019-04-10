@@ -4,6 +4,7 @@ import slick from 'slick-carousel';
 import inputmask from 'inputmask';
 import 'simplebar';
 import noUiSlider from 'nouislider';
+import wNumb from 'wNumb';
 
 $(() => {
 	svg4everybody();
@@ -150,6 +151,9 @@ $(document).ready(function($) {
 					min: 800000,
 					max: 100000000,
 				},
+				format: wNumb({
+					decimals: 0,
+				}),
 			});
 
 			$currentSlider.noUiSlider.on('update', function(values, handle) {
