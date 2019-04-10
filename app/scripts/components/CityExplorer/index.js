@@ -104,7 +104,7 @@ class CitySelector extends PureComponent {
 					handleSuggest={this.handleSuggest}
 					id={id}
 				/>
-				{!info && !devs && !agencies && <Loader />}
+				{!info && !devs && !agencies && !buildings && <Loader />}
 				<div className="CityExplorer__info ">
 					{info && !info.loading && (
 						<React.Fragment>

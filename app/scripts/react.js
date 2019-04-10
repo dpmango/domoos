@@ -9,6 +9,7 @@ import theme from './theme/reapop';
 import CitySelector from './components/CitySelector';
 import RegionSelector from './components/RegionSelector';
 import CityExplorer from './components/CityExplorer';
+import FeaturedBuildings from './components/FeaturedBuildings';
 import CountryMap from './components/CountryMap';
 import CityMap from './components/CityMap';
 import Cart from './components/Cart';
@@ -18,13 +19,12 @@ import AboutModal from './components/AboutModal';
 import store from './libs/reduxStore';
 import { setSessionID } from './ducks/user/session';
 
-//hidden comps
-
 store.dispatch(setSessionID());
 
 const headerSuggestSelector = document.getElementById('header-city-select');
 const helpPodborSuggestSelector = document.getElementById('help-podbor-region-select');
 const cityExplorerSelector = document.getElementById('city-explorer');
+const featuredBuildingsSelector = document.getElementById('featured-buildings');
 const countryMapSelector = document.getElementById('country-map');
 const cityMapSelector = document.getElementById('city-map');
 const cartSelector = document.getElementById('cart');
@@ -94,6 +94,17 @@ if (countryMapSelector) {
 	);
 }
 
+// SINGLE GOROD
+if (featuredBuildingsSelector) {
+	const citySlug = featuredBuildingsSelector.dataset.slug;
+	ReactDOM.render(
+		<ComponentConstructor>
+			<FeaturedBuildings slug={citySlug} />
+		</ComponentConstructor>,
+		featuredBuildingsSelector,
+	);
+}
+
 if (cityMapSelector) {
 	const citySlug = cityMapSelector.dataset.slug;
 	ReactDOM.render(
@@ -104,6 +115,7 @@ if (cityMapSelector) {
 	);
 }
 
+// SHARED MODALS
 if (callbackSelector) {
 	ReactDOM.render(
 		<ComponentConstructor>

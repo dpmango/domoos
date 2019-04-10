@@ -98,6 +98,23 @@
 		}
 	}
 
+	.Suggest {
+		input:focus {
+			& + {
+				.Suggest__result {
+					pointer-events: all;
+					opacity: 1;
+				}
+			}
+		}
+	}
+
+	.Suggest__result {
+		display: block;
+		pointer-events: none;
+		opacity: 0;
+	}
+
 	&__block {
 		margin-top: 20px;
 
