@@ -119,7 +119,7 @@ class CountryMap extends PureComponent {
 
 		return (
 			<div
-				className={isCityMap ? 'CityMap' : 'CountryMap'}
+				className={isCityMap ? 'CountryMap CityMap' : 'CountryMap'}
 				style={{ height: '100vh', width: '100%' }}
 			>
 				{!isCityMap && (
