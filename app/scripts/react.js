@@ -11,7 +11,6 @@ import RegionSelector from './components/RegionSelector';
 import CityExplorer from './components/CityExplorer';
 import FeaturedBuildings from './components/FeaturedBuildings';
 import CountryMap from './components/CountryMap';
-import CityMap from './components/CityMap';
 import Cart from './components/Cart';
 import CallbackModal from './components/CallbackModal';
 import AboutModal from './components/AboutModal';
