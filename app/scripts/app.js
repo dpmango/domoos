@@ -92,18 +92,18 @@ $(document).ready(function($) {
 		$('.mobile-gorod-carousel').slick('setPosition');
 	});
 
-	// TODO - зачем здесь повтор ready ?
-	$(document).ready(function() {
-		var $output = $('#output');
-		var $input = $('#range');
+	// // TODO - зачем здесь повтор ready ?
+	// $(document).ready(function() {
+	// 	var $output = $('#output');
+	// 	var $input = $('.noUi-handle-lower');
 
-		$input.on('input', rangeHandler);
-		$input.on('change', rangeHandler);
+	// 	// $input.on('input', rangeHandler);
+	// 	$input.on('change').data('aria-valuetext', rangeHandler);
 
-		function rangeHandler(e) {
-			$output.text(formatNumberWithSpaces(e.target.value));
-		}
-	});
+	function rangeHandler(e) {
+		$output.text(formatNumberWithSpaces(e.target.value));
+	}
+	// });
 
 	// Format with spaces
 	function formatNumberWithSpaces(num) {
@@ -111,18 +111,49 @@ $(document).ready(function($) {
 	}
 
 	// Initialize slider:
-	var rangeSlider = $('#range');
-	if (rangeSlider.length) {
-		rangeSlider.each(function(i, slider) {
-			var $slider = $(slider);
-			noUiSlider.create(slider, {
+	// var rangeSlider = $('#range') || '';
+	// // var slider1Value = document.getElementById('#output');
+
+	// if (rangeSlider.length) {
+	// 	rangeSlider.each(function(i, slider) {
+	// 		var $slider = $(slider);
+	// 		noUiSlider.create(slider, {
+	// 			start: [4500000],
+	// 			connect: [true, false],
+	// 			step: 1000,
+	// 			range: {
+	// 				min: 800000,
+	// 				max: 100000000,
+	// 			},
+	// 		});
+	// 	});
+	// 	// rangeSlider.noUiSlider.on('update', function(values, handle) {
+	// 	// 	slider1Value.innerHTML = values[handle];
+	// 	// });
+	// }
+
+	function formatNumberWithSpaces(num) {
+		return num.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+	}
+
+	var sliders = $('#range');
+	var value = $('#output')[0];
+
+	if (sliders.length) {
+		sliders.each(function() {
+			var $currentSlider = $(this)[0];
+			noUiSlider.create($currentSlider, {
 				start: [4500000],
-				connect: true,
-				step: 1,
+				connect: [true, false],
+				step: 1000,
 				range: {
-					min: 200000,
+					min: 800000,
 					max: 100000000,
 				},
+			});
+
+			$currentSlider.noUiSlider.on('update', function(values, handle) {
+				value.innerHTML = formatNumberWithSpaces(values[handle]);
 			});
 		});
 	}
