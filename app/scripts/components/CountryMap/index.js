@@ -32,15 +32,31 @@ class CountryMap extends PureComponent {
 		activeMarker: undefined,
 	};
 
+	componentWillMount = () => {
+		this.setState({
+			zoom: this.props.isCityMap ? 7 : 4,
+		});
+	};
 	componentDidMount = () => {
-		const { getCitiesMapInfo } = this.props;
+		const { getCitiesMapInfo, isCityMap, citySlug } = this.props;
 		getCitiesMapInfo();
+		if (isCityMap) {
+			// set initial marker if it's a city map
+			this.hadleCityChange(citySlug);
+		}
 	};
 
-	hadleCityClick = slug => {
+	// TODO - any need to watch props?
+	// componentWillReceiveProps = nextProps => {
+	// 	if (nextProps.mapInfo && nextProps.mapInfo[0].slug !== this.state.activeMarker) {
+	// 		this.bindCurrentCity();
+	// 	}
+	// };
+
+	hadleCityChange = slug => {
 		const {
-			props: { mapInfo },
-			state: { activeCity },
+			props: { mapInfo, isCityMap },
+			state: { activeCity, center },
 		} = this;
 
 		const result = matchSorter(mapInfo.data.result, slug, {
@@ -48,11 +64,12 @@ class CountryMap extends PureComponent {
 		});
 
 		const isEqual = JSON.stringify(result[0]) === JSON.stringify(activeCity);
-
+		const updatableCenter = isCityMap ? { lat: result[0].lat, lng: result[0].lng + 1 } : center;
 		this.setState({
 			activeCity: isEqual ? [] : result[0],
 			isSidebarActive: isEqual ? false : true,
 			actitveMarker: slug,
+			center: updatableCenter,
 		});
 	};
 
@@ -68,7 +85,7 @@ class CountryMap extends PureComponent {
 		// 		activeFilter.indexOf(name) !== -1
 		// 			? [...prevState.activeFilter.filter(item => item !== name)]
 		// 			: [...prevState.activeFilter, name]
-		// }));
+		// }))
 	};
 
 	handleCloseSidebar = () => {
@@ -79,7 +96,7 @@ class CountryMap extends PureComponent {
 	};
 
 	render() {
-		const { mapInfo } = this.props;
+		const { mapInfo, isCityMap } = this.props;
 		const {
 			key,
 			center,
@@ -96,32 +113,37 @@ class CountryMap extends PureComponent {
 				className={'bull ' + (actitveMarker === slug ? 'bounce is-active' : '')}
 				id={slug}
 				title={name}
-				onClick={() => mapInfo.data.result && this.hadleCityClick(slug)}
+				onClick={() => mapInfo.data.result && this.hadleCityChange(slug)}
 			/>
 		);
 
 		return (
-			<div className="CountryMap" style={{ height: '100vh', width: '100%' }}>
-				<div data-simplebar className="filter">
-					<div className="filter__title">О сервисе</div>
-					<div className="filter__content">
-						Наша миссия - упрощение покупки квартиры в новостройке. Точная и актуальная информация
-						поможет вам выбрать именно то, что нужно. Мы убеждены, что каждый из нас заслуживает
-						самый качественный сервис от застройщиков, банков и агентств недвижимости.
+			<div
+				className={isCityMap ? 'CityMap' : 'CountryMap'}
+				style={{ height: '100vh', width: '100%' }}
+			>
+				{!isCityMap && (
+					<div data-simplebar className="filter">
+						<div className="filter__title">О сервисе</div>
+						<div className="filter__content">
+							Наша миссия - упрощение покупки квартиры в новостройке. Точная и актуальная информация
+							поможет вам выбрать именно то, что нужно. Мы убеждены, что каждый из нас заслуживает
+							самый качественный сервис от застройщиков, банков и агентств недвижимости.
+						</div>
+						<div className="filter__list">
+							{filters &&
+								filters.map((item, key) => (
+									<div
+										className={`filter__item ${activeFilter === item.toLowerCase() && 'selected'} `}
+										key={key}
+										onClick={() => this.hadleFilterClick(item.toLowerCase())}
+									>
+										{item}
+									</div>
+								))}
+						</div>
 					</div>
-					<div className="filter__list">
-						{filters &&
-							filters.map((item, key) => (
-								<div
-									className={`filter__item ${activeFilter === item.toLowerCase() && 'selected'} `}
-									key={key}
-									onClick={() => this.hadleFilterClick(item.toLowerCase())}
-								>
-									{item}
-								</div>
-							))}
-					</div>
-				</div>
+				)}
 				{isSidebarActive && activeCity && (
 					<div data-simplebar className="sidebar city">
 						<div className="sidebar__header">
@@ -176,17 +198,28 @@ class CountryMap extends PureComponent {
 							<div className="content">{activeCity.neighbors}</div>
 						</div>
 						<div className="map-form">
-							<div className="title">Заказать подбор квартиры</div>
-							<div className="desc">Это бесплатная услуга</div>
-							<div className="hotcall__form">
-								<input type="tel" placeholder="+7" className="hotcall__input" im-insert="true" />
-								<input
-									name="submit"
-									type="submit"
-									value="Отправить"
-									className="hotcall__submit btn btn__full btn__full--yellow"
-								/>
-							</div>
+							{isCityMap ? (
+								<div className="title">Заказать подбор квартиры</div>
+							) : (
+								<React.Fragment>
+									<div className="title">Заказать подбор квартиры</div>
+									<div className="desc">Это бесплатная услуга</div>
+									<div className="hotcall__form">
+										<input
+											type="tel"
+											placeholder="+7"
+											className="hotcall__input"
+											im-insert="true"
+										/>
+										<input
+											name="submit"
+											type="submit"
+											value="Отправить"
+											className="hotcall__submit btn btn__full btn__full--yellow"
+										/>
+									</div>
+								</React.Fragment>
+							)}
 						</div>
 						<div className="mobileButton">
 							<a href="#" className="btn btn__full btn__full--yellow">
@@ -196,18 +229,22 @@ class CountryMap extends PureComponent {
 					</div>
 				)}
 				<div className="map-container">
-					<a href="/goroda" className="to-category">
-						<span />В каталог городов
-					</a>
-					<a href="/goroda" className="to-new-buildings">
-						В каталог новостроек
-						<span />
-					</a>
+					{!isCityMap && (
+						<React.Fragment>
+							<a href="/goroda" className="to-category">
+								<span />В каталог городов
+							</a>
+							<a href="/goroda" className="to-new-buildings">
+								В каталог новостроек
+								<span />
+							</a>
+						</React.Fragment>
+					)}
 					<GoogleMapReact
 						bootstrapURLKeys={{
 							key,
 						}}
-						defaultCenter={center}
+						center={center}
 						defaultZoom={zoom}
 					>
 						{mapInfo.data &&
