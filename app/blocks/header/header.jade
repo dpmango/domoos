@@ -4,7 +4,8 @@
 
 block header
 
-section.header(class=isMap ? 'goroda-na-karte' : isСity ? 'gorod' : isСities ? 'goroda' : '' style=isСities ? "background-image: url('/images/bg-main-cities.jpg')" : isСity ? "background-image: url('/images/bg-main-cities.jpg')" : isMap ? 'background-color: #fff;' : "background-image: url('/images/bg-main.jpg')")
+section.header(class=isHome ? 'homepage' : isMap ? 'goroda-na-karte' : isСity ? 'gorod' : isСities ? 'goroda' : '' style=isСities ? "background-image: url('/images/bg-main-cities.jpg')" : isСity ? "background-image: url('/images/bg-main-cities.jpg')" : isMap ? 'background-color: #fff;' : "background-image: url('/images/bg-main.jpg')")
+	.header__gradient
 	if isСities
 		span.mobile-bg(style="background-image: url('/images/bg-main-cities-mobile.jpg')")
 	.header__sticky.sticky

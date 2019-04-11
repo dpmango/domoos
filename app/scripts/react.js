@@ -11,7 +11,6 @@ import RegionSelector from './components/RegionSelector';
 import CityExplorer from './components/CityExplorer';
 import FeaturedBuildings from './components/FeaturedBuildings';
 import CountryMap from './components/CountryMap';
-import CityMap from './components/CityMap';
 import Cart from './components/Cart';
 import CallbackModal from './components/CallbackModal';
 import AboutModal from './components/AboutModal';
@@ -85,12 +84,16 @@ if (cityExplorerSelector) {
 	);
 }
 
-if (countryMapSelector) {
+if (countryMapSelector || cityMapSelector) {
+	// assume then both can't be present on the same page
+	const renderElement = countryMapSelector || cityMapSelector;
+	const citySlug = cityMapSelector ? cityMapSelector.dataset.slug : undefined;
+
 	ReactDOM.render(
 		<ComponentConstructor>
-			<CountryMap />
+			<CountryMap isCityMap={cityMapSelector} citySlug={citySlug} />
 		</ComponentConstructor>,
-		countryMapSelector,
+		renderElement,
 	);
 }
 
@@ -102,16 +105,6 @@ if (featuredBuildingsSelector) {
 			<FeaturedBuildings slug={citySlug} />
 		</ComponentConstructor>,
 		featuredBuildingsSelector,
-	);
-}
-
-if (cityMapSelector) {
-	const citySlug = cityMapSelector.dataset.slug;
-	ReactDOM.render(
-		<ComponentConstructor>
-			<CityMap slug={citySlug} />
-		</ComponentConstructor>,
-		cityMapSelector,
 	);
 }
 
