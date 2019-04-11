@@ -1,0 +1,14 @@
+extends /blocks/layout/layout
+
+block head
+	- var pageTitle = 'Все застройщики';
+
+block header
+	- var isDevelopers = true;
+
+block content
+	include /blocks/header/header
+	include /blocks/featured-developers/featured-developers
+	include /blocks/premium-partnership-offer/premium-partnership-offer
+	include /blocks/featured-developer-banner/featured-developer-banner
+	include /blocks/all-developers-list/all-developers-list

@@ -1,6 +1,6 @@
-- var navigation = [{ title: 'Все города', href: '/goroda.html', isDropdown: false, }, { title: 'Города на карте', href: '/goroda-na-karte.html', isDropdown: false }, { title: 'Услуги', href: '#', isDropdown: true, data: [{href:'/', title: 'Переезд'}, {href:'/', title: 'Переезд'}, {href:'/', title: 'Подбор'}]}, { title: 'Все агенства', href: '#', isDropdown: false }, { title: 'Все застройщики', href: '#', isDropdown: false }];
+- var navigation = [{ title: 'Все города', href: '/goroda.html', isDropdown: false, }, { title: 'Города на карте', href: '/goroda-na-karte.html', isDropdown: false }, { title: 'Услуги', href: '#', isDropdown: true, data: [{href:'/', title: 'Переезд'}, {href:'/', title: 'Переезд'}, {href:'/', title: 'Подбор'}]}, { title: 'Все агенства', href: '#', isDropdown: false }, { title: 'Все застройщики', href: '/vse-zastrojshiki.html', isDropdown: false }];
 
-- var navigationFixed = [{ title: 'Застройщики', href: '#', isDropdown: false, }, { title: 'Районы', href: '#', isDropdown: false }, { title: 'Другие', href: '#', isDropdown: true, data: [{href:'/', title: 'Новостройки'}, {href:'/', title: 'Все агенства'}, {href:'/', title: 'Квартиры'}, {href:'/', title: 'Статьи'},]}];
+- var navigationFixed = [{ title: 'Застройщики', href: '/vse-zastrojshiki.html', isDropdown: false, }, { title: 'Районы', href: '#', isDropdown: false }, { title: 'Другие', href: '#', isDropdown: true, data: [{href:'/', title: 'Новостройки'}, {href:'/', title: 'Все агенства'}, {href:'/', title: 'Квартиры'}, {href:'/', title: 'Статьи'},]}];
 
 block header
 
@@ -78,6 +78,25 @@ section.header(class=isMap ? 'goroda-na-karte' : isСities ? 'goroda' : '' style
 
 				h1.header__title
 					| Все города России на Domoos
+				div.header__description
+					| Санкт-Петербург — один из самых красивых городов Европы, культурная столица России, а также важнейший экономический и транспортный центр страны с населением более 5 миллионов человек.
+
+				div.header__zhk
+					div.header__zhk-image
+						img(src="images/pik.png", alt="")
+					div.header__zhk-info
+						p.header__zhk-title ЖК «Орловский парк»
+						p.header__zhk-description Старт продаж нового жилого комплекса от надежного застройщика
+						div.header__zhk-row
+							a.header__zhk-btn(href="#") Узнать цены
+							p.header__zhk-plain Предложение от «ПИК группа»
+
+			if isDevelopers
+
+				a.to-home-screen(href="#") На страницу Петербурга
+
+				h1.header__title
+					| Все застройщики Петербурга
 				div.header__description
 					| Санкт-Петербург — один из самых красивых городов Европы, культурная столица России, а также важнейший экономический и транспортный центр страны с населением более 5 миллионов человек.
 
