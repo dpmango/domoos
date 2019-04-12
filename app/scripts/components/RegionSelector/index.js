@@ -31,7 +31,7 @@ class RegionSelector extends Component {
 
 	handeleSubmit = () => {
 		const { activeCity } = this.state;
-		const win = window.open(`goroda/${activeCity.slug}`, '_blank');
+		const win = window.open(`/${activeCity.slug}`, '_blank');
 		win.focus();
 	};
 

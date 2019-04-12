@@ -158,7 +158,7 @@ class CountryMap extends PureComponent {
 							}}
 						/>
 
-						<a className="city__link" href={`/goroda/${activeCity.slug}`} target="_blank">
+						<a className="city__link" href={`/${activeCity.slug}`} target="_blank">
 							Страница города
 						</a>
 						<div className="city__name">{activeCity.name}</div>
