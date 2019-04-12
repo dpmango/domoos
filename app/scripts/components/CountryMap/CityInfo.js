@@ -5,9 +5,9 @@ class CityInfo extends Component {
 	filterOptions = options => {
 		const removeByIndex = (list, index) => [...list.slice(0, index), ...list.slice(index + 1)];
 
-		if (this.props.isCityMap) {
-			return removeByIndex(options, 3);
-		}
+		// if (this.props.isCityMap) {
+		// 	return removeByIndex(options, 3);
+		// }
 		return options;
 	};
 	render() {
@@ -25,14 +25,17 @@ class CityInfo extends Component {
 					}}
 				/>
 
-				<a className="city__link" href={`/${activeCity.slug}`} target="_blank">
-					Страница города
-				</a>
+				{!isCityMap && (
+					<a className="city__link" href={`/${activeCity.slug}`} target="_blank">
+						Страница города
+					</a>
+				)}
+
 				<div className="city__name">{activeCity.name}</div>
 				<div className="city__description">{activeCity.description}</div>
 				{!isCityMap && (
 					<div className="city__ratings">
-						{activeCity.ratings &&
+						{/* {activeCity.ratings &&
 							activeCity.ratings.map((rating, key) => (
 								<div key={key} className="rating">
 									<div className="rating__title">{rating.title}</div>
@@ -48,7 +51,7 @@ class CityInfo extends Component {
 										/>
 									</div>
 								</div>
-							))}
+							))} */}
 						<div />
 					</div>
 				)}
@@ -69,12 +72,16 @@ class CityInfo extends Component {
 					</div>
 				)}
 				<div className="map-form">
-					{isCityMap ? (
+					{/* {isCityMap ? (
 						<div className="title">Заказать подбор квартиры</div>
-					) : (
+					) : ( */}
 						<React.Fragment>
 							<div className="title">Заказать подбор квартиры</div>
-							<div className="desc">Это бесплатная услуга</div>
+
+							{/* {!isCityMap && (
+								<div className="desc">Это бесплатная услуга</div>
+							)} */}
+
 							<div className="hotcall__form">
 								<input type="tel" placeholder="+7" className="hotcall__input" im-insert="true" />
 								<input
@@ -85,13 +92,13 @@ class CityInfo extends Component {
 								/>
 							</div>
 						</React.Fragment>
-					)}
+
 				</div>
-				<div className="mobileButton">
+				{/* <div className="mobileButton">
 					<a href="#" className="btn btn__full btn__full--yellow">
 						Заказать подбор квартиры
 					</a>
-				</div>
+				</div> */}
 			</div>
 		);
 	}

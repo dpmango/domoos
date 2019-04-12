@@ -302,41 +302,41 @@ export default handleActions(
 					name: item.gorod,
 					category: item.category.toLowerCase().split(', '),
 					description:
-						item.description === '' ? 'Северный город на границе с Европой' : item.description,
+						item.description === '' ? '' : item.description,
 					ratings: [
 						{
-							title: 'Экология',
+							title: '',
 							value: parseFloat(item.rating_eco),
 						},
 						{
-							title: 'Доходность',
+							title: '',
 							value: parseFloat(item.rating_dohod),
 						},
 						{
-							title: 'Развитость',
+							title: '',
 							value: parseFloat(item.rating_infr),
 						},
 						{
-							title: 'Качество жизни',
+							title: '',
 							value: parseFloat(item.rating_total),
 						},
 					],
 					options: [
 						{
-							title: 'Численность населения',
-							value: `${formatNumber(item.naselenie)} человек`,
-						},
-						{
-							title: 'Средняя зарплата',
-							value: `${formatNumber(item.dohod)} руб.`,
-						},
-						{
-							title: 'Стоимость квартир от',
-							value: item.price_min ? item.price_min + ' руб.' : 'недоступно',
+							title: 'Население',
+							value: `${formatNumber(item.naselenie)}`,
 						},
 						{
 							title: 'Регион',
 							value: item.region,
+						},
+						{
+							title: 'Доход',
+							value: `около ${formatNumber(item.dohod)} ₽`,
+						},
+						{
+							title: 'Квартиры от',
+							value: item.price_min ? item.price_min + ' ₽' : 'недоступно',
 						},
 						{
 							title: 'Климат',
