@@ -26,9 +26,8 @@ export default handleActions(
 				name: item.gorod,
 				name_a: item.skl_goroda,
 				name_e: item.skl_gorode,
-				// description: item.description,
-				description:
-					'Москва – столица России, многонациональный город на Москве-реке в западной части страны. В его историческом центре находится средневековая крепость Кремль – резиденция российского президента. На ее территории можно посетить Оружейную палату, где выставляются драгоценные предметы, принадлежавшие царской семье.',
+				description: item.description,
+				
 				properties: [
 					{
 						title: 'Численность населения',
