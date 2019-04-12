@@ -3,9 +3,10 @@ import React, { PureComponent } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import CityInfo from './CityInfo';
+
 import GoogleMapReact from 'google-map-react';
 import matchSorter from 'match-sorter';
-import ReactStars from 'react-stars';
 
 import { selectcitiesMapInfo, getCitiesMapInfo } from '../../ducks/cities/citiesMapInfo';
 
@@ -110,7 +111,7 @@ class CountryMap extends PureComponent {
 
 		const Marker = ({ slug, name }) => (
 			<div
-				className={'bull ' + (actitveMarker === slug ? 'bounce is-active' : '')}
+				className={'bull ' + (actitveMarker === slug ? 'is-active' : '')}
 				id={slug}
 				title={name}
 				onClick={() => mapInfo.data.result && this.hadleCityChange(slug)}
@@ -145,88 +146,11 @@ class CountryMap extends PureComponent {
 					</div>
 				)}
 				{isSidebarActive && activeCity && (
-					<div data-simplebar className="sidebar city">
-						<div className="sidebar__header">
-							<div className="sidebar__close" onClick={() => this.handleCloseSidebar()} />
-						</div>
-						<div
-							className="city__img"
-							style={{
-								backgroundImage: `url(https://domoos.ru/images/goroda/preview/${
-									activeCity.slug
-								}.jpg)`,
-							}}
-						/>
-
-						<a className="city__link" href={`/goroda/${activeCity.slug}`} target="_blank">
-							Страница города
-						</a>
-						<div className="city__name">{activeCity.name}</div>
-						<div className="city__description">{activeCity.description}</div>
-						<div className="city__ratings">
-							{activeCity.ratings &&
-								activeCity.ratings.map((rating, key) => (
-									<div key={key} className="rating">
-										<div className="rating__title">{rating.title}</div>
-										<div className="rating__stars">
-											<ReactStars
-												count={5}
-												size={15}
-												value={rating.value}
-												edit={false}
-												half={false}
-												color2="#ffd72b"
-												color1="#eceff6"
-											/>
-										</div>
-									</div>
-								))}
-							<div />
-						</div>
-						<ul className="city__options">
-							{activeCity.ratings &&
-								activeCity.options.map((option, key) => (
-									<li key={key} className="option">
-										<span className="option__title">{option.title}:</span>
-										<span className="option__value">{option.value}</span>
-									</li>
-								))}
-							<div />
-						</ul>
-						<div className="city__neighbors">
-							<div className="title">Ближайшие города:</div>
-							<div className="content">{activeCity.neighbors}</div>
-						</div>
-						<div className="map-form">
-							{isCityMap ? (
-								<div className="title">Заказать подбор квартиры</div>
-							) : (
-								<React.Fragment>
-									<div className="title">Заказать подбор квартиры</div>
-									<div className="desc">Это бесплатная услуга</div>
-									<div className="hotcall__form">
-										<input
-											type="tel"
-											placeholder="+7"
-											className="hotcall__input"
-											im-insert="true"
-										/>
-										<input
-											name="submit"
-											type="submit"
-											value="Отправить"
-											className="hotcall__submit btn btn__full btn__full--yellow"
-										/>
-									</div>
-								</React.Fragment>
-							)}
-						</div>
-						<div className="mobileButton">
-							<a href="#" className="btn btn__full btn__full--yellow">
-								Заказать подбор квартиры
-							</a>
-						</div>
-					</div>
+					<CityInfo
+						activeCity={activeCity}
+						isCityMap={isCityMap}
+						handleCloseSidebar={this.handleCloseSidebar}
+					/>
 				)}
 				<div className="map-container">
 					{!isCityMap && (

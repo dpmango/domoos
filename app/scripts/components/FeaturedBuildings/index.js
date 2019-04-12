@@ -146,7 +146,7 @@ class FeatuedBuildings extends Component {
 							</div>
 						</div>
 					</div>
-					<div className="gorod-popular__links">
+					{/* <div className="gorod-popular__links">
 						<a className="gorod-popular__see-map" href="#">
 							<div className="icon">
 								<SvgIcon name="pin-blue" classModifier="pin" />
@@ -156,7 +156,7 @@ class FeatuedBuildings extends Component {
 						<a className="gorod-popular__all-new" href="#">
 							Все новостройки
 						</a>
-					</div>
+					</div> */}
 				</div>
 				<div className="gorod-popular__content">
 					{!buildings ? (

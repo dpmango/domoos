@@ -459,11 +459,11 @@ $(document).ready(function($) {
 		if (filtered.length > 0) {
 			$('#cities-filter')
 				.html('')
-				.append(filtered.slice(0, sliceBy));
+				.append(filtered);
 		} else {
 			$('#cities-filter')
 				.html('')
-				.append(allCities.slice(0, sliceBy));
+				.append(allCities);
 		}
 	});
 });

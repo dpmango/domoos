@@ -32,9 +32,9 @@ class BuildingsSection extends Component {
 			<React.Fragment>
 				<div className="CityExplorer__header">
 					<span className="title">Популярные новостройки</span>
-					<a className="to-category-link" href={`zastrochiki/${slug}`} target="_blank">
+					{/* <a className="to-category-link" href={`zastrochiki/${slug}`} target="_blank">
 						Все новостройки {cityDecl}
-					</a>
+					</a> */}
 				</div>
 				<div className="CityExplorer__content">
 					<Slider {...sliderSettings}>
