@@ -110,7 +110,7 @@ class CountryMap extends PureComponent {
 
 		const Marker = ({ slug, name }) => (
 			<div
-				className={'bull ' + (actitveMarker === slug ? 'bounce is-active' : '')}
+				className={'bull ' + (actitveMarker === slug ? 'is-active' : '')}
 				id={slug}
 				title={name}
 				onClick={() => mapInfo.data.result && this.hadleCityChange(slug)}
