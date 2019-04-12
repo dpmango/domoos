@@ -22,7 +22,7 @@ export default class InfoSection extends Component {
 		return (
 			<React.Fragment>
 				<div className="CityExplorer__description">
-					<div className="CityExplorer__title">Исторический город</div>
+					<div className="CityExplorer__title">О городе</div>
 					<p>{info.description}</p>
 					<a href={`/${city.slug}`} className="CityExplorer__learn-more" target="_blank">
 						{`На страницу ${info.name_a}`}
