@@ -18,7 +18,7 @@ export default handleActions(
 	{
 		[setCityBuildings]: (state, { payload }) => {
 			const { data } = payload.data.data;
-			// console.log('setting city buildings', data);
+			console.log('setting city buildings', data);
 			const result = data.map((item, key) => ({
 				type: 'buildings',
 				isPremium: item.premium === '' ? false : true,

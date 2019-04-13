@@ -1,11 +1,11 @@
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux';
 
-import citiesList from "./citiesList";
-import cityInfo from "./cityInfo";
-import cityDevelopers from "./cityDevelopers";
-import cityBuildings from "./cityBuildings";
-import cityAgencies from "./cityAgencies";
-import citiesMapInfo from "./citiesMapInfo";
+import citiesList from './citiesList';
+import cityInfo from './cityInfo';
+import cityDevelopers from './cityDevelopers';
+import cityBuildings from './cityBuildings';
+import cityAgencies from './cityAgencies';
+import citiesMapInfo from './citiesMapInfo';
 
 export default combineReducers({
 	citiesList,
@@ -13,5 +13,5 @@ export default combineReducers({
 	cityDevelopers,
 	cityBuildings,
 	cityAgencies,
-	citiesMapInfo
+	citiesMapInfo,
 });
