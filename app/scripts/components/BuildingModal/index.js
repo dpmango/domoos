@@ -5,7 +5,7 @@ import ReactStars from 'react-stars';
 
 import PhoneForm from '../PhoneForm';
 
-import { modalStyles } from '../../libs/utils';
+import { formatNumber, modalStyles } from '../../libs/utils';
 
 class BuildingModal extends PureComponent {
 	static propTypes = {
@@ -29,7 +29,6 @@ class BuildingModal extends PureComponent {
 		const { isVisible, data, tabs, handleClose } = this.props;
 		const { activeTab } = this.state;
 
-		// TODO get
 		const aboutObj = [
 			{
 				title: 'Район',
@@ -64,20 +63,14 @@ class BuildingModal extends PureComponent {
 					value: 'Сбербанк, ВТБ, Абсолют, Открытие',
 				},
 			],
-			prices: [
-				{
-					title: '1к - 38,9 кв.м',
-					value: '2 900 000 ₽',
-				},
-				{
-					title: '2к - 45,9 кв.м',
-					value: '4 100 000 ₽',
-				},
-				{
-					title: '3к - 61,9 кв.м',
-					value: '5 900 000 ₽',
-				},
-			],
+			prices: data.flats
+				? data.flats.map(flat => {
+						return {
+							title: `${flat.rooms} - ${flat.square} кв.м`,
+							value: `${formatNumber(flat.price)} ₽`,
+						};
+				  })
+				: [],
 		};
 
 		const locationObj = {
