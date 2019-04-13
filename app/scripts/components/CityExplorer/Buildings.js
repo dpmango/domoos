@@ -5,7 +5,6 @@ import Slider from 'react-slick';
 import { sliderSettings } from '../../libs/utils';
 
 import { saveToCart, selectCartItems, deleteFromCart } from '../../ducks/cart/items';
-import BuildingModal from '../BuildingModal';
 import Building from '../Shared/Building/Building';
 
 class BuildingsSection extends Component {

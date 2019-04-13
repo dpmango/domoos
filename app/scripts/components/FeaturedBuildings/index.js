@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Slider from 'react-slick';
-import { sliderSettings } from '../../libs/utils';
 
 import { saveToCart, selectCartItems, deleteFromCart } from '../../ducks/cart/items';
 import { selectCityBuildings, getCityBuildings } from '../../ducks/cities/cityBuildings';
@@ -133,9 +131,6 @@ class FeatuedBuildings extends Component {
 			},
 			buildings: buildingsList,
 		});
-
-		// limit filtered to 6 items
-		// return result.slice(0, 6);
 	};
 
 	mapFilterNameToStateBuildings = filter => {
