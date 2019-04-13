@@ -18,7 +18,7 @@ export default handleActions(
 	{
 		[setCityBuildings]: (state, { payload }) => {
 			const { data } = payload.data.data;
-
+			console.log('setting city buildings', data);
 			const result = data.map((item, key) => ({
 				type: 'buildings',
 				isPremium: item.premium === '' ? false : true,
@@ -28,11 +28,13 @@ export default handleActions(
 				city: item.gorod,
 				citySlug: item.slug_gorod,
 				developer: item.zastr,
-				developerSlug: item.slug_zastr,
+				developerSlug: item.slug_zastr, // required for zastr image
 				features: [item.klass, item.otdelka, item.srok],
 				subway: item.metro,
 				district: item.raion,
 				price: item.price ? item.price : '0 000 000',
+				klassSlug: item.slug_klass,
+				flats: item.flats ? item.flats : [],
 			}));
 
 			const withPremium = result.filter(item => item.isPremium);

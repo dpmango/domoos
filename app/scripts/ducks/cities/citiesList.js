@@ -1,9 +1,9 @@
-import { fetchCitiesList } from "./api";
-import { createAction, handleActions } from "redux-actions";
+import { fetchCitiesList } from './api';
+import { createAction, handleActions } from 'redux-actions';
 
 // SYNC ACTIONS
 
-export const setCitiesList = createAction("setCitiesList");
+export const setCitiesList = createAction('setCitiesList');
 
 // ASYNC ACTIONS
 
@@ -15,7 +15,7 @@ export const getCitiesList = () => async dispatch => {
 const initialState = {
 	loading: true,
 	data: [],
-	error: null
+	error: null,
 };
 
 export default handleActions(
@@ -25,18 +25,17 @@ export default handleActions(
 
 			const result = data.map(item => ({
 				slug: item.slug_gorod,
-				name:
-					item.gorod === "Петербург" ? "Санкт-Петербург" : item.gorod,
+				name: item.gorod === 'Петербург' ? 'Санкт-Петербург' : item.gorod,
 				name_a: item.skl_goroda,
 				name_e: item.skl_gorode,
-				alias: item.gorod === "Петербург" && "Санкт-Петербург"
+				alias: item.gorod === 'Петербург' && 'Санкт-Петербург',
 			}));
 			return {
-				data: result
+				data: result,
 			};
-		}
+		},
 	},
-	initialState
+	initialState,
 );
 
 export const selectCitiesList = state => state.cities.citiesList;

@@ -280,7 +280,12 @@
 				}
 
 				+below($phones) {
-					display: none;
+					.option{
+						&:nth-child(2),&:nth-child(4),&:nth-child(5){
+							display: none;
+						}
+					}
+					// display: none;
 				}
 			}
 

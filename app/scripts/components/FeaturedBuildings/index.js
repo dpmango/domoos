@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Slider from 'react-slick';
-import { sliderSettings } from '../../libs/utils';
 
 import { saveToCart, selectCartItems, deleteFromCart } from '../../ducks/cart/items';
 import { selectCityBuildings, getCityBuildings } from '../../ducks/cities/cityBuildings';
@@ -21,8 +19,16 @@ class FeatuedBuildings extends Component {
 			slug: undefined,
 		},
 		filter: {
-			list: ['Под ключ', 'Сданные', 'Недорогие', 'Элитные'],
-			activeFilter: 'Под ключ',
+			list: ['Проверенные', 'Эконом', 'Комфорт', 'Премиум', 'Бизнес', 'Элит'],
+			activeFilter: 'Проверенные',
+		},
+		buildings: {
+			verified: [],
+			ekonom: [],
+			comfort: [],
+			premium: [],
+			busines: [],
+			elit: [],
 		},
 		modal: {
 			building: {},
@@ -45,6 +51,12 @@ class FeatuedBuildings extends Component {
 		const { activeCity } = this.state;
 
 		getCityBuildings(activeCity.slug);
+	};
+
+	componentWillReceiveProps = nextProps => {
+		if (nextProps.CityBuildings && nextProps.CityBuildings[this.state.activeCity.slug]) {
+			this.buildBuildingsTabs(nextProps.CityBuildings[this.state.activeCity.slug]);
+		}
 	};
 
 	// modal functions
@@ -94,35 +106,56 @@ class FeatuedBuildings extends Component {
 		});
 	};
 
-	// computed render property
-	applyFilters = buildings => {
+	buildBuildingsTabs = buildings => {
 		if (!buildings) return [];
-		const { filter } = this.state;
 		const allBuildings = [...buildings.premium, ...buildings.regular];
 
-		let result = [];
+		const buildingsList = {
+			verified: buildings.premium.slice(0, 6),
+			ekonom: allBuildings.filter(x => x.features[0] === 'эконом-класс').slice(0, 6),
+			comfort: allBuildings.filter(x => x.features[0] === 'комфорт-класс').slice(0, 6),
+			premium: allBuildings.filter(x => x.features[0] === 'премиум-класс').slice(0, 6),
+			busines: allBuildings.filter(x => x.features[0] === 'бизнес-класс').slice(0, 6),
+			elit: allBuildings.filter(x => x.features[0] === 'элит-класс').slice(0, 6),
+		};
 
-		if (filter.activeFilter === 'Под ключ') {
-			result = allBuildings.filter(x => x.features[1] === 'под ключ');
-		} else if (filter.activeFilter === 'Сданные') {
-			result = allBuildings.filter(x => x.features[2] === 'сдан');
-		} else if (filter.activeFilter === 'Недорогие') {
-			result = allBuildings.filter(x => x.features[0] === 'комфорт-класс');
-		} else if (filter.activeFilter === 'Элитные') {
-			result = allBuildings.filter(x => x.features[0] === 'элит-класс');
-		} else {
-			result = buildings.premium;
+		const nonEmptyFilters = this.state.filter.list.filter(filter => {
+			return buildingsList[this.mapFilterNameToStateBuildings(filter)].length;
+		});
+
+		this.setState({
+			...this.state,
+			filter: {
+				...this.state.filter,
+				list: nonEmptyFilters,
+			},
+			buildings: buildingsList,
+		});
+	};
+
+	mapFilterNameToStateBuildings = filter => {
+		// get corresponding name in state by the filter name
+		if (filter === 'Проверенные') {
+			return 'verified';
+		} else if (filter === 'Эконом') {
+			return 'ekonom';
+		} else if (filter === 'Комфорт') {
+			return 'comfort';
+		} else if (filter === 'Премиум') {
+			return 'premium';
+		} else if (filter === 'Бизнес') {
+			return 'busines';
+		} else if (filter === 'Элит') {
+			return 'elit';
 		}
-
-		// limit filtered to 6 items
-		return result.slice(0, 6);
 	};
 
 	render() {
 		const { CityBuildings } = this.props;
 		const { activeCity, modal, filter } = this.state;
 
-		const buildings = this.applyFilters(CityBuildings[activeCity.slug]);
+		// const buildings = this.applyFilters(CityBuildings[activeCity.slug]);
+		const buildings = this.state.buildings[this.mapFilterNameToStateBuildings(filter.activeFilter)];
 
 		return (
 			<React.Fragment>

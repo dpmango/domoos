@@ -126,8 +126,7 @@
 	&__buttons {
 		position: relative;
 		// overflow: hidden;
-		width: calc(100% + 15px);
-		max-width: 380px;
+		max-width: calc(100% + 15px);
 		max-height: 45px;
 	}
 
@@ -137,8 +136,7 @@
 		display: flex;
 		overflow: hidden;
 		flex-wrap: nowrap;
-		min-width: 380px;
-		justify-content: space-between;
+		min-width: 1px;
 
 		+below($phones) {
 			padding-right: 15px;
@@ -166,6 +164,7 @@
 		position: relative;
 		z-index: 2;
 		padding: 12px 0;
+		margin-right: 25px;
 		display: inline-block;
 		font-size: 14px;
 		cursor: pointer;
@@ -176,6 +175,9 @@
 
 		&:not(.is-active):hover {
 			color: var(--blue);
+		}
+		&:last-child{
+			margin-right: 0;
 		}
 
 		&.is-active {

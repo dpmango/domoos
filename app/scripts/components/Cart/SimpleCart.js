@@ -37,10 +37,7 @@ class SimpleCart extends PureComponent {
 				</div>
 				{items.length > 0 && (
 					<div className="SimpleCart__show-full">
-						<div
-							className="btn btn__full btn__full--yellow"
-							onClick={() => handleOpenCart()}
-						>
+						<div className="btn btn__full btn__full--yellow" onClick={() => handleOpenCart()}>
 							Открыть весь список
 						</div>
 					</div>
