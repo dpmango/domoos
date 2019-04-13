@@ -156,7 +156,7 @@ class CountryMap extends PureComponent {
 				<div className="map-container">
 					{!isCityMap && (
 						<React.Fragment>
-							<a href="/goroda" className="to-category">
+							<a href="/goroda" target="_blank" className="to-category">
 								<span />В каталог городов
 							</a>
 							<a href="/goroda" className="to-new-buildings">
