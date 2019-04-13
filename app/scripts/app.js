@@ -5,10 +5,16 @@ import inputmask from 'inputmask';
 import 'simplebar';
 import noUiSlider from 'nouislider';
 import wNumb from 'wNumb';
+// import Selectric from 'selectric/public/jquery.selectric';
 
 $(() => {
 	svg4everybody();
+	// initSelectric();
 });
+
+// function initSelectric() {
+// 	$('select').selectric();
+// }
 
 const selectors = document.querySelectorAll('input[type=tel]');
 inputmask('+7 999 999 99 99', { placeholder: ' ' }).mask(selectors);
@@ -92,24 +98,6 @@ $(document).ready(function($) {
 			.fadeIn();
 		$('.mobile-gorod-carousel').slick('setPosition');
 	});
-
-	// // TODO - зачем здесь повтор ready ?
-	// $(document).ready(function() {
-	// 	var $output = $('#output');
-	// 	var $input = $('.noUi-handle-lower');
-
-	// 	// $input.on('input', rangeHandler);
-	// 	$input.on('change').data('aria-valuetext', rangeHandler);
-
-	function rangeHandler(e) {
-		$output.text(formatNumberWithSpaces(e.target.value));
-	}
-	// });
-
-	// Format with spaces
-	function formatNumberWithSpaces(num) {
-		return num.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-	}
 
 	// Initialize slider:
 	// var rangeSlider = $('#range') || '';

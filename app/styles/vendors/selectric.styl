@@ -1,0 +1,250 @@
+/* ======================================
+  Selectric v1.13.0
+====================================== */
+.selectric-wrapper {
+	position: relative;
+	cursor: pointer;
+}
+
+.selectric-responsive {
+	width: 100%;
+}
+
+.selectric {
+	position: relative;
+	overflow: hidden;
+	background: #F8F8F8;
+	border: 1px solid #DDD;
+	border-radius: 0;
+
+	.label {
+		margin: 0 38px 0 10px;
+		display: block;
+		overflow: hidden;
+		height: 38px;
+		font-size: 12px;
+		line-height: 38px;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		user-select: none;
+		color: #444;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+	}
+
+	.button {
+		position: absolute;
+		top: 0;
+		right: 0;
+		display: block;
+		width: 38px;
+		height: 38px;
+		font: 0 / 0 a;
+		*font: 20px / 38px Lucida Sans Unicode, Arial Unicode MS, Arial;
+		line-height: 38px;
+		text-align: center;
+		color: #BBB;
+		background-color: #F8f8f8;
+
+		&:after {
+			position: absolute;
+			top: 0;
+			right: 0;
+			left: 0;
+			bottom: 0;
+			margin: auto;
+			width: 0;
+			height: 0;
+			content: ' ';
+			border: 4px solid transparent;
+			border-top-color: #BBB;
+			border-bottom: none;
+		}
+	}
+}
+
+.selectric-focus .selectric {
+	border-color: #aaaaaa;
+}
+
+.selectric-hover .selectric {
+	border-color: #c4c4c4;
+
+	.button {
+		color: #a2a2a2;
+
+		&:after {
+			border-top-color: #a2a2a2;
+		}
+	}
+}
+
+.selectric-open {
+	z-index: 9999;
+
+	.selectric {
+		border-color: #c4c4c4;
+	}
+
+	.selectric-items {
+		display: block;
+	}
+}
+
+.selectric-disabled {
+	cursor: default;
+	user-select: none;
+	opacity: .5;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
+
+.selectric-hide-select {
+	position: relative;
+	overflow: hidden;
+	width: 0;
+	height: 0;
+
+	select {
+		position: absolute;
+		left: -100%;
+	}
+
+	&.selectric-is-native {
+		position: absolute;
+		z-index: 10;
+		width: 100%;
+		height: 100%;
+
+		select {
+			position: absolute;
+			z-index: 1;
+			top: 0;
+			right: 0;
+			left: 0;
+			box-sizing: border-box;
+			width: 100%;
+			height: 100%;
+			border: none;
+			opacity: 0;
+		}
+	}
+}
+
+.selectric-input {
+	position: absolute !important;
+	top: 0 !important;
+	left: 0 !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	overflow: hidden !important;
+	clip: rect(0, 0, 0, 0) !important;
+	width: 1px !important;
+	height: 1px !important;
+	*font: 0 / 0 a !important;
+	background: none !important;
+	border: none !important;
+	outline: none !important;
+}
+
+.selectric-temp-show {
+	position: absolute !important;
+	display: block !important;
+	visibility: hidden !important;
+}
+
+/* Items box */
+.selectric-items {
+	position: absolute;
+	z-index: -1;
+	top: 100%;
+	left: 0;
+	display: none;
+	background: #F8F8F8;
+	border: 1px solid #c4c4c4;
+	box-shadow: 0 0 10px -6px;
+
+	.selectric-scroll {
+		overflow: auto;
+		height: 100%;
+	}
+}
+
+.selectric-above .selectric-items {
+	top: auto;
+	bottom: 100%;
+}
+
+.selectric-items {
+	ul {
+		margin: 0;
+		padding: 0;
+		min-height: 20px;
+		list-style: none;
+		font-size: 12px;
+		line-height: 20px;
+	}
+
+	li {
+		margin: 0;
+		padding: 0;
+		padding: 10px;
+		display: block;
+		min-height: 20px;
+		list-style: none;
+		font-size: 12px;
+		line-height: 20px;
+		cursor: pointer;
+		color: #666;
+
+		&.selected {
+			color: #444;
+			background: #E0E0E0;
+		}
+
+		&.highlighted {
+			color: #444;
+			background: #D0D0D0;
+		}
+
+		&:hover {
+			color: #444;
+			background: #D5D5D5;
+		}
+	}
+
+	.disabled {
+		cursor: default !important;
+		user-select: none;
+		color: #666 !important;
+		background: none !important;
+		opacity: .5;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+	}
+
+	.selectric-group {
+		.selectric-group-label {
+			padding-left: 10px;
+			font-weight: bold;
+			cursor: default;
+			user-select: none;
+			color: #444;
+			background: none;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+		}
+
+		&.disabled li {
+			opacity: 1;
+		}
+
+		li {
+			padding-left: 25px;
+		}
+	}
+}
