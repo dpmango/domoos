@@ -30,20 +30,20 @@ export default handleActions(
 				
 				properties: [
 					{
-						title: 'Численность населения',
-						value: `${formatNumber(item.naselenie)} человек`,
-					},
-					{
-						title: 'Средняя зарплата',
-						value: `${formatNumber(item.dohod)} руб.`,
-					},
-					{
-						title: 'Стоимость квартир от',
-						value: item.price_m ? `${formatNumber(item.price_m)} 000 руб.` : 'недоступно',
+						title: 'Население',
+						value: `${formatNumber(item.naselenie)}`,
 					},
 					{
 						title: 'Регион',
 						value: item.region,
+					},
+					{
+						title: 'Доход',
+						value: `около ${formatNumber(item.dohod)} ₽`,
+					},
+					{
+						title: 'Квартиры от',
+						value: item.price_m ? `${formatNumber(item.price_m)} ₽` : 'недоступно',
 					},
 					{
 						title: 'Климат',
