@@ -5,7 +5,7 @@ import ReactStars from 'react-stars';
 
 import PhoneForm from '../PhoneForm';
 
-import { formatNumber, modalStyles } from '../../libs/utils';
+import { formatNumber, clearPhone, modalStyles } from '../../libs/utils';
 
 class BuildingModal extends PureComponent {
 	static propTypes = {
@@ -40,7 +40,7 @@ class BuildingModal extends PureComponent {
 			},
 			{
 				title: 'Высотность',
-				value: data.high ? data.high : '5 этажей',
+				value: data.altitude ? data.altitude : 'недоступно',
 			},
 			{
 				title: 'Отделка',
@@ -48,7 +48,7 @@ class BuildingModal extends PureComponent {
 			},
 			{
 				title: 'Материал',
-				value: data.material ? data.material : 'кирпичный',
+				value: data.wallMaterial ? data.wallMaterial : 'недоступно',
 			},
 		];
 
@@ -81,15 +81,15 @@ class BuildingModal extends PureComponent {
 				},
 				{
 					title: 'Адрес',
-					value: 'мкр. Восход, ул. Есенина',
+					value: data.address ? data.address : 'недоступно',
 				},
 				{
 					title: 'До центра',
-					value: '6 км',
+					value: data.toCentr ? data.toCentr : 'недоступно',
 				},
 				{
 					title: 'Метро',
-					value: data.subway,
+					value: data.subway ? data.subway : 'недоступно',
 				},
 			],
 			metrics: [
@@ -123,10 +123,9 @@ class BuildingModal extends PureComponent {
 								<div
 									className="logo"
 									style={{
-										backgroundImage: `url(
-														https://domoos.ru/images/zastroyshchiki/${data.citySlug}/${
-											data.developerSlug
-										}.jpg), url('/images/domoos-dummy.png')`,
+										backgroundImage: `url(https://domoos.ru/${
+											data.developerImage
+										}), url('/images/domoos-dummy.png')`,
 									}}
 								/>
 								<div className="info">
@@ -134,7 +133,7 @@ class BuildingModal extends PureComponent {
 									<div className="name">{data.developer}</div>
 								</div>
 								<div className="BuildingModal__phone">
-									<a href="tel:88126159251">+7 812 615 92 51</a>
+									{data.phone && <a href={`tel:${clearPhone(data.phone)}`}>{data.phone}</a>}
 								</div>
 							</div>
 						</div>
