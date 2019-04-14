@@ -7,13 +7,23 @@ import { selectCityBuildings, getCityBuildings } from '../../ducks/cities/cityBu
 import BuildingModal from '../BuildingModal';
 import Building from '../Shared/Building/Building';
 
+import Slider from 'react-slick';
+import { sliderSettingsMobileOnly } from '../../libs/utils';
+import debounce from 'lodash/debounce';
+
 import Loader from '../UI/Loader';
-import SvgIcon from '../UI/SvgIcon';
+// import SvgIcon from '../UI/SvgIcon';
 
 // TODO
 // [] Вынести модальное карточки новостройки на глобальный уровень и подключить redux (повтор тут и в CityExplorer)
 
 class FeatuedBuildings extends Component {
+	constructor(props) {
+		super(props);
+
+		this.resizeWithDebounce = debounce(this.handleResize, 200);
+	}
+
 	state = {
 		activeCity: {
 			slug: undefined,
@@ -34,6 +44,7 @@ class FeatuedBuildings extends Component {
 			building: {},
 			isOpen: false,
 		},
+		sliderDisabled: undefined,
 	};
 
 	// lifecycle hooks
@@ -51,6 +62,7 @@ class FeatuedBuildings extends Component {
 		const { activeCity } = this.state;
 
 		getCityBuildings(activeCity.slug);
+		window.addEventListener('resize', this.resizeWithDebounce, false);
 	};
 
 	componentWillReceiveProps = nextProps => {
@@ -58,6 +70,10 @@ class FeatuedBuildings extends Component {
 			this.buildBuildingsTabs(nextProps.CityBuildings[this.state.activeCity.slug]);
 		}
 	};
+
+	componentWillUnmount() {
+		window.removeEventListener('scroll', this.resizeWithDebounce, false);
+	}
 
 	// modal functions
 	openBuildingsModal = item => {
@@ -123,14 +139,17 @@ class FeatuedBuildings extends Component {
 			return buildingsList[this.mapFilterNameToStateBuildings(filter)].length;
 		});
 
-		this.setState({
-			...this.state,
-			filter: {
-				...this.state.filter,
-				list: nonEmptyFilters,
+		this.setState(
+			{
+				...this.state,
+				filter: {
+					...this.state.filter,
+					list: nonEmptyFilters,
+				},
+				buildings: buildingsList,
 			},
-			buildings: buildingsList,
-		});
+			this.slickInitMobileOnly,
+		);
 	};
 
 	mapFilterNameToStateBuildings = filter => {
@@ -150,9 +169,21 @@ class FeatuedBuildings extends Component {
 		}
 	};
 
+	// slider logic
+	slickInitMobileOnly = () => {
+		this.setState({
+			...this.state,
+			sliderDisabled: window.innerWidth > 768,
+		});
+	};
+
+	handleResize = () => {
+		this.slickInitMobileOnly();
+	};
+
 	render() {
 		const { CityBuildings } = this.props;
-		const { activeCity, modal, filter } = this.state;
+		const { activeCity, modal, filter, sliderDisabled } = this.state;
 
 		// const buildings = this.applyFilters(CityBuildings[activeCity.slug]);
 		const buildings = this.state.buildings[this.mapFilterNameToStateBuildings(filter.activeFilter)];
@@ -195,17 +226,34 @@ class FeatuedBuildings extends Component {
 					{!buildings ? (
 						<Loader />
 					) : (
-						<div className="gorod-popular__grid mobile-gorod-carousel">
-							{buildings &&
-								buildings.map((building, idx) => (
-									<Building
-										building={building}
-										key={idx}
-										handleAddToCart={this.handleAddToCart}
-										handleModal={this.openBuildingsModal}
-										isAdded={this.isAdded}
-									/>
-								))}
+						<div className="gorod-popular__grid">
+							{sliderDisabled ? (
+								<React.Fragment>
+									{buildings &&
+										buildings.map((building, idx) => (
+											<Building
+												building={building}
+												key={idx}
+												handleAddToCart={this.handleAddToCart}
+												handleModal={this.openBuildingsModal}
+												isAdded={this.isAdded}
+											/>
+										))}
+								</React.Fragment>
+							) : (
+								<Slider ref={slider => (this.slider = slider)} {...sliderSettingsMobileOnly}>
+									{buildings &&
+										buildings.map((building, idx) => (
+											<Building
+												building={building}
+												key={idx}
+												handleAddToCart={this.handleAddToCart}
+												handleModal={this.openBuildingsModal}
+												isAdded={this.isAdded}
+											/>
+										))}
+								</Slider>
+							)}
 						</div>
 					)}
 				</div>

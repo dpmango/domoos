@@ -80,20 +80,6 @@ $(document).ready(function($) {
 			.fadeIn();
 	});
 
-	$(document).on('click', '[js-buildings-tab]', function(e) {
-		e.preventDefault();
-		var $self = $(this),
-			tabIndex = $self.index();
-		$self.siblings().removeClass('is-active');
-		$self.addClass('is-active');
-		$('.gorod-popular__tab')
-			.removeClass('is-active')
-			.css('display', 'none')
-			.eq(tabIndex)
-			.fadeIn();
-		$('.mobile-gorod-carousel').slick('setPosition');
-	});
-
 	// Initialize slider:
 	// var rangeSlider = $('#range') || '';
 	// // var slider1Value = document.getElementById('#output');
@@ -237,7 +223,7 @@ $(document).ready(function($) {
 	// 	],
 	// });
 
-	function personalInfoSliderInit2() {
+	function featuredBuildingsSliderInit() {
 		if ($(document).width() > 768) {
 			if ($('.mobile-gorod-carousel').hasClass('slick-initialized'))
 				$('.mobile-gorod-carousel').slick('unslick');
@@ -276,11 +262,15 @@ $(document).ready(function($) {
 		}
 	}
 
-	personalInfoSliderInit2();
+	window.featuredBuildingsSliderInit = featuredBuildingsSliderInit;
 
 	$(window).resize(function() {
-		personalInfoSliderInit2();
+		featuredBuildingsSliderInit();
 	});
+
+	// $('.gorod-popular__btn').on('click', function() {
+	// 	$('.mobile-gorod-carousel').slick('setPosition');
+	// });
 
 	function personalInfoSliderInitMain() {
 		if ($(document).width() > 768) {
