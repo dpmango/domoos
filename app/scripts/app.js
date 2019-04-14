@@ -5,16 +5,11 @@ import inputmask from 'inputmask';
 import 'simplebar';
 import noUiSlider from 'nouislider';
 import wNumb from 'wNumb';
-// import Selectric from 'selectric/public/jquery.selectric';
+import 'selectric';
 
 $(() => {
 	svg4everybody();
-	// initSelectric();
 });
-
-// function initSelectric() {
-// 	$('select').selectric();
-// }
 
 const selectors = document.querySelectorAll('input[type=tel]');
 inputmask('+7 999 999 99 99', { placeholder: ' ' }).mask(selectors);
@@ -149,6 +144,8 @@ $(document).ready(function($) {
 			});
 		});
 	}
+
+	// $('select').selectric();
 
 	$('.carousel').slick({
 		dots: false,
