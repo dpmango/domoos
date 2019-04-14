@@ -223,55 +223,6 @@ $(document).ready(function($) {
 	// 	],
 	// });
 
-	function featuredBuildingsSliderInit() {
-		if ($(document).width() > 768) {
-			if ($('.mobile-gorod-carousel').hasClass('slick-initialized'))
-				$('.mobile-gorod-carousel').slick('unslick');
-		} else {
-			if (!$('.mobile-gorod-carousel').hasClass('slick-initialized')) {
-				$('.mobile-gorod-carousel').slick({
-					dots: false,
-					infinite: true,
-					speed: 500,
-					slidesToShow: 1,
-					slidesToScroll: 1,
-					responsive: [
-						{
-							breakpoint: 9999,
-							settings: 'unslick',
-						},
-						{
-							breakpoint: 768,
-							settings: {
-								slidesToShow: 2,
-								slidesToScroll: 1,
-								arrows: false,
-							},
-						},
-						{
-							breakpoint: 568,
-							settings: {
-								slidesToShow: 1,
-								slidesToScroll: 1,
-								arrows: false,
-							},
-						},
-					],
-				});
-			}
-		}
-	}
-
-	window.featuredBuildingsSliderInit = featuredBuildingsSliderInit;
-
-	$(window).resize(function() {
-		featuredBuildingsSliderInit();
-	});
-
-	// $('.gorod-popular__btn').on('click', function() {
-	// 	$('.mobile-gorod-carousel').slick('setPosition');
-	// });
-
 	function personalInfoSliderInitMain() {
 		if ($(document).width() > 768) {
 			if ($('.not-real-carousel').hasClass('slick-initialized'))
