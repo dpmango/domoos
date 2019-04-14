@@ -193,21 +193,19 @@ class FeatuedBuildings extends Component {
 				<div className="gorod-popular__head">
 					<div className="gorod-popular__buttons">
 						<div className="gorod-popular__overlay">
-							<div className="gorod-popular__scroll">
-								{filter.list &&
-									filter.list.map((name, idx) => (
-										<span
-											key={idx}
-											onClick={() => this.handleFilterChange(name)}
-											className={
-												'gorod-popular__btn' +
-												(filter.activeFilter.indexOf(name) !== -1 ? ' is-active' : '')
-											}
-										>
-											{name}
-										</span>
-									))}
-							</div>
+							{filter.list &&
+								filter.list.map((name, idx) => (
+									<span
+										key={idx}
+										onClick={() => this.handleFilterChange(name)}
+										className={
+											'gorod-popular__btn' +
+											(filter.activeFilter.indexOf(name) !== -1 ? ' is-active' : '')
+										}
+									>
+										{name}
+									</span>
+								))}
 						</div>
 					</div>
 					{/* <div className="gorod-popular__links">
