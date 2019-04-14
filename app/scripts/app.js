@@ -5,7 +5,7 @@ import inputmask from 'inputmask';
 import 'simplebar';
 import noUiSlider from 'nouislider';
 import wNumb from 'wNumb';
-import 'selectric';
+import select2 from 'select2';
 
 $(() => {
 	svg4everybody();
@@ -145,7 +145,9 @@ $(document).ready(function($) {
 		});
 	}
 
-	// $('select').selectric();
+	$(function() {
+		$('select').select2();
+	});
 
 	$('.carousel').slick({
 		dots: false,
