@@ -1,0 +1,97 @@
+- var featuredDevelopers = [];
+- featuredDevelopers.push({name: 'СтройАльянс', description: 'Надежная строительная компания с большим опытом в 10 лет. При строительстве используют только качественные материалы.', img: '/images/isk-algoritm.png', features: [12900000, 12, 10,10], sites: ['Весна 3', 'Муринский Посад', 'Новое Янино', 'ЦДС-Московский']})
+- featuredDevelopers.push({name: 'СтройАльянс', description: 'Надежная строительная компания с большим опытом в 10 лет. При строительстве используют только качественные материалы.', img: '/images/isk-algoritm.png', features: [12900000, 12, 10,10], sites: ['Весна 3', 'Муринский Посад', 'Новое Янино', 'ЦДС-Московский']})
+- featuredDevelopers.push({name: 'СтройАльянс', description: 'Надежная строительная компания с большим опытом в 10 лет. При строительстве используют только качественные материалы.', img: '/images/isk-algoritm.png', features: [12900000, 12, 10,10], sites: ['Весна 3', 'Муринский Посад', 'Новое Янино', 'ЦДС-Московский']})
+
+- var featuredAgencies = [];
+- featuredAgencies.push({name: 'Этажи', img: '/images/isk-algoritm.png', features: [12], services: ['Новостройки', 'Вторичка', 'Ипотека', 'Обмен']})
+- featuredAgencies.push({name: 'Этажи', img: '/images/isk-algoritm.png', features: [12], services: ['Новостройки', 'Вторичка', 'Ипотека', 'Обмен']})
+- featuredAgencies.push({name: 'Этажи', img: '/images/isk-algoritm.png', features: [12], services: ['Новостройки', 'Вторичка', 'Ипотека', 'Обмен']})
+
+section.featured-partners
+	.wrap
+
+		if isDevelopers
+
+			.featured-partners__header
+				.featured-partners__message
+					+icon('exclamation-mark', true).featured-partners__message--icon
+					| Только надежные застройщики Петербурга по версии Domoos
+
+		if isAgencies
+
+			.featured-partners__header
+				.featured-partners__message
+					+icon('exclamation-mark', true).featured-partners__message--icon
+					| Только надежные агентства Петербурга по версии Domoos
+
+		.featured-partners__list
+
+			if isDevelopers
+
+				each item in featuredDevelopers
+					.partner
+						a.partner__name--desktop(href="#")= item.name
+						.partner__layout--desktop
+							a.partner__image-container(href="#")
+								.partner__image(style={'background-image': 'url("#{item.img}")'})
+							a.partner__name--mobile(href="#")= item.name
+							.partner__primary-info
+								.partner__description= item.description
+								.partner__features.condenced
+									.feature
+										.feature-label Квартиры от:
+										.feature-value| #{item.features[0]} ₽
+									.feature
+										.feature-label В продаже:
+										.feature-value| #{item.features[1]} объектов
+									.feature
+										.feature-label На рынке:
+										.feature-value| #{item.features[2]} лет
+									.feature
+										.feature-label Построено:
+										.feature-value| #{item.features[3]} объектов
+								.btn.btn__full--yellow.partner__btn-call--mobile Позвонить застройщику
+							.partner__tags
+								.h5 Новостройки:
+								a.tag(href="#")= item.sites[0]
+								a.tag(href="#")= item.sites[1]
+								a.tag(href="#")= item.sites[2]
+								a.tag(href="#")= item.sites[3]
+							.partner__contacts
+								.partner__phone--title Звоните по горячей линии
+								.partner__phone 8 (800) 615-92-51
+								.partner__callback
+									.partner__callback-title Или оставьте заявку на перезвон
+									.partner__callback-form
+										input.partner__callback-input(name="phone" type="tel" placeholder="+7")
+										input.partner__callback-submit(name="submit" type="submit" value="Отправить" class="btn btn__full btn__full--yellow")
+								a.partner__contacts-site(href="#") Cайт застройщика
+
+			if isAgencies
+
+				each item in featuredAgencies
+					.partner
+						.partner__layout--desktop
+							a.partner__image-container(href="#")
+								.partner__image(style={'background-image': 'url("#{item.img}")'})
+							.partner__primary-info
+								a.partner__name(href="#")= item.name
+								.partner__features
+									.feature.desktop
+										.feature-label В продаже:
+										.feature-value #{item.features[0]} объектов
+									.feature
+										.feature-label Услуги компании:
+										.feature-value #{item.services.join(', ')}
+								a.partner__contacts-site.desktop(href="#") На сайт агенства
+								.btn.btn__full--yellow.partner__btn-call--mobile Позвонить в агентство
+
+							.partner__contacts
+								.partner__phone--title Звоните по горячей линии
+								.partner__phone 8 (800) 615-92-51
+								.partner__callback
+									.partner__callback-title Или оставьте заявку на перезвон
+									.partner__callback-form
+										input.partner__callback-input(name="phone" type="tel" placeholder="+7")
+										input.partner__callback-submit(name="submit" type="submit" value="Отправить" class="btn btn__full btn__full--yellow")

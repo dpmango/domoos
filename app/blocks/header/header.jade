@@ -1,6 +1,6 @@
-- var navigation = [{ title: 'Все города', href: '/goroda.html', isDropdown: false, }, { title: 'Города на карте', href: '/goroda-na-karte.html', isDropdown: false }, { title: 'Услуги', href: '#', isDropdown: true, data: [{href:'/', title: 'Переезд'}, {href:'/', title: 'Переезд'}, {href:'/', title: 'Подбор'}]}, { title: 'Все агенства', href: '#', isDropdown: false }, { title: 'Все застройщики', href: '/vse-zastrojshiki.html', isDropdown: false }];
+- var navigation = [{ title: 'Все города', href: '/goroda.html', isDropdown: false, }, { title: 'Города на карте', href: '/goroda-na-karte.html', isDropdown: false }, { title: 'Услуги', href: '#', isDropdown: true, data: [{href:'/', title: 'Переезд'}, {href:'/', title: 'Переезд'}, {href:'/', title: 'Подбор'}]}, { title: 'Все агенства', href: '/vse-agenstva.html', isDropdown: false }, { title: 'Все застройщики', href: '/vse-zastrojshiki.html', isDropdown: false }];
 
-- var navigationFixed = [{ title: 'Застройщики', href: '/vse-zastrojshiki.html', isDropdown: false, }, { title: 'Районы', href: '#', isDropdown: false }, { title: 'Другие', href: '#', isDropdown: true, data: [{href:'/', title: 'Новостройки'}, {href:'/', title: 'Все агенства'}, {href:'/', title: 'Квартиры'}, {href:'/', title: 'Статьи'},]}];
+- var navigationFixed = [{ title: 'Застройщики', href: '/vse-zastrojshiki.html', isDropdown: false, }, { title: 'Районы', href: '#', isDropdown: false }, { title: 'Другие', href: '#', isDropdown: true, data: [{href:'/', title: 'Новостройки'}, {href:'/vse-agenstva.html', title: 'Все агенства'}, {href:'/', title: 'Квартиры'}, {href:'/', title: 'Статьи'},]}];
 
 block header
 
@@ -109,6 +109,17 @@ section.header(class=isMap ? 'goroda-na-karte' : isСities ? 'goroda' : '' style
 						div.header__zhk-row
 							a.header__zhk-btn(href="#") Узнать цены
 							p.header__zhk-plain Предложение от «ПИК группа»
+
+			if isAgencies
+
+				a.to-home-screen(href="#") На страницу Петербурга
+
+				h1.header__title
+					| Все агентства недвижимости
+					br
+					| в Санкт-Петербурге
+				div.header__description
+					| В каталоге сайта собраны все новостройки от застройщиков,  предложения от банков и агентств недвижимости. В каталоге сайта собраны все новостройки от застройщиков, предложения от банков  и агентств недвижимости.
 
 			if isСity
 
