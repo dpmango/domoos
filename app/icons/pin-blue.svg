@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="23px" viewBox="0 0 24 23" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>Карта</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Каталог-городов" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="anh-catalog-of-cities-desktop-1440" transform="translate(-701.000000, -583.000000)" stroke="#408EF2">
+            <g id="Карта" transform="translate(701.000000, 583.000000)">
+                <polyline id="Path-3" stroke-linejoin="round" points="0.630208333 6.30208333 0.630208333 0.630208333 5.63020833 0.630208333"></polyline>
+                <polyline id="Path-3-Copy" stroke-linejoin="round" transform="translate(20.197917, 3.130208) scale(-1, 1) translate(-20.197917, -3.130208) " points="17.6979167 5.63020833 17.6979167 0.630208333 22.6979167 0.630208333"></polyline>
+                <polyline id="Path-3" stroke-linejoin="round" transform="translate(3.130208, 19.197917) scale(1, -1) translate(-3.130208, -19.197917) " points="0.630208333 21.6979167 0.630208333 16.6979167 5.63020833 16.6979167"></polyline>
+                <polyline id="Path-3-Copy" stroke-linejoin="round" transform="translate(20.197917, 19.197917) scale(-1, -1) translate(-20.197917, -19.197917) " points="17.6979167 21.6979167 17.6979167 16.6979167 22.6979167 16.6979167"></polyline>
+                <path d="M11.5,19.3907373 C11.71167,19.2381254 11.9475945,19.0587148 12.2017585,18.8537544 C12.9438917,18.2552906 13.6863986,17.5659015 14.378289,16.7968387 C16.3344567,14.622483 17.5,12.2600164 17.5,9.8 C17.5,6.31568548 14.8085359,3.5 11.5,3.5 C8.19146406,3.5 5.5,6.31568548 5.5,9.8 C5.5,12.2600164 6.6655433,14.622483 8.62171102,16.7968387 C9.31360139,17.5659015 10.0561083,18.2552906 10.7982415,18.8537544 C11.0524055,19.0587148 11.28833,19.2381254 11.5,19.3907373 Z" id="Oval-2"></path>
+                <circle id="Oval-3" cx="11.5" cy="9.5" r="2"></circle>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,239 @@
+.about-city {
+	margin-top: 90px;
+
+	+below($phones) {
+		margin-top: 15px;
+		padding-bottom: 20px;
+	}
+
+	&__grid {
+		display: flex;
+
+		+below($phones) {
+			flex-direction: column;
+		}
+	}
+
+	&__content {
+		margin-right: 50px;
+		max-width: 610px;
+
+		+below($phones) {
+			margin-right: 0;
+			max-width: 100%;
+		}
+	}
+
+	&__buttons {
+		position: relative;
+		display: flex;
+		width: 100%;
+		max-width: 330px;
+		justify-content: space-between;
+
+		+below($phones) {
+			display: none;
+		}
+
+		&:before {
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			display: block;
+			width: 100%;
+			height: 1px;
+			content: '';
+			background: var(--border-color);
+		}
+	}
+
+	&__btn {
+		position: relative;
+		z-index: 2;
+		padding: 12px 0;
+		display: inline-block;
+		font-size: 14px;
+		color: var(--gray-light);
+		border-bottom: 2px solid transparent;
+		transition: .25s;
+
+		&.is-active {
+			color: var(--blue);
+			border-color: var(--blue);
+		}
+	}
+
+	.wrap {
+		padding: 0 30px;
+
+		+below($phones) {
+			padding: 0 15px;
+		}
+	}
+
+	.about-cities__title {
+		+below($phones) {
+			display: none;
+		}
+	}
+
+	&__title {
+		margin-top: 45px;
+		font-size: 22px;
+		color: var(--title-color);
+
+		+below($phones) {
+			display: none;
+		}
+	}
+
+	&__info {
+		margin-top: 25px;
+		font-size: 14px;
+		line-height: 1.8;
+		color: #7B7B7C;
+	}
+
+	&__bold {
+		margin-top: 20px;
+		padding-left: 20px;
+		max-width: 450px;
+		font-size: 20px;
+		font-weight: 700;
+		color: var(--title-color);
+		border-left: 5px solid #408EF2;
+
+		+below($phones) {
+			font-size: 14px;
+		}
+	}
+
+	&__tab {
+		display: none;
+
+		&.is-active {
+			display: block;
+		}
+
+		+below($phones) {
+			display: block;
+		}
+	}
+
+	&__right {
+		margin-left: auto;
+		width: 100%;
+		max-width: 400px;
+	}
+
+	&__detail {
+		margin-top: 65px;
+		padding: 30px;
+		width: 100%;
+		max-width: 400px;
+		block();
+
+		+below($phones) {
+			margin-top: 5px;
+			padding: 0 0 15px;
+			border-bottom: 1px solid var(--border-color);
+			box-shadow: none;
+		}
+
+		&-head {
+			padding-bottom: 20px;
+			display: flex;
+			align-items: center;
+			border-bottom: 1px solid var(--border-color);
+
+			+below($phones) {
+				display: none;
+			}
+		}
+	}
+
+	&__stat {
+		font-size: 18px;
+		color: var(--title-color);
+	}
+
+	&__icon {
+		margin-right: 15px;
+		max-width: 40px;
+		font-size: 0;
+
+		img {
+			width: 40px;
+			height: auto;
+		}
+	}
+
+	.city__properties {
+		padding: 10px 0;
+		font-size: 1.6rem;
+		line-height: 1em;
+		bulls();
+
+		+below($phones) {
+			font-size: 1.4rem;
+		}
+
+		.property {
+			margin-top: 20px;
+			display: flex;
+
+			+below($phones) {
+				display: flex;
+			}
+
+			&:before {
+				top: 2px;
+			}
+		}
+
+		.title {
+			margin-right: 8px;
+			color: #000;
+		}
+
+		.value {
+			margin-left: auto;
+			text-align: right;
+			color: var(--text-color);
+
+			+below($phones) {
+				margin-left: auto;
+				text-align: right;
+			}
+		}
+	}
+
+	.slick-slider {
+		left: 0;
+		margin-left: -15px;
+		width: calc(100% + 30px);
+	}
+
+	.slick-slide {
+		padding: 0 15px;
+	}
+
+	&__swipe {
+		display: none;
+
+		+below($phones) {
+			margin-top: 25px;
+			padding-bottom: 10px;
+			display: flex;
+			border-bottom: 1px solid var(--border-color);
+			justify-content: space-between;
+
+			p {
+				font-size: 12px;
+				font-weight: 500;
+				text-transform: uppercase;
+				color: #9A9EAC;
+			}
+		}
+	}
+}

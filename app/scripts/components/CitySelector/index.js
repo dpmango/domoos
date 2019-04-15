@@ -1,18 +1,18 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-import { selectCitiesList, getCitiesList } from "../../ducks/cities/citiesList";
+import { selectCitiesList, getCitiesList } from '../../ducks/cities/citiesList';
 
-import Suggest from "../Suggest";
+import Suggest from '../Suggest';
 
 class CitySelector extends Component {
 	state = {
 		activeCity: {
-			name: "Санкт-Петербург",
-			slug: "peterburg"
-		}
+			name: 'Санкт-Петербург',
+			slug: 'peterburg',
+		},
 	};
 
 	componentDidMount = () => {
@@ -24,14 +24,14 @@ class CitySelector extends Component {
 		this.setState({
 			activeCity: {
 				name,
-				slug
-			}
+				slug,
+			},
 		});
 	};
 
 	handeleSubmit = () => {
 		const { activeCity } = this.state;
-		const win = window.open(`goroda/${activeCity.slug}`, "_blank");
+		const win = window.open(`/${activeCity.slug}`, '_blank');
 		win.focus();
 	};
 
@@ -58,18 +58,18 @@ class CitySelector extends Component {
 }
 
 const mapStateToProps = state => ({
-	CitiesList: selectCitiesList(state)
+	CitiesList: selectCitiesList(state),
 });
 
 const mapDispatchToProps = dispatch =>
 	bindActionCreators(
 		{
-			getCitiesList
+			getCitiesList,
 		},
-		dispatch
+		dispatch,
 	);
 
 export default connect(
 	mapStateToProps,
-	mapDispatchToProps
+	mapDispatchToProps,
 )(CitySelector);

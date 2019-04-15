@@ -4,7 +4,8 @@
 
 block header
 
-section.header(class=isMap ? 'goroda-na-karte' : isСities ? 'goroda' : '' style=isСities ? "background-image: url('/images/bg-main-cities.jpg')" : isСity ? "background-image: url('/images/bg-main-cities.jpg')" : isMap ? 'background-color: #fff;' : "background-image: url('/images/bg-main.jpg')")
+section.header(class=isHome ? 'homepage' : isMap ? 'goroda-na-karte' : isСity ? 'gorod' : isСities ? 'goroda' : '' style=isСities ? "background-image: url('/images/bg-main-cities.jpg')" : isСity ? "background-image: url('/images/bg-main-cities.jpg')" : isMap ? 'background-color: #fff;' : "background-image: url('/images/bg-main.jpg')")
+	.header__gradient
 	if isСities
 		span.mobile-bg(style="background-image: url('/images/bg-main-cities-mobile.jpg')")
 	.header__sticky.sticky
@@ -37,6 +38,21 @@ section.header(class=isMap ? 'goroda-na-karte' : isСities ? 'goroda' : '' style
 	.wrap
 		.header__top
 			a.logo(href="/") Domoos
+
+			if isСity
+
+				.dropdown
+					button.dropdown__handler(type='button', data-toggle='dropdown') Санкт-Петербург
+					ul.dropdown__menu
+						li
+							a.dropdown__link(tabindex='-1', href='/', target='_blank', rel='nofollow noopener') Москва
+						li
+							a.dropdown__link(tabindex='-1', href='/', target='_blank', rel='nofollow noopener') Ростов
+						li
+							a.dropdown__link(tabindex='-1', href='/', target='_blank', rel='nofollow noopener') Екатеринбург
+						li
+							a.dropdown__link(tabindex='-1', href='/', target='_blank', rel='nofollow noopener') Севастополь
+
 			.menu
 				.menu__item.menu__item--about(data-open-modal="about")
 					+icon('question', true).icon.icon__question

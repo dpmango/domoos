@@ -2,6 +2,93 @@
 	width: 100%;
 	min-height: 100vh;
 
+	&.CityMap {
+		position: relative;
+		height: 100%;
+		min-height: 690px;
+		max-height: 690px;
+
+		.sidebar {
+			position: absolute;
+			top: 30px;
+			right: 30px;
+			height: 100%;
+			max-height: calc(100% - 60px);
+
+			+below($phones) {
+				top: auto;
+				right: 0;
+				left: 0;
+				bottom: -80px;
+				margin: 0 auto;
+				width: calc(100% - 30px);
+				max-width: 400px;
+				height: auto;
+				min-height: 1px !important;
+			}
+
+			&__header {
+				margin-top: 25px;
+
+				+below($phones) {
+					margin-top: 0;
+					padding-top: 20px;
+				}
+			}
+
+			.city__link {
+				margin-bottom: auto;
+				margin-left: auto;
+				padding-left: 15px;
+			}
+
+			+below($phones) {
+				margin-bottom: 40px;
+				min-height: 560px;
+				max-height: 560px;
+			}
+
+			&__close {
+				+below($phones) {
+					position: absolute;
+					top: 10px;
+					right: 10px;
+					display: block;
+				}
+			}
+
+			.city {
+				&__link {
+					position: absolute;
+					top: 20px;
+					right: 20px;
+					margin-bottom: 0;
+
+					+below($phones) {
+						position: absolute;
+						top: auto;
+						left: 0;
+						bottom: 10px;
+						order: 4;
+					}
+				}
+
+				&__neighbors {
+					.title {
+						margin-top: 10px;
+						margin-bottom: 10px;
+					}
+				}
+
+				&__description {
+					+below($phones) {
+						display: none;
+					}
+				}
+			}
+		}
+	}
+
 	.gm-fullscreen-control {
 		display: none;
 	}
@@ -50,7 +137,7 @@
 			padding: 15px 15px 12px;
 			font-size: 1.2rem;
 			line-height: 1em;
-			text-transform: capitalize;
+			// text-transform: capitalize;
 			cursor: pointer;
 			border: 1px solid var(--border-color);
 

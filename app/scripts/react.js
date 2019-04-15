@@ -7,7 +7,9 @@ import NotificationsSystem from 'reapop';
 import theme from './theme/reapop';
 
 import CitySelector from './components/CitySelector';
+import RegionSelector from './components/RegionSelector';
 import CityExplorer from './components/CityExplorer';
+import FeaturedBuildings from './components/FeaturedBuildings';
 import CountryMap from './components/CountryMap';
 import Cart from './components/Cart';
 import CallbackModal from './components/CallbackModal';
@@ -16,13 +18,14 @@ import AboutModal from './components/AboutModal';
 import store from './libs/reduxStore';
 import { setSessionID } from './ducks/user/session';
 
-//hidden comps
-
 store.dispatch(setSessionID());
 
 const headerSuggestSelector = document.getElementById('header-city-select');
+const helpPodborSuggestSelector = document.getElementById('help-podbor-region-select');
 const cityExplorerSelector = document.getElementById('city-explorer');
+const featuredBuildingsSelector = document.getElementById('featured-buildings');
 const countryMapSelector = document.getElementById('country-map');
+const cityMapSelector = document.getElementById('city-map');
 const cartSelector = document.getElementById('cart');
 const cartNavbarSelector = document.getElementById('cart-navbar');
 const callbackSelector = document.getElementById('callback-modal');
@@ -63,6 +66,15 @@ if (headerSuggestSelector) {
 	);
 }
 
+if (helpPodborSuggestSelector) {
+	ReactDOM.render(
+		<ComponentConstructor>
+			<RegionSelector id="help-podbor-region-select" />
+		</ComponentConstructor>,
+		helpPodborSuggestSelector,
+	);
+}
+
 if (cityExplorerSelector) {
 	ReactDOM.render(
 		<ComponentConstructor>
@@ -72,15 +84,31 @@ if (cityExplorerSelector) {
 	);
 }
 
-if (countryMapSelector) {
+if (countryMapSelector || cityMapSelector) {
+	// assume then both can't be present on the same page
+	const renderElement = countryMapSelector || cityMapSelector;
+	const citySlug = cityMapSelector ? cityMapSelector.dataset.slug : undefined;
+
 	ReactDOM.render(
 		<ComponentConstructor>
-			<CountryMap />
+			<CountryMap isCityMap={cityMapSelector} citySlug={citySlug} />
 		</ComponentConstructor>,
-		countryMapSelector,
+		renderElement,
 	);
 }
 
+// SINGLE GOROD
+if (featuredBuildingsSelector) {
+	const citySlug = featuredBuildingsSelector.dataset.slug;
+	ReactDOM.render(
+		<ComponentConstructor>
+			<FeaturedBuildings slug={citySlug} />
+		</ComponentConstructor>,
+		featuredBuildingsSelector,
+	);
+}
+
+// SHARED MODALS
 if (callbackSelector) {
 	ReactDOM.render(
 		<ComponentConstructor>

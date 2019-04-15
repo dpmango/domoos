@@ -15,6 +15,11 @@
 	.default-close {
 		top: 35px;
 		right: 25px;
+
+		+below($phones) {
+			top: 10px;
+			right: 10px;
+		}
 	}
 
 	&__title {
@@ -22,11 +27,18 @@
 		width: 100%;
 		font-size: 2.6rem;
 		font-weight: 400;
+		color: var(--title-color);
+
+		+below($phones) {
+			margin-bottom: 15px;
+			font-size: 20px;
+		}
 	}
 
 	&__description {
 		width: 100%;
-		font-weight: 300;
+		font-weight: 400;
+		color: #7B7B7C;
 
 		p {
 			max-width: 770px;
@@ -40,12 +52,52 @@
 		}
 	}
 
+	&__mobile {
+		display: none;
+
+		+below($phones) {
+			margin-top: 50px;
+			display: block;
+		}
+	}
+
+	&__list {
+		margin-top: 5px;
+		bulls();
+
+		+below($phones) {
+			margin-top: 15px;
+			margin-left: 0;
+		}
+
+		+below($tablet) {
+			margin-left: 0;
+		}
+
+		li {
+			margin-top: 25px;
+			display: block;
+			width: 100%;
+			font-size: 14px;
+			line-height: 1;
+			color: var(--title-color);
+
+			&:before {
+				top: -1px;
+			}
+		}
+	}
+
 	&__tabs {
 		margin-top: 50px;
 		margin-right: -15px;
 		margin-left: -15px;
 		display: flex;
 		flex-wrap: wrap;
+
+		+below($phones) {
+			display: none;
+		}
 	}
 
 	&__tab {
@@ -59,10 +111,55 @@
 	}
 
 	.Tab {
-		margin: 20px 0;
+		padding-left: 35px;
+		border-bottom: 1px solid var(--border-color);
+
+		&.is-active {
+			.Tab__icon:after {
+				transform: translateX(-50%) rotate(90deg);
+			}
+		}
+
+		&__icon {
+			position: absolute;
+			top: 47.5%;
+			left: -35px;
+			width: 18px;
+			height: 18px;
+			transform: translateY(-50%);
+
+			&:before {
+				position: absolute;
+				top: 50%;
+				left: 0;
+				display: block;
+				width: 18px;
+				height: 2px;
+				content: '';
+				background: #9A9EAC;
+				transform: translateY(-50%);
+			}
+
+			&:after {
+				position: absolute;
+				top: 0;
+				left: 50%;
+				display: block;
+				width: 2px;
+				height: 18px;
+				content: '';
+				background: #9A9EAC;
+				transition: .25s;
+				transform: translateX(-50%);
+			}
+		}
 
 		&__title {
+			position: relative;
+			padding: 20px 0;
 			font-size: 16px;
+			cursor: pointer;
+			color: #7B7B7C;
 		}
 
 		&__content {
@@ -73,6 +170,13 @@
 			.Tab {
 				&__content {
 					display: block;
+
+					p {
+						margin-bottom: 20px;
+						font-size: 14px;
+						font-weight: 300;
+						color: #7B7B7C;
+					}
 				}
 			}
 		}

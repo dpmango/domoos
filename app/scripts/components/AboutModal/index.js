@@ -72,26 +72,61 @@ class AboutModal extends Component {
 								недвижимости.
 							</p>
 						</div>
-						<div className="AboutModal__tabs">
-							<Tab
-								toggleOpen={() => this.handleTabToggle(0)}
-								isActive={this.state.tabs[0]}
-								tabTitle="Как работает Allnewhomes"
-								tabContent="Мы сотрудничаем с крупнейшими строительными компаниями, агентствами и банками Санкт-Петербурга. В каталог сайта попадают только компании с безупречной репутацией и действительно качественным предложением."
-							/>
-							<Tab
-								toggleOpen={() => this.handleTabToggle(1)}
-								isActive={this.state.tabs[1]}
-								tabTitle="Как работает Allnewhomes"
-								tabContent="Мы сотрудничаем с крупнейшими строительными компаниями, агентствами и банками Санкт-Петербурга. В каталог сайта попадают только компании с безупречной репутацией и действительно качественным предложением."
-							/>
-							<Tab
-								toggleOpen={() => this.handleTabToggle(2)}
-								isActive={this.state.tabs[2]}
-								tabTitle="Как работает Allnewhomes"
-								tabContent="Мы сотрудничаем с крупнейшими строительными компаниями, агентствами и банками Санкт-Петербурга. В каталог сайта попадают только компании с безупречной репутацией и действительно качественным предложением."
-							/>
-						</div>
+				 		<div className="AboutModal__tabs">
+				 			<Tab
+				 				toggleOpen={() => this.handleTabToggle(0)}
+				 				isActive={this.state.tabs[0]}
+				 				tabTitle="Как работает Allnewhomes"
+				 				tabContent="Мы сотрудничаем с крупнейшими строительными компаниями, агентствами и банками Санкт-Петербурга. В каталог сайта попадают только компании с безупречной репутацией и действительно качественным предложением."
+				 			/>
+				 			<Tab
+				 				toggleOpen={() => this.handleTabToggle(1)}
+				 				isActive={this.state.tabs[1]}
+				 				tabTitle="Бесплатные услуги сайта"
+				 				tabContent="Мы сотрудничаем с крупнейшими строительными компаниями, агентствами и банками Санкт-Петербурга. В каталог сайта попадают только компании с безупречной репутацией и действительно качественным предложением."
+				 			/>
+				 			<Tab
+				 				toggleOpen={() => this.handleTabToggle(2)}
+				 				isActive={this.state.tabs[2]}
+				 				tabTitle="Актуальная информация на сайте"
+				 				tabContent="Мы сотрудничаем с крупнейшими строительными компаниями, агентствами и банками Санкт-Петербурга. В каталог сайта попадают только компании с безупречной репутацией и действительно качественным предложением."
+				 			/>
+				 			<Tab
+				 				toggleOpen={() => this.handleTabToggle(3)}
+				 				isActive={this.state.tabs[3]}
+				 				tabTitle="Межрегиональные сделки"
+				 				tabContent="Мы сотрудничаем с крупнейшими строительными компаниями, агентствами и банками Санкт-Петербурга. В каталог сайта попадают только компании с безупречной репутацией и действительно качественным предложением."
+				 			/>
+				 			<Tab
+				 				toggleOpen={() => this.handleTabToggle(4)}
+				 				isActive={this.state.tabs[4]}
+				 				tabTitle="Партнеры нашего сервиса"
+				 				tabContent="Мы сотрудничаем с крупнейшими строительными компаниями, агентствами и банками Санкт-Петербурга. В каталог сайта попадают только компании с безупречной репутацией и действительно качественным предложением."
+				 			/>
+				 			<Tab
+				 				toggleOpen={() => this.handleTabToggle(5)}
+				 				isActive={this.state.tabs[5]}
+				 				tabTitle="Предложение застройщикам"
+				 				tabContent="Мы сотрудничаем с крупнейшими строительными компаниями, агентствами и банками Санкт-Петербурга. В каталог сайта попадают только компании с безупречной репутацией и действительно качественным предложением."
+				 			/>
+				 		</div>
+				 		<div className="AboutModal__mobile">
+				 			<div className="AboutModal__title">Возможности сервиса</div>
+				 			<ul className="AboutModal__list">
+				 				<li>
+				 					<span>Поиск городов</span>
+				 				</li>
+				 				<li>
+				 					<span>Подбор квартиры</span>
+				 				</li>
+				 				<li>
+				 					<span>Получение ипотеки</span>
+				 				</li>
+				 				<li>
+				 					<span>Выбор района</span>
+				 				</li>
+				 			</ul>
+				 		</div>
 					</div>
 				</div>
 			</Modal>
@@ -104,7 +139,7 @@ const Tab = props => {
 		<div className="AboutModal__tab">
 			<div className={'Tab' + (props.isActive ? ' is-active' : '')} onClick={props.toggleOpen}>
 				<div className="Tab__title">
-					{/* icon */}
+					<span className="Tab__icon" />
 					<span>{props.tabTitle}</span>
 				</div>
 				<div className="Tab__content">
