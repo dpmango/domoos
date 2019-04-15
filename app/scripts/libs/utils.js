@@ -2,6 +2,10 @@ export function formatNumber(x) {
 	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 }
 
+export function clearPhone(x) {
+	return x.replace(/[^0-9\.]+/g, '');
+}
+
 export const generateID = () => {
 	return (
 		'_' +
@@ -71,31 +75,32 @@ export const sliderSettings = {
 	],
 };
 
-// export const sliderSettingsDeveloper = {
-// 	dots: false,
-// 	infinite: true,
-// 	speed: 500,
-// 	adaptiveHeight: true,
-// 	responsive: [
-// 		{
-// 			breakpoint: 9999,
-// 			settings: 'unslick',
-// 		},
-// 		{
-// 			breakpoint: 768,
-// 			settings: {
-// 				slidesToShow: 2,
-// 				slidesToScroll: 1,
-// 				arrows: false,
-// 			},
-// 		},
-// 		{
-// 			breakpoint: 528,
-// 			settings: {
-// 				slidesToShow: 1,
-// 				slidesToScroll: 1,
-// 				arrows: false,
-// 			},
-// 		},
-// 	],
-// };
+export const sliderSettingsMobileOnly = {
+	dots: false,
+	infinite: true,
+	speed: 500,
+	slidesToShow: 1,
+	slidesToScroll: 1,
+	responsive: [
+		// {
+		// 	breakpoint: 9999,
+		// 	settings: 'unslick',
+		// },
+		{
+			breakpoint: 768,
+			settings: {
+				slidesToShow: 2,
+				slidesToScroll: 1,
+				arrows: false,
+			},
+		},
+		{
+			breakpoint: 568,
+			settings: {
+				slidesToShow: 1,
+				slidesToScroll: 1,
+				arrows: false,
+			},
+		},
+	],
+};

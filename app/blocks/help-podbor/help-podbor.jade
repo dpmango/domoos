@@ -24,24 +24,17 @@ section.help-podbor
 								input(type="text" name="name" placeholder="Ваше имя")
 								input(type="tel" placeholder="+7")
 							.help-podbor__select
-								.RegionSelector#help-podbor-region-select
-									//- .Suggest
-									//- 	label.Suggest__label(for='header-city-select-input') Выберите город
-									//- 	input#header-city-select-input.Suggest__input(type='text', autocomplete='new-password', placeholder='Санкт-Петербург', value='')
-									//- 	.Suggest__result.false
-									//- 		.Suggest__link.false Москва
-									//- 		.Suggest__link.false Санкт-Петербург
-									//- 		.Suggest__link.false Барнаул
-									//- 		.Suggest__link.false Воронеж
-									//- 		.Suggest__link.false Екатеринбург
-									//- 		.Suggest__link.false Киров
-									//- 		.Suggest__link.false Красноярск
-									//- 		.Suggest__link.false Пермь
-									//- 		.Suggest__link.false Томск
-									//- 		.Suggest__link.false Тюмень
-									//- 		.Suggest__link.false Уфа
-									//- 		.Suggest__link.false Новосибирск
-									//- 		.Suggest__link.false Челябинск
+								select(style="width: 100%;")
+									option(value="val0" selected disable) Выберите район
+									option(value="val1") Район №1
+									option(value="val2") Район №2
+									option(value="val3") Район №3
+									option(value="val4") Район №4
+									option(value="val5") Район №5
+									option(value="val6") Район №6
+									option(value="val7") Район №7
+									option(value="val8") Район №8
+									option(value="val9") Район №9
 							.help-podbor__block
 								p Когда сдача:
 								.help-podbor__checkboxes
