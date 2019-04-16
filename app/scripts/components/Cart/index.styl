@@ -79,8 +79,10 @@
 
 .AdvancedCart {
 	position: relative;
+	display: flex;
+	flex-direction: column;
 	width: 100%;
-	min-height: 300px;
+	min-height: 620px;
 	background-color: #fff;
 
 	+below($phones) {
@@ -103,12 +105,14 @@
 	}
 
 	&__title {
-		padding: 50px 0 0;
+		padding: 75px 0 40px;
 		font-size: 2.2rem;
 		line-height: 1em;
 		color: var(--title-color);
 
 		+below($phones) {
+			padding-top: 45px;
+			padding-bottom: 15px;
 			font-size: 18px;
 		}
 
@@ -135,6 +139,7 @@
 		// position: absolute;
 		left: 0;
 		bottom: 0;
+		margin-top: auto;
 		padding: 40px 45px;
 		display: flex;
 		flex-wrap: wrap;
@@ -433,6 +438,9 @@
 }
 
 .SimpleCart {
+	// display: flex;
+	// flex-direction: column;
+	// min-height: 350px;
 	&__title {
 		padding: 10px 15px 5px 14px;
 		font-size: 1.2rem;
@@ -495,6 +503,7 @@
 	}
 
 	&__show-full {
+		margin-top: auto;
 		padding: 15px;
 
 		.btn {

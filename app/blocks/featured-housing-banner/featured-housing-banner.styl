@@ -1,0 +1,155 @@
+.featured-housing {
+	&__banner {
+		display: flex;
+		position: relative;
+		overflow: hidden;
+
+		+below($phones) {
+			min-height: 265px;
+			padding: 15px;
+			flex-direction: column;
+			align-items: flex-start;
+			justify-content: space-between;
+		}
+
+		+above($phones) {
+			min-height: 245px;
+			margin: 35px 15px;
+			padding: 50px;
+			flex-direction: row;
+			align-items: center;
+			justify-content: flex-start;
+
+			&:before {
+				pseudo();
+				background: var(--gray);
+				position: absolute;
+				top: 0;
+				right: 440px;
+				bottom: 0;
+				width: 100%;
+				z-index: 0;
+				transform: skewX(145deg);
+			}
+		}
+	}
+	&__banner-bg {
+		&--mobile,
+		&--desktop {
+			position: absolute;
+			z-index: -1;
+			background-repeat: no-repeat;
+		}
+		&--mobile {
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			background-position: 50% 50%;
+			background-size: cover;
+		}
+		&--desktop {
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			background-position: 100% 50%;
+			background-size: contain;
+		}
+
+		+below($phones) {
+			&--desktop {
+				display: none;
+			}
+		}
+
+		+above($phones) {
+			&--mobile {
+				display: none;
+			}
+		}
+	}
+	&__banner-logo--housing {
+		background-color: var(--bg-color);
+		background-position: 50% 50%;
+		background-repeat: no-repeat;
+		background-size: contain;
+		padding: 15px;
+
+		+below($phones) {
+			width: 100px;
+			height: 70px;
+		}
+
+		+above($phones) {
+			width: 160px;
+			height: 100px;
+		}
+	}
+	&__banner-logo--housing,
+	&__banner-content {
+		position: relative;
+		z-index: 1;
+	}
+	&__banner-content {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+
+		+above($phones) {
+			margin-left: 30px;
+		}
+	}
+	&__banner-title {
+		display: inline-block;
+		color: var(--bg-color);
+		background: var(--blue);
+		font-weight: 700;
+		padding: 0 10px;
+
+		+below($phones) {
+			font-size: 2rem;
+			line-height: 3.7rem;
+		}
+
+		+above($phones) {
+			font-size: 3.7rem;
+			line-height: 5.3rem;
+		}
+	}
+	&__banner-description {
+		display: inline-block;
+		color: var(--bg-color);
+
+		+below($phones) {
+			margin-top: 6px;
+			font-size: 1.4rem;
+			line-height: 2.4rem;
+		}
+
+		+above($phones) {
+			background: var(--blue);
+			font-size: 1.6rem;
+			line-height: 2.6rem;
+			margin-top: 16px;
+			padding: 5px 10px;
+		}
+	}
+	&__banner-logo--domoos {
+		position: absolute;
+		z-index 2;
+		font-size: 1.6rem;
+		font-weight: 700;
+		color: var(--bg-color);
+		opacity: .7;
+
+		+below($phones) {
+			top: 10px;
+			right: 15px;
+		}
+		+above($phones) {
+			right: 15px;
+			bottom: 10px;
+		}
+	}
+}

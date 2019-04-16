@@ -5,6 +5,7 @@ import inputmask from 'inputmask';
 import 'simplebar';
 import noUiSlider from 'nouislider';
 import wNumb from 'wNumb';
+import select2 from 'select2';
 
 $(() => {
 	svg4everybody();
@@ -79,38 +80,6 @@ $(document).ready(function($) {
 			.fadeIn();
 	});
 
-	$(document).on('click', '[js-buildings-tab]', function(e) {
-		e.preventDefault();
-		var $self = $(this),
-			tabIndex = $self.index();
-		$self.siblings().removeClass('is-active');
-		$self.addClass('is-active');
-		$('.gorod-popular__tab')
-			.removeClass('is-active')
-			.css('display', 'none')
-			.eq(tabIndex)
-			.fadeIn();
-		$('.mobile-gorod-carousel').slick('setPosition');
-	});
-
-	// // TODO - зачем здесь повтор ready ?
-	// $(document).ready(function() {
-	// 	var $output = $('#output');
-	// 	var $input = $('.noUi-handle-lower');
-
-	// 	// $input.on('input', rangeHandler);
-	// 	$input.on('change').data('aria-valuetext', rangeHandler);
-
-	function rangeHandler(e) {
-		$output.text(formatNumberWithSpaces(e.target.value));
-	}
-	// });
-
-	// Format with spaces
-	function formatNumberWithSpaces(num) {
-		return num.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-	}
-
 	// Initialize slider:
 	// var rangeSlider = $('#range') || '';
 	// // var slider1Value = document.getElementById('#output');
@@ -161,6 +130,10 @@ $(document).ready(function($) {
 			});
 		});
 	}
+
+	$(function() {
+		$('select').select2();
+	});
 
 	$('.carousel').slick({
 		dots: false,
@@ -249,51 +222,6 @@ $(document).ready(function($) {
 	// 		},
 	// 	],
 	// });
-
-	function personalInfoSliderInit2() {
-		if ($(document).width() > 768) {
-			if ($('.mobile-gorod-carousel').hasClass('slick-initialized'))
-				$('.mobile-gorod-carousel').slick('unslick');
-		} else {
-			if (!$('.mobile-gorod-carousel').hasClass('slick-initialized')) {
-				$('.mobile-gorod-carousel').slick({
-					dots: false,
-					infinite: true,
-					speed: 500,
-					slidesToShow: 1,
-					slidesToScroll: 1,
-					responsive: [
-						{
-							breakpoint: 9999,
-							settings: 'unslick',
-						},
-						{
-							breakpoint: 768,
-							settings: {
-								slidesToShow: 2,
-								slidesToScroll: 1,
-								arrows: false,
-							},
-						},
-						{
-							breakpoint: 568,
-							settings: {
-								slidesToShow: 1,
-								slidesToScroll: 1,
-								arrows: false,
-							},
-						},
-					],
-				});
-			}
-		}
-	}
-
-	personalInfoSliderInit2();
-
-	$(window).resize(function() {
-		personalInfoSliderInit2();
-	});
 
 	function personalInfoSliderInitMain() {
 		if ($(document).width() > 768) {

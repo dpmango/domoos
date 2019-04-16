@@ -1,25 +1,25 @@
-import axios from "axios";
-import qs from "qs";
+import axios from 'axios';
+import qs from 'qs';
 
-import { axiosSettings, axiosSetSettings, authKey } from "../../libs/axios";
+import { axiosSettings, axiosSetSettings, authKey } from '../../libs/axios';
 
 // filter принимает только json (!)
 
 const getBody = (table, id, type, item) => {
 	const baseObj = {
 		...authKey,
-		table_name: table
+		table_name: table,
 	};
 
 	if (id && !type) {
-		baseObj.filter = JSON.stringify([{ key: "user_session", value: [id.id], condition: "=" }]);
+		baseObj.filter = JSON.stringify([{ key: 'user_session', value: [id.id], condition: '=' }]);
 	}
 
 	if (type) {
-		if (type === "save") {
+		if (type === 'save') {
 			baseObj.options = JSON.stringify({ type, values: { user_session: id.id, ...item } });
 		}
-		if (type === "delete") {
+		if (type === 'delete') {
 			baseObj.options = JSON.stringify({ type, values: { user_session: id.id, item } });
 		}
 	}
@@ -30,17 +30,17 @@ const getBody = (table, id, type, item) => {
 export const fetchExistItems = id =>
 	axios({
 		...axiosSettings,
-		data: getBody("Favorites", id)
+		data: getBody('Favorites', id),
 	});
 
 export const fetchAddItem = (id, item) =>
 	axios({
 		...axiosSetSettings,
-		data: getBody("Favorites", id, "save", item)
+		data: getBody('Favorites', id, 'save', item),
 	});
 
 export const fetchDeleteItem = (id, item) =>
 	axios({
 		...axiosSetSettings,
-		data: getBody("Favorites", id, "delete", item)
+		data: getBody('Favorites', id, 'delete', item),
 	});
