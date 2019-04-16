@@ -1,9 +1,9 @@
-import { fetchCityAgencies } from "./api";
-import { createAction, handleActions } from "redux-actions";
+import { fetchCityAgencies } from './api';
+import { createAction, handleActions } from 'redux-actions';
 
 // SYNC ACTIONS
 
-export const setCityAgencies = createAction("setCityAgencies");
+export const setCityAgencies = createAction('setCityAgencies');
 
 // ASYNC ACTIONS
 
@@ -20,12 +20,12 @@ export default handleActions(
 			const { data } = payload.data.data;
 
 			const result = data.map(item => ({
-				isPremium: item.premium === "" ? false : true,
+				isPremium: item.premium === '' ? false : true,
 				name: item.agentstvo,
 				slug: item.slug_agentstvo,
 				citySlug: item.slug_gorod,
-				services: item.services ? item.services : "Новостройки, Вторичка, Ипотека, Обмен",
-				offers: item.offers
+				services: item.services ? item.services : 'Новостройки, Вторичка, Ипотека, Обмен',
+				offers: item.offers,
 			}));
 
 			const withPremium = result.filter(item => item.isPremium);
@@ -35,12 +35,12 @@ export default handleActions(
 				...state,
 				[payload.slug]: {
 					data: [...withPremium, withoutPremium].splice(0, 6),
-					loading: false
-				}
+					loading: false,
+				},
 			};
-		}
+		},
 	},
-	initialState
+	initialState,
 );
 
 export const selectCityAgencies = state => state.cities.cityAgencies;

@@ -28,11 +28,21 @@ export default handleActions(
 				city: item.gorod,
 				citySlug: item.slug_gorod,
 				developer: item.zastr,
-				developerSlug: item.slug_zastr,
+				// developerSlug: item.slug_zastr, // required for zastr image
+				developerImage: item.imgDeveloper,
 				features: [item.klass, item.otdelka, item.srok],
 				subway: item.metro,
 				district: item.raion,
 				price: item.price ? item.price : '0 000 000',
+				klassSlug: item.slug_klass,
+				flats: item.flats ? item.flats : [],
+				toMetro: item.toMetro,
+				toCentr: item.toCentr,
+				address: item.address,
+				mall: item.mall,
+				phone: item.phone,
+				altitude: item.altitude,
+				wallMaterial: item.wallMaterial,
 			}));
 
 			const withPremium = result.filter(item => item.isPremium);
