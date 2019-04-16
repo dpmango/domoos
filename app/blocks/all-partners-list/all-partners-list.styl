@@ -26,7 +26,7 @@
 	}
 	&__list {
 		display: flex;
-		padding: 0 15px 100px;
+		padding: 0 0 100px;
 
 		+below($phones) {
 			flex-direction: column;
@@ -35,23 +35,26 @@
 		+above($phones) {
 			flex-direction: row;
 			flex-wrap: wrap;
-			justify-content: space-between;
+		}
+
+		&--cell {
+			padding: 0 15px;
+
+			+below($phones) {
+				margin-top: 32px;
+			}
+
+			+above($phones) {
+				margin-top: 48px;
+				width: 50%;
+			}
+
+			+above($notebooks) {
+				width: 33.333333%;
+			}
 		}
 	}
 	.partner {
-
-		+below($phones) {
-			margin-top: 32px;
-		}
-
-		+above($phones) {
-			margin-top: 48px;
-			width: 48%;
-		}
-
-		+above($notebooks) {
-			width: 31%;
-		}
 
 		&__image-container {
 			display: block;
