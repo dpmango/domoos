@@ -23,22 +23,24 @@ section.all-partners
 			if isDevelopers
 
 				each item in developersList
-					.partner
-						a.partner__image-container(href="#")
-							.partner__image(style={'background-image': 'url("#{item.img}")'})
-						a.partner__name(href="#") СтройАльянс
-						.partner__features
-							.feature
-								.feature-label Квартиры от:
-								.feature-value #{item.features[0]} ₽
-							.feature
-								.feature-label Построено:
-								.feature-value #{item.features[1]} объектов
+					.all-partners__list--cell
+						.partner
+							a.partner__image-container(href="#")
+								.partner__image(style={'background-image': 'url("#{item.img}")'})
+							a.partner__name(href="#") СтройАльянс
+							.partner__features
+								.feature
+									.feature-label Квартиры от:
+									.feature-value #{item.features[0]} ₽
+								.feature
+									.feature-label Построено:
+									.feature-value #{item.features[1]} объектов
 
 			if isAgencies
 
 				each item in agenciesList
-					.partner
-						a.partner__image-container(href="#")
-							.partner__image(style={'background-image': 'url("#{item.img}")'})
-						a.partner__name(href="#")= item.name
+					.all-partners__list--cell
+						.partner
+							a.partner__image-container(href="#")
+								.partner__image(style={'background-image': 'url("#{item.img}")'})
+							a.partner__name(href="#")= item.name
