@@ -1,0 +1,67 @@
+- var regions = [];
+
+- regions.push({name: 'Московский район', price: '5.300.000', description: 'Один из наиболее благоустроенных и престижных округов Санкт-Петербурга. Он находится на юге города. Недалеко от центра и аэропорта Пулково.', img: '/images/region-1.jpg', tags: ['спальный', 'тихий'], links: ['Salut!', 'In2it (Интуит)', 'ЦДС-Московский', 'NEOPARK']})
+
+- regions.push({name: 'Московский район 2', price: '5.300.000', description: 'Один из наиболее благоустроенных и престижных округов Санкт-Петербурга. Он находится на юге города.', img: '/images/region-1.jpg', tags: ['бизнес-район'], links: ['Salut!', 'In2it (Интуит)', 'ЦДС-Московский', 'NEOPARK', 'Q-Мир']})
+
+- regions.push({name: 'Московский район 3', price: '5.300.000', description: 'Один из наиболее благоустроенных и престижных округов Санкт-Петербурга. Он находится на юге города.', img: '/images/city-2.jpg', tags: ['бизнес-район'], links: ['Salut!', 'In2it (Интуит)', 'ЦДС-Московский', 'NEOPARK', 'Q-Мир']})
+
+- regions.push({name: 'Московский район 4', price: '5.300.000', description: 'Один из наиболее благоустроенных и престижных округов Санкт-Петербурга. Он находится на юге города.', img: '/images/region-1.jpg', tags: ['бизнес-район'], links: ['Salut!', 'NEOPARK', 'Q-Мир']})
+
+- regions.push({name: 'Московский район 5', price: '5.300.000', description: 'Один из наиболее благоустроенных и престижных округов Санкт-Петербурга. Он находится на юге города. Недалеко от центра и аэропорта Пулково.', img: '/images/city-1.jpg', tags: ['бизнес-район'], links: ['NEOPARK', 'Q-Мир']})
+
+- regions.push({name: 'Московский район 6', price: '5.300.000', description: 'Один из наиболее благоустроенных и престижных округов Санкт-Петербурга. Он находится на юге города. Недалеко от центра и аэропорта Пулково.', img: '/images/region-1.jpg', tags: ['бизнес-район'], links: ['Salut!', 'In2it (Интуит)']})
+
+- regions.push({name: 'Московский район 7', price: '5.300.000', description: 'Один из наиболее благоустроенных и престижных округов Санкт-Петербурга. Он находится на юге города.', img: '/images/region-1.jpg', tags: ['бизнес-район'], links: ['Salut!', 'Q-Мир']})
+
+
+- var allTags = ['тихий', 'исторический', 'Экологичный', 'тихий', 'спальный', 'бизнес-район', 'исторический', 'спальный', 'тихий', 'спальный', 'бизнес-район']
+
+section.all-cities
+	.wrap
+		.all-cities__header
+			.all-cities__title Подберите подходящий район на сайте
+			.all-cities__options
+				.dropdown
+					button.dropdown__handler(type='button', data-toggle='dropdown') Сортировать по: рейтингу
+					ul.dropdown__menu
+						li
+							a.dropdown__link(tabindex='-1', href='/', target='_blank', rel='nofollow noopener') рейтингу
+						li
+							a.dropdown__link(tabindex='-1', href='/', target='_blank', rel='nofollow noopener') цене
+						li
+							a.dropdown__link(tabindex='-1', href='/', target='_blank', rel='nofollow noopener') размеру населения
+						li
+							a.dropdown__link(tabindex='-1', href='/', target='_blank', rel='nofollow noopener') алфавиту
+				a.all-cities__map(href="#") Посмотреть на карте
+		.all-cities__content
+			.all-cities__list#cities-filter
+				each item in regions
+					- var tagz = item.tags.join(', ');
+					.city(data-category=tagz)
+						a.city__img-container(href="#")
+							.region__bg
+							.city__img(style={'background-image': 'url("#{item.img}")'})
+							.region__info
+								.region__name= item.name
+								.region__price
+									| Квартиры от #{item.price} ₽
+						.region__description= item.description
+						.city__features
+							.region__features-title Новостройки в районе:
+							.region__building-list
+								each tag in item.links
+									.region__building-item
+										a(href="#")= tag
+				.region__show-more
+					a.btn(href="#")
+						span
+							+icon('show-more', true).icon
+							| Показать еще районы
+
+			.all-cities__sidebar#cities-filter-tags
+				.city-filter
+					.city-filter__title Фильтр по районам
+					.city-filter__content
+						each tag in allTags
+							.city-filter__item(data-tag=tag)= tag
