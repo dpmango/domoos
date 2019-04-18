@@ -5,7 +5,7 @@ import PhoneForm from '../PhoneForm';
 
 import { modalStyles } from '../../libs/utils';
 
-class CallbackModal extends PureComponent {
+class CallbackPartnerModal extends PureComponent {
 	state = {
 		modal: {
 			isOpen: false,
@@ -15,14 +15,14 @@ class CallbackModal extends PureComponent {
 	componentDidMount() {
 		// bind selector from non-react part
 		const _this = this;
-		var openSelector = document.querySelectorAll('[data-open-modal="callback"]');
+		var openSelector = document.querySelectorAll('[data-open-modal="callbackpartner"]');
 		[].forEach.call(openSelector, function(button) {
 			button.addEventListener('click', _this.handleTriggerClick, false);
 		});
 	}
 	componentWillUnmount() {
 		const _this = this;
-		var openSelector = document.querySelectorAll('[data-open-modal="callback"]');
+		var openSelector = document.querySelectorAll('[data-open-modal="callbackpartner"]');
 		[].forEach.call(openSelector, function(button) {
 			button.removeEventListener('click', _this.handleTriggerClick, false);
 		});
@@ -47,16 +47,17 @@ class CallbackModal extends PureComponent {
 	render() {
 		return (
 			<Modal isOpen={this.state.modal.isOpen} style={modalStyles} ariaHideApp={false}>
-				<div className="Modal CallbackModal">
-					<div className="Modal__wrapper CallbackModal__wrapper">
+				<div className="Modal CallbackPartnerModal">
+					<div className="Modal__wrapper CallbackPartnerModal__wrapper">
 						<div className="Modal__close" onClick={this.closeModal}>
 							<div className="Modal__close--icon" />
 						</div>
-						<div className="Modal__header CallbackModal__header">
+						<div className="Modal__header CallbackPartnerModal__header">
+							<img className="CallbackPartnerModal__logo" src="/images/modal-partner-logo.png" />
 							<div className="Modal__title">С вами свяжется менеджер</div>
 						</div>
-						<div className="Modal__body CallbackModal__body">
-							<div className="Modal__form CallbackModal__form">
+						<div className="Modal__body CallbackPartnerModal__body">
+							<div className="Modal__form CallbackPartnerModal__form">
 								<div className="Modal__form--select">
 									<input type="text" placeholder="Когда позвонить?" defaultValue="" />
 								</div>
@@ -67,7 +68,7 @@ class CallbackModal extends PureComponent {
 								{/*<PhoneForm />*/}
 							</div>
 						</div>
-						<div className="Modal__footer CallbackModal__footer">
+						<div className="Modal__footer CallbackPartnerModal__footer">
 							<div className="Modal__form--agreement">Нажимая на кнопку, я соглашаюсь на передачу моей персональной информации</div>
 						</div>
 					</div>
@@ -77,4 +78,4 @@ class CallbackModal extends PureComponent {
 	}
 }
 
-export default CallbackModal;
+export default CallbackPartnerModal;

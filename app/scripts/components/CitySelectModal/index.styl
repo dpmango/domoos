@@ -1,0 +1,44 @@
+.CitySelectModal {
+	&__suggestion {
+		&--follow {
+			display: inline-block;
+			margin-left: 20px;
+		}
+	}
+	&__suggestion,
+	&__list {
+		margin-top: 30px;
+		+above($phones) {
+			margin-top: 40px;
+		}
+		&--label {
+			font-weight: 500;
+			color: var(--title-color);
+		}
+	}
+	&__list {
+		&--cities {
+			display: flex;
+			flex-direction: column;
+			a {
+				display: block;
+				margin-top: 30px;
+			}
+			+below($phones) {
+
+			}
+			+above($phones) {
+				flex-direction: row;
+				flex-wrap: wrap;
+				a {
+					width: 50%;
+				}
+			}
+			+above($tablet) {
+				a {
+					width: 25%;
+				}
+			}
+		}
+	}
+}

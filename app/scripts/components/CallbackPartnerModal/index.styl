@@ -1,0 +1,15 @@
+.CallbackPartnerModal {
+	&__header {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	&__logo {
+		+below($phones) {
+			margin: 0 0 10px;
+		}
+		+above($phones) {
+			margin: 0 0 15px;
+		}
+	}
+}

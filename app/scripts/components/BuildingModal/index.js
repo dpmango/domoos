@@ -111,10 +111,12 @@ class BuildingModal extends PureComponent {
 				ariaHideApp={false}
 				onRequestClose={handleClose}
 			>
-				<div className="BuildingModal">
-					<div className="default-close" onClick={handleClose} />
-					<div className="wrap">
-						<div className="BuildingModal__head">
+				<div className="Modal Modal--responsive BuildingModal">
+					<div className="Modal__close" onClick={handleClose}>
+						<div className="Modal__close--icon" />
+					</div>
+					<div className="BuildingModal__wrapper">
+						<div className="BuildingModal__header">
 							<div className="BuildingModal__info">
 								<div className="name">{data.name}</div>
 								<div className="subway">Рядом со станцией метро {data.subway}</div>
@@ -137,7 +139,7 @@ class BuildingModal extends PureComponent {
 								</div>
 							</div>
 						</div>
-						<div className="BuildingModal__body">
+						<div className="Modal__body BuildingModal__body">
 							<div className="BuildingModal__content">
 								<div className="featured">
 									<img
