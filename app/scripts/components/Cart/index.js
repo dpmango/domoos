@@ -18,7 +18,7 @@ import SimpleCart from './SimpleCart';
 
 import { modalStyles } from '../../libs/utils';
 
-const useTag = '<use xlink:href="/assets/images/icon.svg#icon_like" />';
+const useTag = '<use xlink:href="/images/icon.svg#icon_like" />';
 
 class Cart extends PureComponent {
 	state = {
