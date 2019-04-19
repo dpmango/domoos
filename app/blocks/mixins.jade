@@ -55,8 +55,9 @@ mixin hotcall(id)
 		+e.A(href="tel:88006159251").__phone 8 (800) 615-92-51
 		+e.__content
 			+e.__title--form Оставьте заявку на обратный звонок:
-			+e.__form#hotcall-form
-				input.hotcall__input(name="phone" type="tel" placeholder="+7")
+			form.hotcall__form.js-lead-form#hotcall-form
+				input(type="hidden" name="formType" value="form-unique-id")
+				input.hotcall__input(name="leadPhone" type="tel" placeholder="+7" required)
 				input.hotcall__submit(name="submit" type="submit" value="Отправить" class="btn btn__full btn__full--yellow")
 		+e.__popup-form#hotcall-popup-form
 			input(name="submit" type="submit" value="Позвонить" class="btn btn__full btn__full--yellow")

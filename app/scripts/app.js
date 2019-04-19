@@ -6,6 +6,9 @@ import 'simplebar';
 import noUiSlider from 'nouislider';
 import wNumb from 'wNumb';
 import select2 from 'select2';
+import qs from 'qs';
+import validate from 'jquery-validation';
+import moment from 'moment';
 
 $(() => {
 	svg4everybody();
@@ -80,28 +83,6 @@ $(document).ready(function($) {
 			.fadeIn();
 	});
 
-	// Initialize slider:
-	// var rangeSlider = $('#range') || '';
-	// // var slider1Value = document.getElementById('#output');
-
-	// if (rangeSlider.length) {
-	// 	rangeSlider.each(function(i, slider) {
-	// 		var $slider = $(slider);
-	// 		noUiSlider.create(slider, {
-	// 			start: [4500000],
-	// 			connect: [true, false],
-	// 			step: 1000,
-	// 			range: {
-	// 				min: 800000,
-	// 				max: 100000000,
-	// 			},
-	// 		});
-	// 	});
-	// 	// rangeSlider.noUiSlider.on('update', function(values, handle) {
-	// 	// 	slider1Value.innerHTML = values[handle];
-	// 	// });
-	// }
-
 	function formatNumberWithSpaces(num) {
 		return num.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 	}
@@ -115,7 +96,7 @@ $(document).ready(function($) {
 			noUiSlider.create($currentSlider, {
 				start: [4500000],
 				connect: [true, false],
-				step: 1000,
+				step: 100000,
 				range: {
 					min: 800000,
 					max: 100000000,
@@ -131,8 +112,17 @@ $(document).ready(function($) {
 		});
 	}
 
+	// SELECTS
 	$(function() {
-		$('select').select2();
+		if ($('.js-select').length > 0) {
+			$('.js-select').each(function(i, select) {
+				var $select = $(select);
+				$('.js-select').select2({
+					placeholder: $select.attr('placeholder'),
+					allowClear: true,
+				});
+			});
+		}
 	});
 
 	$('.carousel').slick({
@@ -201,27 +191,6 @@ $(document).ready(function($) {
 			},
 		],
 	});
-
-	// $('.not-real-carousel').slick({
-	// 	dots: false,
-	// 	infinite: true,
-	// 	speed: 500,
-	// 	rows: 0,
-	// 	responsive: [
-	// 		{
-	// 			breakpoint: 9999,
-	// 			settings: 'unslick',
-	// 		},
-	// 		{
-	// 			breakpoint: 1200,
-	// 			settings: {
-	// 				slidesToShow: 1.4,
-	// 				slidesToScroll: 1,
-	// 				arrows: false,
-	// 			},
-	// 		},
-	// 	],
-	// });
 
 	function personalInfoSliderInitMain() {
 		if ($(document).width() > 768) {
@@ -308,35 +277,6 @@ $(document).ready(function($) {
 		personalInfoSliderInit();
 	});
 
-	// $('.not-real-carousel-developer').slick({
-	// 	dots: false,
-	// 	infinite: true,
-	// 	speed: 500,
-	// 	rows: 0,
-	// 	responsive: [
-	// 		{
-	// 			breakpoint: 9999,
-	// 			settings: 'unslick',
-	// 		},
-	// 		{
-	// 			breakpoint: 768,
-	// 			settings: {
-	// 				slidesToShow: 2,
-	// 				slidesToScroll: 1,
-	// 				arrows: false,
-	// 			},
-	// 		},
-	// 		{
-	// 			breakpoint: 528,
-	// 			settings: {
-	// 				slidesToShow: 1,
-	// 				slidesToScroll: 1,
-	// 				arrows: false,
-	// 			},
-	// 		},
-	// 	],
-	// });
-
 	var allCities = $('#cities-filter').children();
 
 	// var searchedItems = [];
@@ -395,3 +335,199 @@ $(document).ready(function($) {
 		}
 	});
 });
+
+// modules
+window.APP = {};
+
+$(() => {
+	window.APP.LeadForms.init();
+	setPageScrollOnLoad();
+});
+
+(function($, APP) {
+	// jQuery validate plugin
+	// https://jqueryvalidation.org
+
+	APP.LeadForms = {
+		init: function() {
+			this.validateForms();
+		},
+		validateForms: function() {
+			var _this = this;
+			var $forms = $('.js-lead-form');
+			if ($forms.length === 0) return;
+
+			$forms.each(function(i, form) {
+				var $form = $(form);
+
+				var validationOptions = {
+					errorPlacement: _this.validateErrorPlacement,
+					highlight: _this.validateHighlight,
+					unhighlight: _this.validateUnhighlight,
+					submitHandler: _this.validateSubmitHandler,
+					// rules to be set in html
+					// rules: {
+					// 	email: {
+					// 		required: true,
+					// 		email: true,
+					// 	},
+					// },
+					// messages: {
+					// 	email: {
+					// 		required: 'Fill this field',
+					// 		email: 'Email is invalid',
+					// 	},
+					// },
+				};
+
+				$form.validate(validationOptions);
+			});
+		},
+		data: {
+			masks: {
+				phone: {
+					required: true,
+					normalizer: function(value) {
+						var PHONE_MASK = '+X (XXX) XXX-XXXX';
+						if (!value || value === PHONE_MASK) {
+							return value;
+						} else {
+							return value.replace(/[^\d]/g, '');
+						}
+					},
+					minlength: 11,
+					digits: true,
+				},
+			},
+		},
+		validateErrorPlacement: function(error, element) {
+			error.addClass('ui-input__validation');
+			error.appendTo(element.parent());
+		},
+		validateHighlight: function(element) {
+			$(element).addClass('has-error');
+		},
+		validateUnhighlight: function(element) {
+			$(element).removeClass('has-error');
+		},
+		validateSubmitHandler: function(form) {
+			var $form = $(form);
+			$(form).addClass('loading');
+
+			var formOptions = {
+				date: moment().format('MMMM Do YYYY, HH:mm:ss'), //дата и время, когда заявка была оставлена
+				// city //город
+				page: window.location.pathname, //страница с которой оставили заявку
+				formType: $form.find('[name="formType"]').val(), // скрытое поле
+				utmSource: getParameterByName('utm_source'), // переменная utm метки
+				utmMedium: getParameterByName('utm_medium'), // переменная utm метки
+				utmCampaign: getParameterByName('utm_campaign'), // переменная utm метки
+				utmContent: getParameterByName('utm_content'), // переменная utm метки
+				utmTerm: getParameterByName('utm_term'), // переменная utm метки
+				// userID // id пользователя из данных метрики
+				leadPhone: $form.find('[name="leadPhone"]').val(), // номер телефона
+				leadName: $form.find('[name="leadName"]').val(), // имя
+				leadDistrict: $form.find('[name="leadDistrict"]').val(), // район
+				leadTimeBuild: checkboxGroupValues('[name="leadTimeBuild[]"]'), // срок сдачи
+				leadPrice: rangeSliderValue('[name="leadPrice"]'), // стоимость
+				leadCash: $form.find('[name="leadCash"]').val(), // наличные (чек-бокс)
+				leadSubsidy: $form.find('[name="leadSubsidy"]').is(':checked'), // мат.капитал (чек-бокс)
+				leadCashPartly: $form.find('[name="leadCashPartly"]').is(':checked'), // рассрочка (чек-бокс)
+				leadHypothec: $form.find('[name="leadHypothec"]').is(':checked'), // ипотека (чек-бокс)
+			};
+
+			var ajaxData = {
+				auth_key: 'zVdhENPArmryZFZNx4eftVGcIGcS4d_i',
+				table_name: 'Domoos_leads',
+				options: JSON.stringify({
+					type: 'save',
+					values: formOptions,
+				}),
+			};
+
+			$.ajax({
+				type: 'POST',
+				url: `${__BASEURL__}/set`,
+				data: ajaxData,
+				success: function(response) {
+					$form.removeClass('loading');
+					if (response.error === 'no') {
+						APP.LeadForms.reloadPageSucess();
+					} else {
+						$(form)
+							.find('[data-error]')
+							.html(data.message)
+							.show();
+					}
+				},
+			});
+		},
+		reloadPageSucess: function() {
+			// sucess callback
+			// 1. clear forms state
+
+			// 2. keep position
+
+			// 3. redirect with ?order
+			const loc = window.location;
+			const winTop = $(document).scrollTop();
+			loc.href = `${loc.origin + loc.pathname}?order&page_y=${winTop}`;
+		},
+	};
+})(jQuery, window.APP);
+
+// Parse params from the URL
+const getParameterByName = name => {
+	name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+	var regex = new RegExp('[\\?&]' + name + '=([^&#]*)'),
+		results = regex.exec(location.search);
+	return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+};
+
+// scroll to specified url params (used on page reload)
+const setPageScrollOnLoad = () => {
+	if (window.location.href.indexOf('page_y') != -1) {
+		//gets the number from end of url
+		var match = window.location.href.split('?')[1].match(/\d+$/);
+		var page_y = match[0];
+
+		//sets the page offset
+		$('html, body').scrollTop(page_y);
+	}
+};
+
+// get checkbox values group to string
+// checkboxGroupValues('[name="leadTimeBuild[]"]')
+const checkboxGroupValues = name => {
+	const $checkboxes = $(name);
+	if ($checkboxes.length === 0) {
+		return '';
+	}
+	let values = [];
+	$checkboxes.each(function(i, cb) {
+		if ($(cb).is(':checked')) {
+			values.push($(cb).val());
+		}
+	});
+	return values.join(', ');
+};
+
+// get noUIrange value
+// rangeSliderValue('[name="leadPrice"]')
+const rangeSliderValue = name => {
+	const $ranges = $(name);
+	if ($ranges.length === 0) {
+		return '';
+	}
+	const range = $ranges.get(0);
+
+	return range.noUiSlider.get();
+};
+
+// assing to window obj for debug
+window.getParameterByName = getParameterByName;
+window.checkboxGroupValues = checkboxGroupValues;
+window.rangeSliderValue = rangeSliderValue;
+
+// debug select
+// $('.help-podbor__form form').last().find('[name="leadSubsidy"]').is(':checked')
