@@ -220,6 +220,19 @@
 			margin-bottom: 19px;
 			width: 48%;
 
+			&--region {
+				margin-bottom: 40px;
+
+				.city__img {
+					+below($phones) {
+						min-height: 220px;
+						max-height: 220px;
+						background-position: center;
+						// background-size: contain;
+					}
+				}
+			}
+
 			+below($phones) {
 				margin-bottom: 30px;
 				width: 100%;

@@ -38,10 +38,10 @@ section.all-cities
 			.all-cities__list#cities-filter
 				each item in regions
 					- var tagz = item.tags.join(', ');
-					.city(data-category=tagz)
+					.city.city--region(data-category=tagz)
 						a.city__img-container(href="#")
-							.region__bg
 							.city__img(style={'background-image': 'url("#{item.img}")'})
+								.region__bg
 							.region__info
 								.region__name= item.name
 								.region__price
