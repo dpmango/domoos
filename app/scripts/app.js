@@ -392,23 +392,23 @@ $(() => {
 					unhighlight: _this.validateUnhighlight,
 					submitHandler: _this.validateSubmitHandler,
 					// rules to be set in html as well (merged props)
-					// rules: {
-					// 	email: {
-					// 		required: true,
-					// 		email: true,
-					// 	},
-					// 	leadPhone: _this.data.masks.phone,
-					// },
-					// messages: {
-					// 	email: {
-					// 		required: 'Заполните это поле',
-					// 		email: 'Формат email неверен',
-					// 	},
-					// 	leadPhone: {
-					// 		required: 'Заполните это поле',
-					// 		minlength: 'Введите корректный телефон',
-					// 	},
-					// },
+					rules: {
+						email: {
+							required: true,
+							email: true,
+						},
+						leadPhone: _this.data.masks.phone,
+					},
+					messages: {
+						email: {
+							required: 'Заполните это поле',
+							email: 'Формат email неверен',
+						},
+						leadPhone: {
+							required: 'Заполните это поле',
+							minlength: 'Введите корректный телефон',
+						},
+					},
 				};
 
 				$form.validate(validationOptions);
