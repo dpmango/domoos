@@ -341,8 +341,115 @@ window.APP = {};
 
 $(() => {
 	window.APP.LeadForms.init();
+	window.APP.SortCitiesJquery.init();
 	setPageScrollOnLoad();
 });
+
+(function($, APP) {
+	// jQuery validate plugin
+	// https://jqueryvalidation.org
+
+	APP.SortCitiesJquery = {
+		init: function() {
+			// itilial sorting equals to first sorting option
+			this.sortInitilizer('[js-sort-list] li:first-child a');
+			this.listenClicks();
+		},
+		listenClicks: function() {
+			var _this = this;
+			$('[js-sort-list] a').on('click', function(e) {
+				e.preventDefault();
+				e.stopPropagation();
+
+				_this.sortInitilizer(this);
+			});
+		},
+		sortInitilizer: function(from) {
+			var _this = this;
+			const $link = $(from);
+			const $btn = $('[js-sort-list] button');
+			const $wrapper = $('#cities-filter');
+			const $list = $wrapper.find('.city');
+
+			// get sort type from clicked link
+			const sortType = $link.data('sort');
+
+			if ($btn && sortType) {
+				// update selector text
+				$btn.find('span').text($link.text());
+				_this.sortCities($list, sortType);
+			}
+		},
+
+		sortCities: function($list, sortType) {
+			if ($list.length === 0) return;
+			const $wrapper = $('#cities-filter');
+
+			const wHumbFormat = wNumb({
+				thousand: '.',
+			});
+
+			const getPrice = el => {
+				const price = wHumbFormat.from(
+					$(el)
+						.find('[data-price]')
+						.data('price'),
+				);
+				return price;
+			};
+
+			const getPopulation = el => {
+				const population = wHumbFormat.from(
+					$(el)
+						.find('[data-population]')
+						.data('population'),
+				);
+				return population;
+			};
+
+			const getName = el => {
+				return $(el)
+					.find('[data-alphabet]')
+					.data('alphabet');
+			};
+
+			const sortByPrice = (a, b) => {
+				return getPrice(a) - getPrice(b); // ascending sort
+			};
+
+			const sortByPopulation = (a, b) => {
+				return getPopulation(a) - getPopulation(b); // ascending sort
+			};
+
+			const sortByAlphabet = (a, b) => {
+				if (getName(a) < getName(b)) {
+					return -1;
+				}
+				if (getName(a) > getName(b)) {
+					return 1;
+				}
+				return 0;
+			};
+
+			// SORTING RULES and NAMING
+			const $sorted = $list.sort((a, b) => {
+				switch (sortType) {
+					case 'price':
+						return sortByPrice(a, b);
+					case 'population':
+						return sortByPopulation(a, b);
+					case 'alphabet':
+						return sortByAlphabet(a, b);
+					default:
+						return sortByPrice(a, b);
+				}
+			});
+
+			// APPEND SORTED TO CURRENT LIST
+			$wrapper.prepend($sorted);
+		},
+	};
+})(jQuery, window.APP);
 
 (function($, APP) {
 	// jQuery validate plugin
