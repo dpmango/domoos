@@ -354,7 +354,7 @@ $(() => {
 		},
 		validateForms: function() {
 			var _this = this;
-			var $forms = $('.js-lead-form');
+			var $forms = $('.js-lead-form:not(.is-validation-attached)');
 			if ($forms.length === 0) return;
 
 			$forms.each(function(i, form) {
@@ -381,6 +381,8 @@ $(() => {
 				};
 
 				$form.validate(validationOptions);
+
+				$form.addClass('is-validation-attached');
 			});
 		},
 		data: {
