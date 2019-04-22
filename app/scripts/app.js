@@ -342,18 +342,20 @@ window.APP = {};
 $(() => {
 	window.APP.LeadForms.init();
 	window.APP.SortCitiesJquery.init();
+	window.APP.LoadMore.init();
 	setPageScrollOnLoad();
 });
 
 (function($, APP) {
-	// jQuery validate plugin
-	// https://jqueryvalidation.org
-
+	// SORT CITIES/REGIONS BY SELECTING IN PRESUDO SELECT by [js-sort-list] tag
 	APP.SortCitiesJquery = {
 		init: function() {
 			// itilial sorting equals to first sorting option
 			this.sortInitilizer('[js-sort-list] li:first-child a');
 			this.listenClicks();
+		},
+		refresh: function(selector) {
+			this.sortInitilizer(selector);
 		},
 		listenClicks: function() {
 			var _this = this;
@@ -377,6 +379,15 @@ $(() => {
 			if ($btn && sortType) {
 				// update selector text
 				$btn.find('span').text($link.text());
+
+				// build link classes
+				$link
+					.closest('li')
+					.siblings()
+					.removeClass('is-active');
+				$link.closest('li').addClass('is-active');
+
+				// call sorter
 				_this.sortCities($list, sortType);
 			}
 		},
@@ -447,6 +458,26 @@ $(() => {
 
 			// APPEND SORTED TO CURRENT LIST
 			$wrapper.prepend($sorted);
+		},
+	};
+})(jQuery, window.APP);
+
+(function($, APP) {
+	// LOAD MORE BUTTONS
+	APP.LoadMore = {
+		init: function() {
+			this.listenClicks();
+		},
+		listenClicks: function() {
+			$('[js-load-more]').on('click', function() {
+				var $btn = $(this);
+				var $wrapper = $('#cities-filter');
+				var $list = $wrapper.find('.city');
+
+				$wrapper.prepend($list.clone());
+
+				window.APP.SortCitiesJquery.refresh('[js-sort-list] li.is-active a');
+			});
 		},
 	};
 })(jQuery, window.APP);
