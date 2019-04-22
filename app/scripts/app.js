@@ -405,10 +405,22 @@ $(() => {
 			error.appendTo(element.parent());
 		},
 		validateHighlight: function(element) {
-			$(element).addClass('has-error');
+			var $element = $(element);
+
+			if ($element.is('select')) {
+				$element.next().addClass('has-error');
+			} else {
+				$(element).addClass('has-error');
+			}
 		},
 		validateUnhighlight: function(element) {
-			$(element).removeClass('has-error');
+			var $element = $(element);
+
+			if ($element.is('select')) {
+				$element.next().removeClass('has-error');
+			} else {
+				$(element).removeClass('has-error');
+			}
 		},
 		validateSubmitHandler: function(form) {
 			var $form = $(form);
@@ -416,7 +428,7 @@ $(() => {
 
 			var formOptions = {
 				date: moment().format('MMMM Do YYYY, HH:mm:ss'), //дата и время, когда заявка была оставлена
-				// city //город
+				city: $form.find('[name="city"]').val(), //город
 				page: window.location.pathname, //страница с которой оставили заявку
 				formType: $form.find('[name="formType"]').val(), // скрытое поле
 				utmSource: getParameterByName('utm_source'), // переменная utm метки
