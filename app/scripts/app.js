@@ -365,19 +365,24 @@ $(() => {
 					highlight: _this.validateHighlight,
 					unhighlight: _this.validateUnhighlight,
 					submitHandler: _this.validateSubmitHandler,
-					// rules to be set in html
-					// rules: {
-					// 	email: {
-					// 		required: true,
-					// 		email: true,
-					// 	},
-					// },
-					// messages: {
-					// 	email: {
-					// 		required: 'Fill this field',
-					// 		email: 'Email is invalid',
-					// 	},
-					// },
+					// rules to be set in html as well (merged props)
+					rules: {
+						email: {
+							required: true,
+							email: true,
+						},
+						leadPhone: _this.data.masks.phone,
+					},
+					messages: {
+						email: {
+							required: 'Заполните это поле',
+							email: 'Формат email неверен',
+						},
+						leadPhone: {
+							required: 'Заполните это поле',
+							minlength: 'Введите корректный телефон',
+						},
+					},
 				};
 
 				$form.validate(validationOptions);
@@ -390,7 +395,7 @@ $(() => {
 				phone: {
 					required: true,
 					normalizer: function(value) {
-						var PHONE_MASK = '+X (XXX) XXX-XXXX';
+						var PHONE_MASK = '+X XXX XXX XX XX';
 						if (!value || value === PHONE_MASK) {
 							return value;
 						} else {
