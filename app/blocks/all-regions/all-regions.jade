@@ -1,18 +1,18 @@
 - var regions = [];
 
-- regions.push({name: 'Московский район', price: '5.300.000', description: 'Один из наиболее благоустроенных и престижных округов Санкт-Петербурга. Он находится на юге города. Недалеко от центра и аэропорта Пулково.', img: '/images/region-1.jpg', tags: ['спальный', 'тихий'], links: ['Salut!', 'In2it (Интуит)', 'ЦДС-Московский', 'NEOPARK']})
+- regions.push({name: 'Московский район', price: '5.300.000', population: '1.200.000', description: 'Один из наиболее благоустроенных и престижных округов Санкт-Петербурга. Он находится на юге города. Недалеко от центра и аэропорта Пулково.', img: '/images/region-1.jpg', tags: ['спальный', 'тихий'], links: ['Salut!', 'In2it (Интуит)', 'ЦДС-Московский', 'NEOPARK']})
 
-- regions.push({name: 'Московский район 2', price: '5.300.000', description: 'Один из наиболее благоустроенных и престижных округов Санкт-Петербурга. Он находится на юге города.', img: '/images/region-1.jpg', tags: ['бизнес-район'], links: ['Salut!', 'In2it (Интуит)', 'ЦДС-Московский', 'NEOPARK', 'Q-Мир']})
+- regions.push({name: 'Московский район 2', price: '3.300.000', population: '1.500.000', description: 'Один из наиболее благоустроенных и престижных округов Санкт-Петербурга. Он находится на юге города.', img: '/images/region-1.jpg', tags: ['бизнес-район'], links: ['Salut!', 'In2it (Интуит)', 'ЦДС-Московский', 'NEOPARK', 'Q-Мир']})
 
-- regions.push({name: 'Московский район 3', price: '5.300.000', description: 'Один из наиболее благоустроенных и престижных округов Санкт-Петербурга. Он находится на юге города.', img: '/images/city-2.jpg', tags: ['бизнес-район'], links: ['Salut!', 'In2it (Интуит)', 'ЦДС-Московский', 'NEOPARK', 'Q-Мир']})
+- regions.push({name: 'Московский район 3', price: '2.500.000', population: '1.600.000', description: 'Один из наиболее благоустроенных и престижных округов Санкт-Петербурга. Он находится на юге города.', img: '/images/city-2.jpg', tags: ['бизнес-район'], links: ['Salut!', 'In2it (Интуит)', 'ЦДС-Московский', 'NEOPARK', 'Q-Мир']})
 
-- regions.push({name: 'Московский район 4', price: '5.300.000', description: 'Один из наиболее благоустроенных и престижных округов Санкт-Петербурга. Он находится на юге города.', img: '/images/region-1.jpg', tags: ['бизнес-район'], links: ['Salut!', 'NEOPARK', 'Q-Мир']})
+- regions.push({name: 'Московский район 4', price: '5.400.000', population: '1.700.000', description: 'Один из наиболее благоустроенных и престижных округов Санкт-Петербурга. Он находится на юге города.', img: '/images/region-1.jpg', tags: ['бизнес-район'], links: ['Salut!', 'NEOPARK', 'Q-Мир']})
 
-- regions.push({name: 'Московский район 5', price: '5.300.000', description: 'Один из наиболее благоустроенных и престижных округов Санкт-Петербурга. Он находится на юге города. Недалеко от центра и аэропорта Пулково.', img: '/images/city-1.jpg', tags: ['бизнес-район'], links: ['NEOPARK', 'Q-Мир']})
+- regions.push({name: 'Московский район 5', price: '5.355.000', population: '1.200.000', description: 'Один из наиболее благоустроенных и престижных округов Санкт-Петербурга. Он находится на юге города. Недалеко от центра и аэропорта Пулково.', img: '/images/city-1.jpg', tags: ['бизнес-район'], links: ['NEOPARK', 'Q-Мир']})
 
-- regions.push({name: 'Московский район 6', price: '5.300.000', description: 'Один из наиболее благоустроенных и престижных округов Санкт-Петербурга. Он находится на юге города. Недалеко от центра и аэропорта Пулково.', img: '/images/region-1.jpg', tags: ['бизнес-район'], links: ['Salut!', 'In2it (Интуит)']})
+- regions.push({name: 'Московский район 6', price: '5.800.000', population: '1.900.000', description: 'Один из наиболее благоустроенных и престижных округов Санкт-Петербурга. Он находится на юге города. Недалеко от центра и аэропорта Пулково.', img: '/images/region-1.jpg', tags: ['бизнес-район'], links: ['Salut!', 'In2it (Интуит)']})
 
-- regions.push({name: 'Московский район 7', price: '5.300.000', description: 'Один из наиболее благоустроенных и престижных округов Санкт-Петербурга. Он находится на юге города.', img: '/images/region-1.jpg', tags: ['бизнес-район'], links: ['Salut!', 'Q-Мир']})
+- regions.push({name: 'Московский район 7', price: '8.300.000', population: '1.400.000', description: 'Один из наиболее благоустроенных и престижных округов Санкт-Петербурга. Он находится на юге города.', img: '/images/region-1.jpg', tags: ['бизнес-район'], links: ['Salut!', 'Q-Мир']})
 
 
 - var allTags = ['тихий', 'исторический', 'Экологичный', 'тихий', 'спальный', 'бизнес-район', 'исторический', 'спальный', 'тихий', 'спальный', 'бизнес-район']
@@ -22,23 +22,25 @@ section.all-cities
 		.all-cities__header
 			.all-cities__title Подберите подходящий район на сайте
 			.all-cities__options
-				.dropdown
-					button.dropdown__handler(type='button', data-toggle='dropdown') Сортировать по: рейтингу
+				.dropdown(js-sort-list)
+					button.dropdown__handler(type='button', data-toggle='dropdown') Сортировать по: <span>цене</span>
 					ul.dropdown__menu
 						li
-							a.dropdown__link(tabindex='-1', href='/', target='_blank', rel='nofollow noopener') рейтингу
+							a.dropdown__link(data-sort="price" tabindex='-1', href='/', target='_blank', rel='nofollow noopener') цене
 						li
-							a.dropdown__link(tabindex='-1', href='/', target='_blank', rel='nofollow noopener') цене
+							a.dropdown__link(data-sort="population" tabindex='-1', href='/', target='_blank', rel='nofollow noopener') размеру населения
 						li
-							a.dropdown__link(tabindex='-1', href='/', target='_blank', rel='nofollow noopener') размеру населения
-						li
-							a.dropdown__link(tabindex='-1', href='/', target='_blank', rel='nofollow noopener') алфавиту
+							a.dropdown__link(data-sort="alphabet" tabindex='-1', href='/', target='_blank', rel='nofollow noopener') алфавиту
 				a.all-cities__map(href="#") Посмотреть на карте
 		.all-cities__content
 			.all-cities__list#cities-filter
 				each item in regions
 					- var tagz = item.tags.join(', ');
 					.city.city--region(data-category=tagz)
+						span(data-price=item.price)
+						span(data-population=item.population)
+						span(data-alphabet=item.name)
+
 						a.city__img-container(href="#")
 							.city__img(style={'background-image': 'url("#{item.img}")'})
 								.region__bg
@@ -54,7 +56,7 @@ section.all-cities
 									.region__building-item
 										a(href="#")= tag
 				.region__show-more
-					a.btn(href="#")
+					a.btn(href="#" js-load-more)
 						span
 							+icon('show-more', true).icon
 							| Показать еще районы

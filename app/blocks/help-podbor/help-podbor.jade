@@ -19,61 +19,67 @@ section.help-podbor
 					.help-podbor__title Подберите квартиру онлайн
 					.help-podbor__description Заполните форму, выберите параметры квартиры и мы перезвоним вам с лучшим предложением
 					.help-podbor__form
-						form(action="#" method="#")
+						form.js-lead-form
+							input(type="hidden" name="formType" value="podbor-form")
 							.help-podbor__row
-								input(type="text" name="name" placeholder="Ваше имя")
-								input(type="tel" placeholder="+7")
+								input(type="text" name="leadName" placeholder="Ваше имя" required)
+								input(type="tel" name="leadPhone" placeholder="+7" required)
 							.help-podbor__select
-								select(style="width: 100%;")
-									option(value="val0" selected disable) Выберите район
-									option(value="val1") Район №1
-									option(value="val2") Район №2
-									option(value="val3") Район №3
-									option(value="val4") Район №4
-									option(value="val5") Район №5
-									option(value="val6") Район №6
-									option(value="val7") Район №7
-									option(value="val8") Район №8
-									option(value="val9") Район №9
+								select.js-select(name="leadDistrict" placeholder="Выберите район" style="width: 100%;" required)
+									option
+									option(value="Район №1") Район №1
+									option(value="Район №2") Район №2
+									option(value="Район №3") Район №3
+									option(value="Район №4") Район №4
+									option(value="Район №5") Район №5
+									option(value="Район №6") Район №6
+									option(value="Район №7") Район №7
+									option(value="Район №8") Район №8
+									option(value="Район №9") Район №9
 							.help-podbor__block
 								p Когда сдача:
 								.help-podbor__checkboxes
 									.checkbox-container
-										input#c1(type="checkbox", name="")
+										input#c1(type="checkbox", name="leadTimeBuild[]" value="сдан")
 										label(for="c1") сдан
 									.checkbox-container
-										input#c2(type="checkbox", name="")
+										input#c2(type="checkbox", name="leadTimeBuild[]" value="2018")
 										label(for="c2") 2018
 									.checkbox-container
-										input#c3(type="checkbox", name="" checked)
+										input#c3(type="checkbox", name="leadTimeBuild[]" checked value="2019")
 										label(for="c3") 2019
 									.checkbox-container
-										input#c4(type="checkbox", name="")
+										input#c4(type="checkbox", name="leadTimeBuild[]" value="2020")
 										label(for="c4") 2020
 							.help-podbor__block
 								p Максимальная сумма:
 								.help-podbor__range
 									p#output.output 4 500 000
 									//- input#range.range(type='range', min='200000', max='100000000', value='4500000', step='1000')
-									#range
+									#range(name="leadPrice")
 								.help-podbor__row
 									.help-podbor__value.help-podbor__value--min 800 000 ₽
 									.help-podbor__value.help-podbor__value--max более 100 млн. ₽
 							.help-podbor__block
 								.help-podbor__checkboxes-types
 									.checkbox-container
-										input#c11(type="checkbox", name="")
+										input#c11(type="checkbox", name="leadCash")
 										label(for="c11")
 											span
-											| Ипотека
+											| Мат. капитал
 									.checkbox-container
-										input#c12(type="checkbox", name="")
+										input#c12(type="checkbox", name="leadSubsidy")
 										label(for="c12")
 											span
-											| Чистовая отделка
+											| Мат. капитал
 									.checkbox-container
-										input#c13(type="checkbox", name="")
+										input#c13(type="checkbox", name="leadCashPartly")
 										label(for="c13")
 											span
-											| Эко-район
+											| Рассрочка
+									.checkbox-container
+										input#c14(type="checkbox", name="leadHypothec")
+										label(for="c14")
+											span
+											| Ипотека
 							input.btn.btn__full.btn__full--yellow(type="submit")

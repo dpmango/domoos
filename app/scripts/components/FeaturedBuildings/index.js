@@ -98,7 +98,9 @@ class FeatuedBuildings extends Component {
 
 	isAdded = id => {
 		const { CartItems } = this.props;
-		const result = CartItems.data.filter(item => item.id === id);
+		const result = CartItems.data.filter(
+			item => (item.isServerData ? item.buildID : item.id) === id,
+		);
 		return result[0] && result[0].id === id ? true : false;
 	};
 

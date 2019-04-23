@@ -32,7 +32,7 @@ class BuildingModal extends PureComponent {
 		const aboutObj = [
 			{
 				title: 'Район',
-				value: data.district,
+				value: data.district ? data.district : 'недоступно',
 			},
 			{
 				title: 'Сдача',
@@ -77,7 +77,7 @@ class BuildingModal extends PureComponent {
 			list: [
 				{
 					title: 'Район',
-					value: 'центральный',
+					value: data.district ? data.district : 'недоступно',
 				},
 				{
 					title: 'Адрес',
@@ -92,16 +92,16 @@ class BuildingModal extends PureComponent {
 					value: data.subway ? data.subway : 'недоступно',
 				},
 			],
-			metrics: [
-				{
-					title: 'Экология',
-					value: 5,
-				},
-				{
-					title: 'Инфраструктура',
-					value: 3,
-				},
-			],
+			// metrics: [
+			// 	{
+			// 		title: 'Экология',
+			// 		value: 5,
+			// 	},
+			// 	{
+			// 		title: 'Инфраструктура',
+			// 		value: 3,
+			// 	},
+			// ],
 		};
 
 		return (
