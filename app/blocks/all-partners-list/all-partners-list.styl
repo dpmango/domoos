@@ -1,0 +1,121 @@
+.all-partners {
+
+	&__header {
+		padding: 0 15px;
+
+		+below($phones) {
+			margin-top: 36px;
+		}
+
+		+above($phones) {
+			margin-top: 72px;
+		}
+	}
+	&__header-title {
+		color: var(--caption-color);
+
+		+below($phones) {
+			font-size: 1.4rem;
+			line-height: 2.4rem;
+		}
+
+		+above($phones) {
+			font-size: 1.6rem;
+			line-height 3.2rem;
+		}
+	}
+	&__list {
+		display: flex;
+		padding: 0 0 100px;
+
+		+below($phones) {
+			flex-direction: column;
+		}
+
+		+above($phones) {
+			flex-direction: row;
+			flex-wrap: wrap;
+		}
+
+		&--cell {
+			padding: 0 15px;
+
+			+below($phones) {
+				margin-top: 32px;
+			}
+
+			+above($phones) {
+				margin-top: 48px;
+				width: 50%;
+			}
+
+			+above($notebooks) {
+				width: 33.333333%;
+			}
+		}
+	}
+	.partner {
+
+		&__image-container {
+			display: block;
+			border: 1px solid var(--border-color);
+
+			+below($phones) {
+				height: 190px;
+			}
+
+			+above($phones) {
+				height: 260px;
+			}
+		}
+		&__image {
+			width: 100%;
+			height: 100%;
+			background-position: 50% 50%;
+			background-repeat: no-repeat;
+			background-size: contain;
+		}
+		&__name {
+			font-weight: 500;
+			margin-top: 16px;
+
+			+below($phones) {
+				font-size: 1.6rem;
+			}
+
+			+above($phones) {
+				font-size: 1.8rem;
+			}
+		}
+		&__features {
+			display: flex;
+
+			.feature {
+				width: 50%;
+			}
+			.feature-label {
+				font-size: 1.2rem;
+			}
+			.feature-value {
+				color: var(--caption-color);
+				margin-top: 8px;
+			}
+
+			+below($phones) {
+				margin-top: 12px;
+
+				.feature-value {
+					font-size: 1.2rem;
+				}
+			}
+
+			+above($phones) {
+				margin-top: 18px;
+
+				.feature-value {
+					font-size: 1.6rem;
+				}
+			}
+		}
+	}
+}

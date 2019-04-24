@@ -1,0 +1,46 @@
+- var developersList = [];
+- developersList.push({name: 'СтройАльянс', img: '/images/isk-algoritm.png', features: [12900000, 12]})
+- developersList.push({name: 'СтройАльянс', img: '/images/stroitelnyj-kamen.png', features: [12900000, 12]})
+- developersList.push({name: 'СтройАльянс', img: '/images/votetodom.png', features: [12900000, 12]})
+- developersList.push({name: 'СтройАльянс', img: '/images/isk-algoritm.png', features: [12900000, 12]})
+- developersList.push({name: 'СтройАльянс', img: '/images/stroitelnyj-kamen.png', features: [12900000, 12]})
+- developersList.push({name: 'СтройАльянс', img: '/images/votetodom.png', features: [12900000, 12]})
+
+- var agenciesList = [];
+- agenciesList.push({name: 'СтройАльянс', img: '/images/isk-algoritm.png', features: [12900000, 12]})
+- agenciesList.push({name: 'Флэт', img: '/images/stroitelnyj-kamen.png', features: [12900000, 12]})
+- agenciesList.push({name: 'Светлый', img: '/images/votetodom.png', features: [12900000, 12]})
+- agenciesList.push({name: 'СтройАльянс', img: '/images/isk-algoritm.png', features: [12900000, 12]})
+- agenciesList.push({name: 'Светлый Дом', img: '/images/stroitelnyj-kamen.png', features: [12900000, 12]})
+- agenciesList.push({name: 'Светлый', img: '/images/votetodom.png', features: [12900000, 12]})
+
+section.all-partners
+	.wrap
+		.all-partners__header
+			.all-partners__header-title Все строительные компании Петербурга
+		.all-partners__list
+
+			if isDevelopers
+
+				each item in developersList
+					.all-partners__list--cell
+						.partner
+							a.partner__image-container(href="#")
+								.partner__image(style={'background-image': 'url("#{item.img}")'})
+							a.partner__name(href="#") СтройАльянс
+							.partner__features
+								.feature
+									.feature-label Квартиры от:
+									.feature-value #{item.features[0]} ₽
+								.feature
+									.feature-label Построено:
+									.feature-value #{item.features[1]} объектов
+
+			if isAgencies
+
+				each item in agenciesList
+					.all-partners__list--cell
+						.partner
+							a.partner__image-container(href="#")
+								.partner__image(style={'background-image': 'url("#{item.img}")'})
+							a.partner__name(href="#")= item.name

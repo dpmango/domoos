@@ -1,16 +1,12 @@
 - var cities = [];
-- cities.push({name: 'Санкт-Петербург', description: 'В каталоге сайта собраны все города России, в каталоге сайта собраны все города России.', img: '/images/city-2.jpg'})
-- cities.push({name: 'Москва', description: 'В каталоге сайта собраны все города России, в каталоге сайта собраны все города России.', img: '/images/city-3.jpg'})
-- cities.push({name: 'Нижний Новгород', description: 'В каталоге сайта собраны все города России, в каталоге сайта собраны все города России.', img: '/images/city-1.jpg'})
-- cities.push({name: 'Минск', description: 'В каталоге сайта собраны все города России, в каталоге сайта собраны все города России.', img: '/images/city-1.jpg'})
-- cities.push({name: 'Омск', description: 'В каталоге сайта собраны все города России, в каталоге сайта собраны все города России.', img: '/images/city-2.jpg'})
-- cities.push({name: 'Санкт-Петербур5', description: 'В каталоге сайта собраны все города России, в каталоге сайта собраны все города России.', img: '/images/city-3.jpg'})
-- cities.push({name: 'Санкт-Петербург6', description: 'В каталоге сайта собраны все города России, в каталоге сайта собраны все города России.', img: '/images/city-1.jpg'})
-- cities.push({name: 'Санкт-Петербург7', description: 'В каталоге сайта собраны все города России, в каталоге сайта собраны все города России.', img: '/images/city-2.jpg'})
-- cities.push({name: 'Санкт-Петербург8', description: 'В каталоге сайта собраны все города России, в каталоге сайта собраны все города России.', img: '/images/city-3.jpg'})
-- cities.push({name: 'Санкт-Петербург9', description: 'В каталоге сайта собраны все города России, в каталоге сайта собраны все города России.', img: '/images/city-1.jpg'})
-- cities.push({name: 'Санкт-Петербург10', description: 'В каталоге сайта собраны все города России, в каталоге сайта собраны все города России.', img: '/images/city-2.jpg'})
-- cities.push({name: 'Санкт-Петербург11', description: 'В каталоге сайта собраны все города России, в каталоге сайта собраны все города России.', img: '/images/city-3.jpg'})
+- cities.push({name: 'Санкт-Петербург', price: '5.300.000', description: 'В каталоге сайта собраны все города России, в каталоге сайта собраны все города России.', img: '/images/city-2.jpg'})
+- cities.push({name: 'Москва', price: '5.300.000', description: 'Крупный город в Южной Сибири с населением больше 600 000 человек. Столица Алтайского края, развитый промышленный город', img: '/images/city-3.jpg'})
+- cities.push({name: 'Нижний Новгород', price: '5.300.000', description: 'В каталоге сайта собраны все города России, в каталоге сайта собраны все города России.', img: '/images/city-1.jpg'})
+- cities.push({name: 'Минск', price: '5.300.000', description: 'В каталоге сайта собраны все города России, в каталоге сайта собраны все города России.', img: '/images/city-1.jpg'})
+- cities.push({name: 'Омск', price: '5.300.000', description: 'В каталоге сайта собраны все города России, в каталоге сайта собраны все города России.', img: '/images/city-2.jpg'})
+- cities.push({name: 'Санкт-Петербур5', price: '5.300.000', description: 'В каталоге сайта собраны все города России, в каталоге сайта собраны все города России.', img: '/images/city-3.jpg'})
+- cities.push({name: 'Санкт-Петербург6', price: '5.300.000', description: 'В каталоге сайта собраны все города России, в каталоге сайта собраны все города России.', img: '/images/city-1.jpg'})
+- cities.push({name: 'Санкт-Петербург7', price: '5.300.000', description: 'В каталоге сайта собраны все города России, в каталоге сайта собраны все города России.', img: '/images/city-2.jpg'})
 
 
 section.about-cities(class=isСity ? 'gorod' : '')
@@ -21,6 +17,26 @@ section.about-cities(class=isСity ? 'gorod' : '')
 				.about-cities__description
 			.about-cities__title Мы работаем в 45 регионах России
 			.about-cities__description Наша цель собрать абсолютно все города нашей страны в единый цифровой каталог недвижимости. Выбирайте, сравнивайте, изучайте с удовольствием на Domoos.ru
-			a.to-category-link(href="/goroda") Все города
-		.about-cities__slider
-			+citySlider('cities', cities)
+
+			if isElswhere
+				a.to-category-link(href="/goroda" target="_blank") Все города
+
+		if isElsewhere
+			.about-cities__slider
+				+citySlider('cities', cities)
+
+		if isHome
+			.about-cities__list-static
+				each item in cities
+					.about-cities__list-static--cell
+						a.city-static__container(href="#")
+							.city-static__img(style={'background-image': 'url("#{item.img}")'})
+							.city-static__about
+								.city-static__name= item.name
+								.city-static__price= item.price
+								.city-static__description= item.description
+				.about-cities__list-static--cell
+					a.city-static__container(href="#")
+						.city-static__img(style={'background-image': 'url("/images/city-1.jpg")'})
+						.city-static__show-more
+							.city-static__show-more--btn Показать 47 городов

@@ -287,10 +287,14 @@
 			.slick-track {
 				display: flex;
 				flex-wrap: wrap;
-				width: 101% !important;
-				max-width: calc(100% + 2px);
+				// width: 101% !important;
+				// max-width: calc(100% + 2px);
+				width: calc(100% + 30px) !important;
+				max-width: calc(100% + 30px);
 				transform: none !important;
-				justify-content: space-between;
+				// justify-content: space-between;
+				justify-content: flex-start;
+				margin: 0 -15px;
 
 				&:before, &:after {
 					display: none;
@@ -302,8 +306,10 @@
 			}
 
 			.slick-slide {
+				margin: 0 15px;
 				padding: 0 !important;
-				width: calc(33.333333% - 20px) !important;
+				// width: calc(33.333333% - 20px) !important;
+				width: calc(33.333333% - 30px) !important;
 				max-width: 350px;
 				// max-width: 314px;
 			}
@@ -380,7 +386,7 @@
 				z-index: 100;
 				margin-bottom: 20px;
 				width: 50%;
-				height: 65px;
+				height: 130px;
 				background-repeat: no-repeat;
 				background-position: left center;
 				background-size: contain;

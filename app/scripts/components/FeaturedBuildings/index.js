@@ -1,33 +1,50 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Slider from 'react-slick';
-import { sliderSettings } from '../../libs/utils';
 
 import { saveToCart, selectCartItems, deleteFromCart } from '../../ducks/cart/items';
 import { selectCityBuildings, getCityBuildings } from '../../ducks/cities/cityBuildings';
 import BuildingModal from '../BuildingModal';
 import Building from '../Shared/Building/Building';
 
+import Slider from 'react-slick';
+import { sliderSettingsMobileOnly } from '../../libs/utils';
+import debounce from 'lodash/debounce';
+
 import Loader from '../UI/Loader';
-import SvgIcon from '../UI/SvgIcon';
+// import SvgIcon from '../UI/SvgIcon';
 
 // TODO
 // [] Вынести модальное карточки новостройки на глобальный уровень и подключить redux (повтор тут и в CityExplorer)
 
 class FeatuedBuildings extends Component {
+	constructor(props) {
+		super(props);
+
+		this.resizeWithDebounce = debounce(this.handleResize, 200);
+	}
+
 	state = {
 		activeCity: {
 			slug: undefined,
 		},
 		filter: {
-			list: ['Под ключ', 'Сданные', 'Недорогие', 'Элитные'],
-			activeFilter: 'Под ключ',
+			list: ['Проверенные', 'Эконом', 'Комфорт', 'Премиум', 'Бизнес', 'Элит'],
+			activeFilter: 'Проверенные',
+		},
+		buildings: {
+			verified: [],
+			ekonom: [],
+			comfort: [],
+			premium: [],
+			busines: [],
+			elit: [],
 		},
 		modal: {
 			building: {},
 			isOpen: false,
 		},
+		sliderDisabled: undefined,
 	};
 
 	// lifecycle hooks
@@ -45,7 +62,18 @@ class FeatuedBuildings extends Component {
 		const { activeCity } = this.state;
 
 		getCityBuildings(activeCity.slug);
+		window.addEventListener('resize', this.resizeWithDebounce, false);
 	};
+
+	componentWillReceiveProps = nextProps => {
+		if (nextProps.CityBuildings && nextProps.CityBuildings[this.state.activeCity.slug]) {
+			this.buildBuildingsTabs(nextProps.CityBuildings[this.state.activeCity.slug]);
+		}
+	};
+
+	componentWillUnmount() {
+		window.removeEventListener('scroll', this.resizeWithDebounce, false);
+	}
 
 	// modal functions
 	openBuildingsModal = item => {
@@ -70,7 +98,9 @@ class FeatuedBuildings extends Component {
 
 	isAdded = id => {
 		const { CartItems } = this.props;
-		const result = CartItems.data.filter(item => item.id === id);
+		const result = CartItems.data.filter(
+			item => (item.isServerData ? item.buildID : item.id) === id,
+		);
 		return result[0] && result[0].id === id ? true : false;
 	};
 
@@ -94,59 +124,93 @@ class FeatuedBuildings extends Component {
 		});
 	};
 
-	// computed render property
-	applyFilters = buildings => {
+	buildBuildingsTabs = buildings => {
 		if (!buildings) return [];
-		const { filter } = this.state;
 		const allBuildings = [...buildings.premium, ...buildings.regular];
 
-		let result = [];
+		const buildingsList = {
+			verified: buildings.premium.slice(0, 6),
+			ekonom: allBuildings.filter(x => x.features[0] === 'эконом-класс').slice(0, 6),
+			comfort: allBuildings.filter(x => x.features[0] === 'комфорт-класс').slice(0, 6),
+			premium: allBuildings.filter(x => x.features[0] === 'премиум-класс').slice(0, 6),
+			busines: allBuildings.filter(x => x.features[0] === 'бизнес-класс').slice(0, 6),
+			elit: allBuildings.filter(x => x.features[0] === 'элит-класс').slice(0, 6),
+		};
 
-		if (filter.activeFilter === 'Под ключ') {
-			result = allBuildings.filter(x => x.features[1] === 'под ключ');
-		} else if (filter.activeFilter === 'Сданные') {
-			result = allBuildings.filter(x => x.features[2] === 'сдан');
-		} else if (filter.activeFilter === 'Недорогие') {
-			result = allBuildings.filter(x => x.features[0] === 'комфорт-класс');
-		} else if (filter.activeFilter === 'Элитные') {
-			result = allBuildings.filter(x => x.features[0] === 'элит-класс');
-		} else {
-			result = buildings.premium;
+		const nonEmptyFilters = this.state.filter.list.filter(filter => {
+			return buildingsList[this.mapFilterNameToStateBuildings(filter)].length;
+		});
+
+		this.setState(
+			{
+				...this.state,
+				filter: {
+					...this.state.filter,
+					list: nonEmptyFilters,
+				},
+				buildings: buildingsList,
+			},
+			this.slickInitMobileOnly,
+		);
+	};
+
+	mapFilterNameToStateBuildings = filter => {
+		// get corresponding name in state by the filter name
+		if (filter === 'Проверенные') {
+			return 'verified';
+		} else if (filter === 'Эконом') {
+			return 'ekonom';
+		} else if (filter === 'Комфорт') {
+			return 'comfort';
+		} else if (filter === 'Премиум') {
+			return 'premium';
+		} else if (filter === 'Бизнес') {
+			return 'busines';
+		} else if (filter === 'Элит') {
+			return 'elit';
 		}
+	};
 
-		// limit filtered to 6 items
-		return result.slice(0, 6);
+	// slider logic
+	slickInitMobileOnly = () => {
+		this.setState({
+			...this.state,
+			sliderDisabled: window.innerWidth > 768,
+		});
+	};
+
+	handleResize = () => {
+		this.slickInitMobileOnly();
 	};
 
 	render() {
 		const { CityBuildings } = this.props;
-		const { activeCity, modal, filter } = this.state;
+		const { activeCity, modal, filter, sliderDisabled } = this.state;
 
-		const buildings = this.applyFilters(CityBuildings[activeCity.slug]);
+		// const buildings = this.applyFilters(CityBuildings[activeCity.slug]);
+		const buildings = this.state.buildings[this.mapFilterNameToStateBuildings(filter.activeFilter)];
 
 		return (
 			<React.Fragment>
 				<div className="gorod-popular__head">
 					<div className="gorod-popular__buttons">
 						<div className="gorod-popular__overlay">
-							<div className="gorod-popular__scroll">
-								{filter.list &&
-									filter.list.map((name, idx) => (
-										<span
-											key={idx}
-											onClick={() => this.handleFilterChange(name)}
-											className={
-												'gorod-popular__btn' +
-												(filter.activeFilter.indexOf(name) !== -1 ? ' is-active' : '')
-											}
-										>
-											{name}
-										</span>
-									))}
-							</div>
+							{filter.list &&
+								filter.list.map((name, idx) => (
+									<span
+										key={idx}
+										onClick={() => this.handleFilterChange(name)}
+										className={
+											'gorod-popular__btn' +
+											(filter.activeFilter.indexOf(name) !== -1 ? ' is-active' : '')
+										}
+									>
+										{name}
+									</span>
+								))}
 						</div>
 					</div>
-					<div className="gorod-popular__links">
+					{/* <div className="gorod-popular__links">
 						<a className="gorod-popular__see-map" href="#">
 							<div className="icon">
 								<SvgIcon name="pin-blue" classModifier="pin" />
@@ -156,23 +220,40 @@ class FeatuedBuildings extends Component {
 						<a className="gorod-popular__all-new" href="#">
 							Все новостройки
 						</a>
-					</div>
+					</div> */}
 				</div>
 				<div className="gorod-popular__content">
 					{!buildings ? (
 						<Loader />
 					) : (
-						<div className="gorod-popular__grid mobile-gorod-carousel">
-							{buildings &&
-								buildings.map((building, idx) => (
-									<Building
-										building={building}
-										key={idx}
-										handleAddToCart={this.handleAddToCart}
-										handleModal={this.openBuildingsModal}
-										isAdded={this.isAdded}
-									/>
-								))}
+						<div className="gorod-popular__grid">
+							{sliderDisabled ? (
+								<React.Fragment>
+									{buildings &&
+										buildings.map((building, idx) => (
+											<Building
+												building={building}
+												key={idx}
+												handleAddToCart={this.handleAddToCart}
+												handleModal={this.openBuildingsModal}
+												isAdded={this.isAdded}
+											/>
+										))}
+								</React.Fragment>
+							) : (
+								<Slider ref={slider => (this.slider = slider)} {...sliderSettingsMobileOnly}>
+									{buildings &&
+										buildings.map((building, idx) => (
+											<Building
+												building={building}
+												key={idx}
+												handleAddToCart={this.handleAddToCart}
+												handleModal={this.openBuildingsModal}
+												isAdded={this.isAdded}
+											/>
+										))}
+								</Slider>
+							)}
 						</div>
 					)}
 				</div>

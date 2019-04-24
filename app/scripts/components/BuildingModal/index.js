@@ -5,7 +5,7 @@ import ReactStars from 'react-stars';
 
 import PhoneForm from '../PhoneForm';
 
-import { modalStyles } from '../../libs/utils';
+import { formatNumber, clearPhone, modalStyles } from '../../libs/utils';
 
 class BuildingModal extends PureComponent {
 	static propTypes = {
@@ -29,11 +29,10 @@ class BuildingModal extends PureComponent {
 		const { isVisible, data, tabs, handleClose } = this.props;
 		const { activeTab } = this.state;
 
-		// TODO get
 		const aboutObj = [
 			{
 				title: 'Район',
-				value: data.district,
+				value: data.district ? data.district : 'недоступно',
 			},
 			{
 				title: 'Сдача',
@@ -41,7 +40,7 @@ class BuildingModal extends PureComponent {
 			},
 			{
 				title: 'Высотность',
-				value: data.high ? data.high : '5 этажей',
+				value: data.altitude ? data.altitude : 'недоступно',
 			},
 			{
 				title: 'Отделка',
@@ -49,7 +48,7 @@ class BuildingModal extends PureComponent {
 			},
 			{
 				title: 'Материал',
-				value: data.material ? data.material : 'кирпичный',
+				value: data.wallMaterial ? data.wallMaterial : 'недоступно',
 			},
 		];
 
@@ -64,51 +63,45 @@ class BuildingModal extends PureComponent {
 					value: 'Сбербанк, ВТБ, Абсолют, Открытие',
 				},
 			],
-			prices: [
-				{
-					title: '1к - 38,9 кв.м',
-					value: '2 900 000 ₽',
-				},
-				{
-					title: '2к - 45,9 кв.м',
-					value: '4 100 000 ₽',
-				},
-				{
-					title: '3к - 61,9 кв.м',
-					value: '5 900 000 ₽',
-				},
-			],
+			prices: data.flats
+				? data.flats.map(flat => {
+						return {
+							title: `${flat.rooms} - ${flat.square} кв.м`,
+							value: `${formatNumber(flat.price)} ₽`,
+						};
+				  })
+				: [],
 		};
 
 		const locationObj = {
 			list: [
 				{
 					title: 'Район',
-					value: 'центральный',
+					value: data.district ? data.district : 'недоступно',
 				},
 				{
 					title: 'Адрес',
-					value: 'мкр. Восход, ул. Есенина',
+					value: data.address ? data.address : 'недоступно',
 				},
 				{
 					title: 'До центра',
-					value: '6 км',
+					value: data.toCentr ? data.toCentr : 'недоступно',
 				},
 				{
 					title: 'Метро',
-					value: data.subway,
+					value: data.subway ? data.subway : 'недоступно',
 				},
 			],
-			metrics: [
-				{
-					title: 'Экология',
-					value: 5,
-				},
-				{
-					title: 'Инфраструктура',
-					value: 3,
-				},
-			],
+			// metrics: [
+			// 	{
+			// 		title: 'Экология',
+			// 		value: 5,
+			// 	},
+			// 	{
+			// 		title: 'Инфраструктура',
+			// 		value: 3,
+			// 	},
+			// ],
 		};
 
 		return (
@@ -118,10 +111,12 @@ class BuildingModal extends PureComponent {
 				ariaHideApp={false}
 				onRequestClose={handleClose}
 			>
-				<div className="BuildingModal">
-					<div className="default-close" onClick={handleClose} />
-					<div className="wrap">
-						<div className="BuildingModal__head">
+				<div className="Modal Modal--responsive BuildingModal">
+					<div className="Modal__close" onClick={handleClose}>
+						<div className="Modal__close--icon" />
+					</div>
+					<div className="BuildingModal__wrapper">
+						<div className="BuildingModal__header">
 							<div className="BuildingModal__info">
 								<div className="name">{data.name}</div>
 								<div className="subway">Рядом со станцией метро {data.subway}</div>
@@ -130,10 +125,9 @@ class BuildingModal extends PureComponent {
 								<div
 									className="logo"
 									style={{
-										backgroundImage: `url(
-														https://domoos.ru/images/zastroyshchiki/${data.citySlug}/${
-											data.developerSlug
-										}.jpg), url('/images/domoos-dummy.png')`,
+										backgroundImage: `url(https://domoos.ru/${
+											data.developerImage
+										}), url('/images/domoos-dummy.png')`,
 									}}
 								/>
 								<div className="info">
@@ -141,11 +135,11 @@ class BuildingModal extends PureComponent {
 									<div className="name">{data.developer}</div>
 								</div>
 								<div className="BuildingModal__phone">
-									<a href="tel:88126159251">+7 812 615 92 51</a>
+									{data.phone && <a href={`tel:${clearPhone(data.phone)}`}>{data.phone}</a>}
 								</div>
 							</div>
 						</div>
-						<div className="BuildingModal__body">
+						<div className="Modal__body BuildingModal__body">
 							<div className="BuildingModal__content">
 								<div className="featured">
 									<img

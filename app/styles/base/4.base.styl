@@ -1,9 +1,10 @@
 body, html {
 	margin-right: auto;
 	margin-left: auto;
+	overflow-x: hidden;
 	width: 100%;
 	min-width: 320px;
-	height: 100%;
+	max-width: 100%;
 	font-family: var(--text-font);
 	font-size: 62.5%;
 	font-weight: 400;
@@ -36,12 +37,12 @@ h1, h2, h3, h4 {
 }
 
 .bg-grey {
-	background-color: #F8F9FD;
 	padding-bottom: 90px;
+	background-color: #F8F9FD;
 
 	+below($phones) {
-		background-color: #fff;
 		padding-bottom: 0;
+		background-color: #fff;
 	}
 }
 
@@ -62,15 +63,14 @@ h1 {
 }
 
 h2 {
+	font-family: 'Gotham Pro';
+	font-size: 2.6rem;
 	font-weight: 600;
 	letter-spacing: -1px;
-	font-size: 2.6rem;
-	font-family: 'Gotham Pro';
 
 	+below($phones) {
 		font-size: 2rem;
 	}
-
 }
 
 h3 {
@@ -118,4 +118,23 @@ input[type='tel'] {
 	&:focus {
 		background-color: #fff;
 	}
+}
+
+input.has-error {
+	border-color: tomato !important;
+}
+
+.select2.has-error {
+	.select2-selection__rendered {
+		border-color: tomato !important;
+	}
+}
+
+.ui-input__validation {
+	position: absolute;
+	top: calc(100% + 5px);
+	left: 0;
+	font-size: 12px;
+	text-align: left;
+	color: tomato;
 }

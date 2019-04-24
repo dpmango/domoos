@@ -6,6 +6,8 @@
 	}
 
 	&__header {
+		position: relative;
+		z-index: 2;
 		margin-bottom: 22px;
 		padding-left: 15px;
 		// display: flex;
@@ -39,9 +41,6 @@
 		display: none;
 		width: 100%;
 
-		// +below($phones) {
-		// display: block;
-		// }
 		.btn {
 			padding-top: 3px;
 			display: flex;
@@ -94,7 +93,7 @@
 	.dropdown {
 		&__handler {
 			margin-right: 20px;
-			font-size: 12px;
+			font-size: 14px;
 			color: var(--text-color);
 			background-color: transparent;
 
@@ -102,16 +101,12 @@
 				margin-right: 22px;
 			}
 
-			+below($phones) {
-				font-size: 14px;
-			}
-
 			&:hover {
 				color: var(--text-color);
 			}
 
 			&:after {
-				arrow(1px, 1px, var(--text-color), 135deg);
+				arrow(2px, 1px, var(--text-color), 135deg);
 				top: 1px;
 				margin-bottom: 3px;
 				margin-left: 13px;
@@ -156,6 +151,7 @@
 	&__title {
 		h3();
 		display: block;
+		font-weight: 500;
 	}
 
 	&__see-map {
@@ -224,15 +220,30 @@
 			margin-bottom: 19px;
 			width: 48%;
 
+			&--region {
+				margin-bottom: 40px;
+
+				.city__img {
+					+below($phones) {
+						min-height: 220px;
+						max-height: 220px;
+						background-position: center;
+						// background-size: contain;
+					}
+				}
+			}
+
 			+below($phones) {
+				margin-bottom: 30px;
 				width: 100%;
 			}
 
 			&__img-container {
+				position: relative;
 				margin-bottom: 15px;
-				height: auto;
 				display: block;
 				overflow: hidden;
+				height: auto;
 				cursor: pointer;
 
 				&:hover {
@@ -240,12 +251,16 @@
 						transform: rotate(1deg) scale(1.1);
 					}
 				}
+
+				+below($phones) {
+					max-width: 360px;
+				}
 			}
 
 			&__img {
 				width: 100%;
+				max-width: 100%;
 				height: auto;
-				max-width: 360px;
 				min-height: 250px;
 				background-repeat: no-repeat;
 				background-size: cover;
@@ -423,7 +438,6 @@
 		}
 
 		&-title {
-			font-family: 'Gotham Pro';
 			font-size: 18px;
 			font-weight: 700;
 		}
@@ -435,7 +449,6 @@
 		}
 
 		&-price {
-			font-family: 'Gotham Pro Medium';
 			font-size: 36px;
 			font-weight: 600;
 			line-height: 1.4;
@@ -459,9 +472,8 @@
 				margin-bottom: 18px;
 				display: block;
 				width: 100%;
-				font-family: 'Gotham Pro';
 				font-size: 14px;
-				font-weight: 600;
+				font-weight: 500;
 				text-transform: uppercase;
 				color: #fff;
 
@@ -477,7 +489,6 @@
 		&-phone {
 			margin-top: 25px;
 			display: inline-block;
-			font-family: 'Gotham Pro';
 			font-size: 24px;
 			font-weight: 600;
 			white-space: nowrap;

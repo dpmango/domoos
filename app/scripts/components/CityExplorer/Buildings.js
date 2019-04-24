@@ -5,13 +5,14 @@ import Slider from 'react-slick';
 import { sliderSettings } from '../../libs/utils';
 
 import { saveToCart, selectCartItems, deleteFromCart } from '../../ducks/cart/items';
-import BuildingModal from '../BuildingModal';
 import Building from '../Shared/Building/Building';
 
 class BuildingsSection extends Component {
 	isAdded = id => {
 		const { CartItems } = this.props;
-		const result = CartItems.data.filter(item => item.id === id);
+		const result = CartItems.data.filter(
+			item => (item.isServerData ? item.buildID : item.id) === id,
+		);
 
 		return result[0] && result[0].id === id ? true : false;
 	};
@@ -32,9 +33,9 @@ class BuildingsSection extends Component {
 			<React.Fragment>
 				<div className="CityExplorer__header">
 					<span className="title">Популярные новостройки</span>
-					<a className="to-category-link" href={`zastrochiki/${slug}`} target="_blank">
+					{/* <a className="to-category-link" href={`zastrochiki/${slug}`} target="_blank">
 						Все новостройки {cityDecl}
-					</a>
+					</a> */}
 				</div>
 				<div className="CityExplorer__content">
 					<Slider {...sliderSettings}>

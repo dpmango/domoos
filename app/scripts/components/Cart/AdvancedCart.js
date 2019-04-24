@@ -39,7 +39,7 @@ class AdvancedCart extends PureComponent {
 											}/estates/${item.slug}.jpg') `,
 										}}
 									/>
-									<div className="name">
+									{/* <div className="name">
 										<a
 											href={`/novostroyki/${item.citySlug}/${item.slug}`}
 											target="_blank"
@@ -47,7 +47,7 @@ class AdvancedCart extends PureComponent {
 										>
 											{item.name}
 										</a>
-									</div>
+									</div> */}
 									<div className="developer">{item.developer}</div>
 									<div className="district">
 										{item.region} {item.region ? 'р-н' : ''}

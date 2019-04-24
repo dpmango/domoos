@@ -47,18 +47,28 @@ class CallbackModal extends PureComponent {
 	render() {
 		return (
 			<Modal isOpen={this.state.modal.isOpen} style={modalStyles} ariaHideApp={false}>
-				<div className="CallbackModal">
-					<div className="CallbackModal__wrapper">
-						<div className="default-close" onClick={this.closeModal} />
-						<div className="CallbackModal__title">Заказать обратный звонок</div>
-						<div className="CallbackModal__content">
-							<p>
-								Услуга абсолютно бесплатная. Пожалуйста, укажите ваши контактные данные и наш
-								специалист по подбору квартиры перезвонит вам в течение 10 минут.
-							</p>
+				<div className="Modal CallbackModal">
+					<div className="Modal__wrapper CallbackModal__wrapper">
+						<div className="Modal__close" onClick={this.closeModal}>
+							<div className="Modal__close--icon" />
 						</div>
-						<div className="CallbackModal__form">
-							<PhoneForm />
+						<div className="Modal__header CallbackModal__header">
+							<div className="Modal__title">С вами свяжется менеджер</div>
+						</div>
+						<div className="Modal__body CallbackModal__body">
+							<div className="Modal__form CallbackModal__form">
+								<div className="Modal__form--select">
+									<input type="text" placeholder="Когда позвонить?" defaultValue="" />
+								</div>
+								<div className="Modal__form--textfield">
+									<input type="text" placeholder="Ваш номер телефона" defaultValue="" />
+								</div>
+								<div className="Modal__form--submit">Заказать звонок</div>
+								{/*<PhoneForm />*/}
+							</div>
+						</div>
+						<div className="Modal__footer CallbackModal__footer">
+							<div className="Modal__form--agreement">Нажимая на кнопку, я соглашаюсь на передачу моей персональной информации</div>
 						</div>
 					</div>
 				</div>

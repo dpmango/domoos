@@ -10,9 +10,9 @@ export default class Developers extends Component {
 			<React.Fragment>
 				<div className="CityExplorer__header">
 					<div className="title">Надежные застройщики</div>
-					<a className="to-category-link" href={`zastrochiki/${city.slug}`} target="_blank">
+					{/* <a className="to-category-link" href={`zastrochiki/${city.slug}`} target="_blank">
 						Все застройщики {cityDecl}
-					</a>
+					</a> */}
 				</div>
 
 				<div className="CityExplorer__content">

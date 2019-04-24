@@ -16,8 +16,11 @@ export const initCart = id => async dispatch => {
 
 	const returnValueOrEmpty = x => (x ? x : '');
 
+	console.log('getting responce ids', res.data.data.data);
 	const newRes = res.data.data.data.map(res => ({
-		id: res.id, // getting wrong id (should be building id, not counter)
+		id: res.id, // id of favorites table
+		buildID: res.idNewbuild, // id of building id
+		isServerData: true,
 		city: res.gorod,
 		citySlug: returnValueOrEmpty(res.slug_gorod),
 		name: res.novostoyka,

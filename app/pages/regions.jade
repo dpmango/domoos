@@ -1,0 +1,11 @@
+extends /blocks/layout/layout
+
+block head
+	- var pageTitle = 'Районы';
+
+block header
+	- var isRegions = true;
+
+block content
+	include /blocks/header/header
+	include /blocks/all-regions/all-regions
